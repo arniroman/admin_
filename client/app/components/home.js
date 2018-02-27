@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Datas from '../components/create'
 import { Link } from 'react-router-dom'
+import TextField from 'material-ui/TextField';
 import  '../css/style.css'
 
 export default class HomePage extends React.Component {
@@ -20,8 +21,14 @@ export default class HomePage extends React.Component {
 		
 		return (
 			<div>
+				<TextField
+					hintText="Password Field"
+					floatingLabelText="Password"
+					type="password"
+    			/><br />
+
 				<nav>
-				<Link to="/home">Dashboard</Link>
+				<Link to="/create"><p className="links">All their equipment and instruments are alive.</p></Link>
 				</nav>
 			</div>
 		);

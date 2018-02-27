@@ -1,16 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Create from './components/create'
 import HomePage from './components/home'
 
 
 render(
-	<div>
-		<Router history={browserHistory}>
-			<Route path="/" component={HomePage}>
-				<IndexRoute component={HomePage} />
-			</Route>
-		</Router>
-	</div>,
+	<BrowserRouter>
+		<div>
+			<Route exact path='/' component={HomePage}/>
+			<Route exact path='/home' component={Create}/>
+		</div>
+	</BrowserRouter>,
     document.getElementById('app')
 );

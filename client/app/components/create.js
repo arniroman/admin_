@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import HomePage from './home'
 
-class Datas extends Component {
+export default class Create extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -13,8 +13,8 @@ class Datas extends Component {
             active  : Boolean,
             category: String,
             tags    : Array,
-            prop    : Array,
-            images  : Array
+            prop    : Object,
+            images  : String
         }
 
         this.handleChange  = this.handleChange.bind(this)
@@ -75,10 +75,15 @@ class Datas extends Component {
     }
     handleChange8(event){
         let resEvent = event.target.value
-        let res = resEvent.split(',')
-        console.log(res)
+        let result = {}
+        let keyValuePairs = resEvent.split(' ')
+        keyValuePairs.forEach( keyValue => {
+            const [key, value] = keyValue.split(':')
+            result[key] = value
+        });
+        console.log(result)
 		this.setState({
-			prop : res
+			prop : result
 		})
     }
     handleChange9(event){
@@ -155,6 +160,6 @@ class Datas extends Component {
     }
     
 }
-export default Datas
+
 
 

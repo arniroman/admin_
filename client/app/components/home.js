@@ -1,7 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-import Datas from '../components/data'
-import data from '../components/data';
+import React from 'react'
+import axios from 'axios'
+import Datas from '../components/create'
+import { Link } from 'react-router-dom'
+import  '../css/style.css'
 
 export default class HomePage extends React.Component {
 	constructor(props){
@@ -16,9 +17,12 @@ export default class HomePage extends React.Component {
 	}		
 	render() {
 		console.log(this.state.data,'post data')
+		
 		return (
 			<div>
-				<Datas/>
+				<nav>
+				<Link to="/home">Dashboard</Link>
+				</nav>
 			</div>
 		);
 	}

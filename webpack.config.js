@@ -28,10 +28,7 @@ var config = {
 	            	plugins: ['react-html-attrs', 'transform-class-properties']
 				}
 			},
-			{
-			  test: /\.css$/,
-			  loader: ExtractTextPlugin.extract("css")
-			}
+			{ test: /\.css$/, loader: "style-loader!css-loader" }
         ]
     },
 	plugins: [

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/product')
 mongoose.Promise = require('bluebird');
 //connected to db
-mongoose.connect('mongodb://admin:admin@ds247688.mlab.com:47688/testdatadb');
+mongoose.connect(config.url);
 
 const db = mongoose.connection;
 

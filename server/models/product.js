@@ -8,8 +8,8 @@ const productSchema = mongoose.Schema({
     active  : Boolean,
     category: String,
     tags    : Array,
-    prop    : Array,
-    images  : Array,       
+    prop    : Object,
+    images  : String,       
 })
 
 const Product = mongoose.model('Product', productSchema);

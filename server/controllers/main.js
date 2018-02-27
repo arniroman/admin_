@@ -18,7 +18,7 @@ module.exports = (app) => {
   }) 
   
     Product.find({},(err,product)=>{
-      console.log(err,product)
+    //console.log(err,product)
   
     app.get('/product',(req,res)=>{
     res.send(product)

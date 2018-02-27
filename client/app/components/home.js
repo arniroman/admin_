@@ -2,8 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import Datas from '../components/create'
 import { Link } from 'react-router-dom'
-import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 import  '../css/style.css'
+import '../css/home.css'
+
 
 export default class HomePage extends React.Component {
 	constructor(props){
@@ -21,14 +24,13 @@ export default class HomePage extends React.Component {
 		
 		return (
 			<div>
-				<TextField
-					hintText="Password Field"
-					floatingLabelText="Password"
-					type="password"
-    			/><br />
-
+				
 				<nav>
-				<Link to="/create"><p className="links">All their equipment and instruments are alive.</p></Link>
+					<Link to="/create"><p className="links">
+						<FloatingActionButton className='createProduct'>
+							<ContentAdd />
+						</FloatingActionButton></p>
+					</Link>
 				</nav>
 			</div>
 		);

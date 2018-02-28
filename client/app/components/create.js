@@ -119,47 +119,79 @@ export default class Create extends Component {
         return(
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
-                   <p>name</p>
-                <TextField
-                    className="createProd-input"
-                    name="name"
-                    hintText="Full width"
-                    fullWidth={true}
-                    onChange={this.handleChange}
-                />
-                <div>
-                   <p>descr</p>
-					<input type="text" name="name1" onChange={this.handleChange2} />
-                </div>
-                <div>
-                   <p>price</p>
-					<input type="text" name="name2" onChange={this.handleChange3} />
-                </div>
-                <div>
-                   <p>weight</p>
-					<input type="text" name="name3" onChange={this.handleChange4} />
-                </div>
-                <div>
-                   <p>active</p>
-					<input type="text" name="name4" onChange={this.handleChange5} />
-                </div>
-                <div>
-                   <p>category</p>
-					<input type="text" name="name5" onChange={this.handleChange6} />
-                </div>
-                <div>
-                   <p>tags</p>
-					<input type="text" name="name5" onChange={this.handleChange7} />
-                </div>
-                <div>
-                   <p>props</p>
-					<input type="text" name="name5" onChange={this.handleChange8} />
-                </div>
-                <div>
-                   <p>images</p>
-					<input type="text" name="name5" onChange={this.handleChange9} />
-                </div>
-                <button type="submit">Add</button>
+                   <p>Name product</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange}
+                        />
+                        <p>Description</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name2"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange2}
+                        />
+                        <p>Price</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name2"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange3}
+                        />
+                        <p>Weight</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name4"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange4}
+                        />
+                        <p>Active</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name5"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange5}
+                        />
+                        <p>Category</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name6"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange6}
+                        />
+                        <p>Tags</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name7"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange7}
+                        />
+                        <p>Properties</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name8"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange8}
+                        />
+                        <p>Images</p>
+                        <TextField
+                            className="createProd-input"
+                            name="name9"
+                            hintText="Full width"
+                            fullWidth={true}
+                            onChange={this.handleChange9}
+                        />
+                    <button type="submit">Add</button>
 				</form>
            </div>
         )

@@ -1,0 +1,11 @@
+.createProduct-wrap{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.createProd-form{
+    width: 400px;
+    text-align: center;
+}

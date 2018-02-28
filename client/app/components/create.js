@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, {Component} from 'react'
+import axios from 'axios'
+import TextField from 'material-ui/TextField'
 import HomePage from './home'
+import '../css/createProduct.css'
 
 export default class Create extends Component {
     constructor(props){
@@ -115,12 +117,16 @@ export default class Create extends Component {
 
     render(){
         return(
-           <div>
-               <form onSubmit={this.handleSubmit}>
-               <div>
+           <div className='createProduct-wrap'>
+               <form  className='createProd-form' onSubmit={this.handleSubmit}>
                    <p>name</p>
-					<input type="text" name="name" onChange={this.handleChange} />
-                </div>
+                <TextField
+                    className="createProd-input"
+                    name="name"
+                    hintText="Full width"
+                    fullWidth={true}
+                    onChange={this.handleChange}
+                />
                 <div>
                    <p>descr</p>
 					<input type="text" name="name1" onChange={this.handleChange2} />

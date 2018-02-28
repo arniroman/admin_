@@ -23,15 +23,14 @@ export default class HomePage extends React.Component {
 		console.log(this.state.data,'post data')
 		
 		return (
-			<div>
-				
-				<nav>
-					<Link to="/create"><p className="links">
-						<FloatingActionButton className='createProduct'>
-							<ContentAdd />
-						</FloatingActionButton></p>
-					</Link>
-				</nav>
+			<div className="Wrapper">
+					<nav>
+						<Link to="/create"><div className="links">
+							<FloatingActionButton className='createProduct'>
+								<ContentAdd />
+							</FloatingActionButton></div>
+						</Link>
+					</nav>
 			</div>
 		);
 	}

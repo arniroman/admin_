@@ -6,6 +6,7 @@ module.exports = (app) => {
   app.post('/product',(req,res)=>{
 
     const result = req.body.user
+    console.log(result)
     const product = new Product(result);
     //for debagging
     console.log(result);

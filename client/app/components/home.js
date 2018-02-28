@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import Datas from '../components/create'
 import { Link } from 'react-router-dom'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
@@ -15,17 +14,21 @@ export default class HomePage extends React.Component {
 			data:[]
 		}
 	}
-	componentWillMount(){
+	/*componentWillMount(){
 		axios.get('/product').then(response => this.setState({data: response.data }));
 		//axios.post('/product').then(response => this.setState({data: response.data }));
-	}		
+	}*/
+
 	render() {
-		console.log(this.state.data,'post data')
-		
 		return (
 			<div className="Wrapper">
 					<nav>
 						<Link to="/create"><div className="links">
+							<FloatingActionButton className='createProduct'>
+								<ContentAdd />
+							</FloatingActionButton></div>
+						</Link>
+						<Link to="/createdProduct"><div className="links">
 							<FloatingActionButton className='createProduct'>
 								<ContentAdd />
 							</FloatingActionButton></div>

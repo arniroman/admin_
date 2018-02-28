@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import TextField from 'material-ui/TextField'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 import HomePage from './home'
 import '../css/createProduct.css'
 
-export default class Create extends Component {
+class Create extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -109,13 +112,14 @@ export default class Create extends Component {
             prop    : this.state.prop,
             images  : this.state.images
 		}
-
+        console.log('dsassda')
 		axios.post('/product',{user}).then(res => {
-			console.log(res.data);
+			console.log(res.data,'created product');
 		})
 	}
 
     render(){
+
         return(
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
@@ -191,12 +195,12 @@ export default class Create extends Component {
                             fullWidth={true}
                             onChange={this.handleChangeImages}
                         />
-                    <button type="submit">Add</button>
+                        <button type="submit">Add</button>
 				</form>
            </div>
         )
     }
 }
-
+export default Create
 
 

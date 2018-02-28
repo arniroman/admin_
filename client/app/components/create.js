@@ -19,55 +19,55 @@ export default class Create extends Component {
             images  : String
         }
 
-        this.handleChange  = this.handleChange.bind(this)
-        this.handleChange2 = this.handleChange2.bind(this)
-        this.handleChange3 = this.handleChange3.bind(this)
-        this.handleChange4 = this.handleChange4.bind(this)
-        this.handleChange5 = this.handleChange5.bind(this)
-        this.handleChange6 = this.handleChange6.bind(this)
-        this.handleChange7 = this.handleChange7.bind(this)
-        this.handleChange8 = this.handleChange8.bind(this)
-        this.handleChange9 = this.handleChange9.bind(this)
+        this.handleChangeName  = this.handleChangeName.bind(this)
+        this.handleChangeDescr = this.handleChangeDescr.bind(this)
+        this.handleChangePrice = this.handleChangePrice.bind(this)
+        this.handleChangeWeight = this.handleChangeWeight.bind(this)
+        this.handleChangeStatus = this.handleChangeStatus.bind(this)
+        this.handleChangeCategory = this.handleChangeCategory.bind(this)
+        this.handleChangeTags = this.handleChangeTags.bind(this)
+        this.handleChangeProps = this.handleChangeProps.bind(this)
+        this.handleChangeImages = this.handleChangeImages.bind(this)
         this.handleSubmit  = this.handleSubmit.bind(this)
     }
   
-    handleChange(event){
+    handleChangeName(event){
        console.log('lalal')
 		this.setState({
             name : event.target.value
 		})
     }
-    handleChange2(event){
+    handleChangeDescr(event){
         console.log('lalalall')
 		this.setState({
 			descr : event.target.value
 		})
     }
-    handleChange3(event){
+    handleChangePrice(event){
         console.log('lalalall')
 		this.setState({
 			price : event.target.value
 		})
     }
-    handleChange4(event){
+    handleChangeWeight(event){
         console.log('lalalall')
 		this.setState({
 			weight : event.target.value
 		})
     }
-    handleChange5(event){
+    handleChangeStatus(event){
         console.log('lalalall')
 		this.setState({
 			active : event.target.value
 		})
     }
-    handleChange6(event){
+    handleChangeCategory(event){
         console.log('lalalall')
 		this.setState({
 			category : event.target.value
 		})
     }
-    handleChange7(event){
+    handleChangeTags(event){
         let resEvent = event.target.value
         let res = resEvent.split(',')
         console.log(res)
@@ -75,7 +75,7 @@ export default class Create extends Component {
 			tags : res
 		})
     }
-    handleChange8(event){
+    handleChangeProps(event){
         let resEvent = event.target.value
         let result = {}
         let keyValuePairs = resEvent.split(' ')
@@ -88,7 +88,7 @@ export default class Create extends Component {
 			prop : result
 		})
     }
-    handleChange9(event){
+    handleChangeImages(event){
         let resEvent = event.target.value
         let res = resEvent.split(',')
         console.log(res)
@@ -123,80 +123,79 @@ export default class Create extends Component {
                         <TextField
                             className="createProd-input"
                             name="name"
-                            hintText="Full width"
+                            hintText="name"
                             fullWidth={true}
-                            onChange={this.handleChange}
+                            onChange={this.handleChangeName}
                         />
                         <p>Description</p>
                         <TextField
                             className="createProd-input"
-                            name="name2"
-                            hintText="Full width"
+                            name="descr"
+                            hintText="Description"
                             fullWidth={true}
-                            onChange={this.handleChange2}
+                            onChange={this.handleChangeDescr}
                         />
                         <p>Price</p>
                         <TextField
                             className="createProd-input"
-                            name="name2"
-                            hintText="Full width"
+                            name="price"
+                            hintText="Price"
                             fullWidth={true}
-                            onChange={this.handleChange3}
+                            onChange={this.handleChangePrice}
                         />
                         <p>Weight</p>
                         <TextField
                             className="createProd-input"
-                            name="name4"
-                            hintText="Full width"
+                            name="weight"
+                            hintText="Weight"
                             fullWidth={true}
-                            onChange={this.handleChange4}
+                            onChange={this.handleChangeWeight}
                         />
                         <p>Active</p>
                         <TextField
                             className="createProd-input"
-                            name="name5"
-                            hintText="Full width"
+                            name="status"
+                            hintText="Status"
                             fullWidth={true}
-                            onChange={this.handleChange5}
+                            onChange={this.handleChangeStatus}
                         />
                         <p>Category</p>
                         <TextField
                             className="createProd-input"
-                            name="name6"
+                            name="Category"
                             hintText="Full width"
                             fullWidth={true}
-                            onChange={this.handleChange6}
+                            onChange={this.handleChangeCategory}
                         />
                         <p>Tags</p>
                         <TextField
                             className="createProd-input"
-                            name="name7"
+                            name="Tags"
                             hintText="Full width"
                             fullWidth={true}
-                            onChange={this.handleChange7}
+                            onChange={this.handleChangeTags}
                         />
                         <p>Properties</p>
                         <TextField
                             className="createProd-input"
-                            name="name8"
-                            hintText="Full width"
+                            name="props"
+                            hintText="Properties"
                             fullWidth={true}
-                            onChange={this.handleChange8}
+                            onChange={this.handleChangeProps}
                         />
                         <p>Images</p>
                         <TextField
                             className="createProd-input"
-                            name="name9"
+                            name="Images"
                             hintText="Full width"
                             fullWidth={true}
-                            onChange={this.handleChange9}
+                            onChange={this.handleChangeImages}
                         />
                     <button type="submit">Add</button>
 				</form>
            </div>
         )
     }
-    
 }
 
 

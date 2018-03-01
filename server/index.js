@@ -2,9 +2,7 @@ const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
 const config = require('./config');
-const controllers = require('./controllers');
 const mongoose = require('mongoose');
-const Product = require('./models/product')
 mongoose.Promise = require('bluebird');
 //connected to db
 mongoose.connect(config.url);
@@ -27,8 +25,8 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(express.static('client'));
-
-controllers.set(app);
+//create routes for app
+const routes = require('./routs/api/routes')(app)
 
 module.exports.start = () => app.listen(config.port, () => console.log('App listening on port '+ config.port));
 

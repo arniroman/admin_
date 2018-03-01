@@ -101,7 +101,7 @@ class Create extends Component {
     }
 	handleSubmit(event){
 		event.preventDefault();
-		const user = {
+		const product = {
             name    : this.state.name,
             descr   : this.state.descr,
             price   : this.state.price,
@@ -113,7 +113,7 @@ class Create extends Component {
             images  : this.state.images
 		}
         console.log('dsassda')
-		axios.post('/product',{user}).then(res => {
+		axios.post('/product',{product}).then(res => {
 			console.log(res.data,'created product');
 		})
 	}

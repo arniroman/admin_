@@ -8,7 +8,7 @@ const productSchema = mongoose.Schema({
     active  : Boolean,
     category: String,
     tags    : Array,
-    prop    : Object,
+    prop    : Array,
     images  : String,       
 })
 

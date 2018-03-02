@@ -18,7 +18,7 @@ class Create extends Component {
             active  : Boolean,
             category: String,
             tags    : Array,
-            prop    : Object,
+            prop    : Array,
             images  : String
         }
 
@@ -80,16 +80,12 @@ class Create extends Component {
     }
     handleChangeProps(event){
         let resEvent = event.target.value
-        let result = {}
-        let keyValuePairs = resEvent.split(' ')
-        keyValuePairs.forEach( keyValue => {
-            const [key, value] = keyValue.split(':')
-            result[key] = value
-        });
-        console.log(result)
-		this.setState({
-			prop : result
-		})
+        let result = []
+        result.push(resEvent)
+        this.setState({
+            prop : result
+        })
+        
     }
     handleChangeImages(event){
         let resEvent = event.target.value

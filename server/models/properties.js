@@ -5,6 +5,6 @@ const propertiesSchema = mongoose.Schema({
     possibleValues  : Array
 })
 
-const Product = mongoose.model('Properties',propertiesSchema)
+const Properties = mongoose.model('Properties',propertiesSchema)
 
-module.export = Product
+module.exports = Properties

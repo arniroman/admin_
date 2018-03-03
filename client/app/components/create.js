@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import HomePage from './home'
-import OpenDower from './openDower'
+
 import '../css/createProduct.css'
 import index from 'material-ui/TextField';
 
@@ -13,16 +13,17 @@ class Create extends Component {
     constructor(props){
         super(props)
         this.state = {
-            name    : String,
-            descr   : String,
-            price   : Number,
-            weight  : Number,
-            active  : Boolean,
-            category: String,
-            tags    : Array,
+            name    : "",
+            descr   : "",
+            price   : "",
+            weight  : "",
+            active  : "",
+            category: "",
+            tags    : [],
             prop    : [],
             filter  : new Map(),
-            images  : String,
+            props   : {},
+            images  : "",
         }
         this.handleChangeName  = this.handleChangeName.bind(this)
         this.handleChangeDescr = this.handleChangeDescr.bind(this)
@@ -84,7 +85,21 @@ class Create extends Component {
         let isChecked = event.target.checked
         let chosenValue = event.target.name
         let filteredItems = this.state.filter
-        if(!filteredItems.has(chosenKey)){
+        let obj = this.state.props
+
+        if(isChecked){
+            obj[chosenKey] = chosenValue
+        }
+        else{
+            delete obj[chosenKey]
+        }
+
+        console.log(obj)
+        this.setState({
+            props: obj
+        })
+        
+       /* if(!filteredItems.has(chosenKey)){
             filteredItems.set(chosenKey , new Set([chosenValue]))   
         }else{
             filteredItems.forEach((value, key, map)=>{
@@ -97,11 +112,16 @@ class Create extends Component {
                 }
             })
         }
-        
-        console.log(filteredItems)
+            
+           let obj = Array.from(filteredItems).reduce((obj, [key, value]) => (
+            Object.assign(obj, { [key]: value }) 
+          ), {});
+
+          console.log(obj,'obj')
+
         this.setState({
-            filter : filteredItems
-        })
+            result : obj
+        })*/
          
     }
 
@@ -117,8 +137,6 @@ class Create extends Component {
     }
 	handleSubmit(event){
         event.preventDefault();
-         let obj = Object.enties
-          console.log(obj,'object')
 		const product = {
             name    : this.state.name,
             descr   : this.state.descr,
@@ -127,11 +145,10 @@ class Create extends Component {
             active  : this.state.active,
             category: this.state.category,
             tags    : this.state.tags,
-            //prop    : this.state.prop,
-           // filter  : this.state.filter,
+            props  : this.state.props,
             images  : this.state.images
 		}
-        console.log('dsassda')
+        console.log(product)
 		axios.post('/product',{product}).then(res => {
 			console.log(res.data,'created product');
 		})
@@ -140,6 +157,7 @@ class Create extends Component {
 
 
     render(){
+        
         const properties = this.state.prop
         let blockProps = properties.map(item=>
                 <h1>{item.name} {item.possibleValues.map(val => 

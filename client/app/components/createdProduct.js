@@ -8,8 +8,7 @@ import  '../css/style.css'
 	constructor(props){
 		super(props);
 		this.state = {
-            product:[],
-            properties:[]
+            product:[]
 		}
     }
     componentWillMount(){
@@ -34,29 +33,7 @@ import  '../css/style.css'
 function NameProd(props) {
     
     console.log('product',props)
-   /* let arr,
-        nameArr = [],
-        newObj = {}
-        for(let key in prop){
-            arr = prop[key]
-        }
-
-        let foo =[]
-        arr.forEach(el =>{
-            
-                nameArr.push(el.name,
-                             el.descr,
-                             el.price,
-                             el.weight,
-                             el.active,
-                             el.category,
-                             el.tags,
-                             el.prop,
-                             el.images
-                            )       
-        })
-        //console.log(nameArr)
-        */
+  
     return(
         <div>
            <h1>hi</h1>

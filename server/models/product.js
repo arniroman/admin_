@@ -1,3 +1,5 @@
+import { Schema } from 'mongoose';
+
 const mongoose = require('mongoose')
 
 const productSchema = mongoose.Schema({
@@ -8,7 +10,7 @@ const productSchema = mongoose.Schema({
     active  : Boolean,
     category: String,
     tags    : Array,
-    prop    : Array,
+    filter  : Schema.Types.Mixed,
     images  : String,       
 })
 

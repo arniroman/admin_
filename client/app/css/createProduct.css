@@ -31,6 +31,7 @@
 }
 .productItem-box{
     display: flex;
+    height: 400px;
 }
 .productList-box{
     width: 100%;

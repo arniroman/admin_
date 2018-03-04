@@ -12,7 +12,7 @@ render(
 <MuiThemeProvider>
 	<BrowserRouter>
 		<div>
-			<Route exact path='/' component={HomePage}/>
+			<Route  path='/' component={HomePage}/>
 			<Route exact path='/create' component={Create}/>
 			<Route exact path='/createdProduct' component={CreatedProduct}/>
 		</div>

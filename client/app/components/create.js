@@ -4,20 +4,26 @@ import axios from 'axios'
 import TextField from 'material-ui/TextField'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import Toggle from 'material-ui/Toggle';
 import HomePage from './home'
 
 import '../css/createProduct.css'
 import index from 'material-ui/TextField';
 
+ 
 class Create extends Component {
     constructor(props){
         super(props)
         this.state = {
+            open    : false,
             name    : "",
             descr   : "",
             price   : "",
             weight  : "",
-            active  : "",
+            active  : true,
             category: "",
             tags    : [],
             prop    : [],
@@ -36,8 +42,8 @@ class Create extends Component {
         this.handleChangeImages = this.handleChangeImages.bind(this)
         this.handleSubmit  = this.handleSubmit.bind(this)
     }
+    handleToggle = () => this.setState({open: !this.state.open});
     componentWillMount(){
-		//axios.get('/product').then(response => this.setState({product: response.data }));
 		axios.get('/properties').then(response => this.setState({prop: response.data }));
     }
     
@@ -62,10 +68,11 @@ class Create extends Component {
 			weight : event.target.value
 		})
     }
-    handleChangeStatus(event){
+    handleChangeStatus(){
 		this.setState({
-			active : event.target.value
-		})
+			active : !this.state.active
+        })
+        console.log(this.state.active)
     }
     handleChangeCategory(event){
 		this.setState({
@@ -157,24 +164,24 @@ class Create extends Component {
 
 
     render(){
-        
         const properties = this.state.prop
-        let blockProps = properties.map(item=>
-                <h1>{item.name} {item.possibleValues.map(val => 
-                    <label> {val}
+        
+        let blockProps = properties.map((item,key)=>
+            <div key={key}>
+                <div >{item.name}: {item.possibleValues.map((val,key) => 
+                    <label key={key}><span>{val}</span>
                         <input 
                             type="checkbox" 
                             name={val}
-                    
                             onChange={(event)=>this.handleChangeProps(item.name, event)}/>
                     </label>)}
-                </h1>
+                </div>
+            </div>
         )
-
         return(
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
-                   <p>Name product</p>
+                   <p className="titleName-props">Name product</p>
                         <TextField
                             className="createProd-input"
                             name="name"
@@ -182,67 +189,82 @@ class Create extends Component {
                             fullWidth={true}
                             onChange={this.handleChangeName}
                         />
-                        <p>Description</p>
-                        <TextField
-                            className="createProd-input"
-                            name="descr"
-                            hintText="Description"
-                            fullWidth={true}
-                            onChange={this.handleChangeDescr}
-                        />
-                        <p>Price</p>
-                        <TextField
-                            className="createProd-input"
-                            name="price"
-                            hintText="Price"
-                            fullWidth={true}
-                            onChange={this.handleChangePrice}
-                        />
-                        <p>Weight</p>
-                        <TextField
-                            className="createProd-input"
-                            name="weight"
-                            hintText="Weight"
-                            fullWidth={true}
-                            onChange={this.handleChangeWeight}
-                        />
-                        <p>Active</p>
-                        <TextField
-                            className="createProd-input"
-                            name="status"
-                            hintText="Status"
-                            fullWidth={true}
-                            onChange={this.handleChangeStatus}
-                        />
-                        <p>Category</p>
-                        <TextField
-                            className="createProd-input"
-                            name="Category"
-                            hintText="Full width"
-                            fullWidth={true}
-                            onChange={this.handleChangeCategory}
-                        />
-                        <p>Tags</p>
-                        <TextField
-                            className="createProd-input"
-                            name="Tags"
-                            hintText="Full width"
-                            fullWidth={true}
-                            onChange={this.handleChangeTags}
-                        />
-                        <p>Properties</p>
-                      
-                          {blockProps}
-                       
-                        <p>Images</p>
-                        <TextField
-                            className="createProd-input"
-                            name="Images"
-                            hintText="Full width"
-                            fullWidth={true}
-                            onChange={this.handleChangeImages}
-                        />
-                        <button type="submit">Add</button>
+                        <p className="titleName-props">Description</p>
+                            <TextField
+                                className="createProd-input"
+                                name="descr"
+                                hintText="Description"
+                                fullWidth={true}
+                                onChange={this.handleChangeDescr}
+                            />
+                        <p className="titleName-props">Price</p>
+                            <TextField
+                                className="createProd-input"
+                                name="price"
+                                hintText="Price"
+                                fullWidth={true}
+                                onChange={this.handleChangePrice}
+                            />
+                        <p className="titleName-props">Weight</p>
+                            <TextField
+                                className="createProd-input"
+                                name="weight"
+                                hintText="Weight"
+                                fullWidth={true}
+                                onChange={this.handleChangeWeight}
+                            />
+                        <p className="titleName-props">Active</p>
+                            <div className ="toggle-status">
+                                <div >
+                                <Toggle
+                               
+                                onClick={this.handleChangeStatus}
+                                />
+                                </div>
+                        </div>
+                        <p className="titleName-props">Category</p>
+                            <TextField
+                                className="createProd-input"
+                                name="Category"
+                                hintText="Full width"
+                                fullWidth={true}
+                                onChange={this.handleChangeCategory}
+                            />
+                        <p className="titleName-props">Tags</p>
+                            <TextField
+                                className="createProd-input"
+                                name="Tags"
+                                hintText="Full width"
+                                fullWidth={true}
+                                onChange={this.handleChangeTags}
+                            />
+                        <p className="titleName-props">Properties</p>
+                            <div>
+                                <RaisedButton
+                                label="Chose"
+                                onClick={this.handleToggle}
+                                className="drawer-box"
+                                />
+                                <Drawer open={this.state.open}>
+                                    <MenuItem >
+                                        <p className="properties-title">Properties</p>
+                                    </MenuItem>
+                                <MenuItem>{blockProps}</MenuItem>
+                                </Drawer>
+                            </div>
+                        <p className="titleName-props">Images</p>
+                            <TextField
+                                className="createProd-input"
+                                name="Images"
+                                hintText="Full width"
+                                fullWidth={true}
+                                onChange={this.handleChangeImages}
+                            />
+                        <RaisedButton 
+                        className="create-btn" 
+                        type="submit" 
+                        label="Create" 
+                        primary={true}/>
 				</form>
            </div>
         )

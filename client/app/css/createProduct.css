@@ -12,3 +12,17 @@
 .createProduct-btn{
     margin-left: 20px;
 }
+.titleName-props {
+    font-size: 15px;
+}
+.toggle-status{
+    display: flex;
+    justify-content: center;
+}
+.create-btn{
+    margin: 12;
+}
+.properties-title{
+    font-size: 20px;
+    font-weight: bold;
+}

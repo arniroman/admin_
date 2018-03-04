@@ -1,6 +1,5 @@
 .wrapper {
     display: flex;
-    padding-top: 200px;
     justify-content: center;
 }
 .createProduct {

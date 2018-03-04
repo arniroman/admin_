@@ -15,6 +15,6 @@ module.exports = {
         Properties.find({},(err,properties)=>{
             callback(err,properties)
         })
-    }
+    },
 
 }

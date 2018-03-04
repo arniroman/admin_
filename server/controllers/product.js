@@ -15,6 +15,13 @@ module.exports = {
         Product.find({},(err,product) => {
             callback(err,product)
         })
+    },
+
+    deletProductById: (id,callback)=>{
+        Product.findByIdAndRemove(id, (err,todo)=>{
+           callback(err,todo)
+       }) 
+              
     }
 
 }

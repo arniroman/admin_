@@ -70,13 +70,3 @@
 .PropertiesTitle-style{
     background: #ffe5e5;
 }
-.deleteProduct-box{
-    cursor: pointer;
-    text-align: right;
-    margin-right: 50px;
-    font-size: 30px;
-    color: rgb(0, 188, 212);
-}
-.deleteProduct-box:hover{
-    color: #fb8c8c;
-}

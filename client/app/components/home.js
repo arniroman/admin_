@@ -30,7 +30,7 @@ export default class HomePage extends React.Component {
 								</div>
 						</Link>
 						<Link to="/createdProduct">
-									<div className="createBtn-wrap">
+									<div className="createBtn-wrap cc">
 										<div className="createBtn-box">
 											<i class="fas fa-cart-plus create-btn"></i>
 										</div>

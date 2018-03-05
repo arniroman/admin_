@@ -17,11 +17,10 @@ module.exports = {
         })
     },
 
-    deletProductById: (id,callback)=>{
-        Product.findByIdAndRemove(id, (err,todo)=>{
-           callback(err,todo)
-       }) 
-              
+    deleteProduct: (productId,callback)=> {
+        Product.findByIdAndRemove(productId,(err,todo)=>{
+            callback(err,todo)
+        })
     }
 
 }

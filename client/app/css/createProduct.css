@@ -83,3 +83,9 @@
 .deleteIcon:hover{
     color: #ff3939
 }
+.createProd-inputProp{
+    width: 50px;
+    height: 17px;
+    border-color: #77e0ff;
+
+}

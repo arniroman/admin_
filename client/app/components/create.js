@@ -27,7 +27,7 @@ class Create extends Component {
             category: "",
             tags    : [],
             prop    : [],
-            filter  : new Map(),
+            //filter  : new Map(),
             props   : {},
             images  : "",
         }
@@ -87,25 +87,25 @@ class Create extends Component {
 			tags : res
 		})
     }
-
     handleChangeProps(chosenKey, event){
-        let isChecked = event.target.checked
+       // let isChecked = event.target.checked
         let chosenValue = event.target.name
         let filteredItems = this.state.filter
         let obj = this.state.props
-
+        console.log(event.target.value)
+        obj[chosenKey] = event.target.value
+        console.log(obj)
+        /*     
         if(isChecked){
             obj[chosenKey] = chosenValue
         }
         else{
             delete obj[chosenKey]
-        }
-
-        console.log(obj)
-        this.setState({
+        }*/
+       this.setState({
             props: obj
         })
-        
+        // Map filtering
        /* if(!filteredItems.has(chosenKey)){
             filteredItems.set(chosenKey , new Set([chosenValue]))   
         }else{
@@ -119,7 +119,6 @@ class Create extends Component {
                 }
             })
         }
-            
            let obj = Array.from(filteredItems).reduce((obj, [key, value]) => (
             Object.assign(obj, { [key]: value }) 
           ), {});
@@ -128,11 +127,8 @@ class Create extends Component {
 
         this.setState({
             result : obj
-        })*/
-         
+        })*/     
     }
-
-    
 
     handleChangeImages(event){
         let resEvent = event.target.value
@@ -152,7 +148,7 @@ class Create extends Component {
             active  : this.state.active,
             category: this.state.category,
             tags    : this.state.tags,
-            props  : this.state.props,
+            props   : this.state.props,
             images  : this.state.images
 		}
         console.log(product)
@@ -165,17 +161,22 @@ class Create extends Component {
 
     render(){
         const properties = this.state.prop
-        
-        let blockProps = properties.map((item,key)=>
+        const category = this.state.category
+        let res = []
+        properties.forEach(el=>{
+            if(el.category === category){
+                //console.log(el)
+                res.push(el)
+               // console.log(res)
+            }
+        })
+        let blockProps = res.map((item,key)=>
             <div key={key}>
-                <div >{item.name}: {item.possibleValues.map((val,key) => 
-                    <label key={key}><span>{val}</span>
-                        <input 
-                            type="checkbox" 
-                            name={val}
-                            onChange={(event)=>this.handleChangeProps(item.name, event)}/>
-                    </label>)}
-                </div>
+            {item.name}:
+            <input 
+            className="createProd-inputProp"
+                type="text" 
+                onChange={(event)=>this.handleChangeProps(item.name, event)}/>
             </div>
         )
         return(
@@ -237,6 +238,14 @@ class Create extends Component {
                                 hintText="Full width"
                                 fullWidth={true}
                                 onChange={this.handleChangeTags}
+                            />
+                            <p className="titleName-props">Filter</p>
+                            <TextField
+                                className="createProd-input"
+                                name="Tags"
+                                hintText="Full width"
+                                fullWidth={true}
+                                onChange={this.handleChangeFilter}
                             />
                         <p className="titleName-props">Properties</p>
                             <div>

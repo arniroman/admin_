@@ -70,3 +70,16 @@
 .PropertiesTitle-style{
     background: #ffe5e5;
 }
+.deleteBtn{
+    border: none;
+    background: #fff;
+    margin-left: 730px;
+}
+.deleteIcon{
+    font-size: 20px;
+    cursor: pointer;
+    color: #fa8080;
+}
+.deleteIcon:hover{
+    color: #ff3939
+}

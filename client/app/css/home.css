@@ -21,6 +21,9 @@
     color: rgb(248, 247, 247);
     padding-right: 20px;
 }
+.create-btn:hover{
+    color: #fa8080;
+}
 .createBtn-wrap{
     text-align: right;
     display: flex;

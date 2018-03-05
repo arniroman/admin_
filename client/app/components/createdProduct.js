@@ -43,7 +43,9 @@ class CreatedProduct extends Component {
                     <div className="productBox" >
                         <div className="GeneralProperties-title">
                             <span className="PropertiesTitle-style">General properties</span>
-                            <button onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">btn</button>
+                            <button className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
+                                <i class="fas fa-trash deleteIcon"></i>
+                            </button>
                         </div>
                         <li>
                             <span className="listProduct-title" >Name: </span>

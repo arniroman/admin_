@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import axios from 'axios'
 import  '../css/createProduct.css'
 import { Link } from 'react-router-dom'
+import TextField from 'material-ui/TextField';
 import  '../css/style.css'
 
 function searchingFor(term){
@@ -49,14 +50,21 @@ class CreatedProduct extends Component {
 		
 	render() {
         const product = this.state.product
-        //console.log(product,'product')
-            
+        //console.log(product,'product')    
 		return (
 			<div className="Wrapper">
                  <div className="productList-box" >
-                 <div className="searchBox-input">
-                    <input className="searchInput" type='text' onChange={this.searchHeandler} />
-                 </div>
+                    <div className="searchBox-input">
+                    <label>
+                    <TextField
+                    type="search"
+                    hintText="Search..."
+                    onChange={this.searchHeandler}
+                    className="searchInput"
+                    />
+                    <i class="fas fa-search searchInput"></i>
+                    </label>
+                    </div>
                     {product.filter(searchingFor(this.state.term)).map((item,key) =>
                     <div className key ={key}>
                         <ul>

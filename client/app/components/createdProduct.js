@@ -4,19 +4,30 @@ import  '../css/createProduct.css'
 import { Link } from 'react-router-dom'
 import  '../css/style.css'
 
-
+function searchingFor(term){
+    return function(x){
+        return x.name.toLowerCase().includes(term.toLowerCase()) || x.tags.includes(term) 
+    }
+}
 class CreatedProduct extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-            product:[]
+            product:[],
+            term:''
         }
+        this.searchHeandler = this.searchHeandler.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
     }
     componentWillMount(){
 		axios.get('/product').then(response => this.setState({product: response.data }));
     }
 
+    searchHeandler(event){
+        this.setState({
+            term: event.target.value
+        })
+    }
     deleteProduct(id,event){
         console.log(id)
        const newState = [...this.state.product]
@@ -38,12 +49,15 @@ class CreatedProduct extends Component {
 		
 	render() {
         const product = this.state.product
-        console.log(product,'product')
+        //console.log(product,'product')
             
 		return (
 			<div className="Wrapper">
                  <div className="productList-box" >
-                    {product.map((item,key) =>
+                 <div className="searchBox-input">
+                    <input className="searchInput" type='text' onChange={this.searchHeandler} />
+                 </div>
+                    {product.filter(searchingFor(this.state.term)).map((item,key) =>
                     <div className key ={key}>
                         <ul>
                             <div className="productItem-box" >

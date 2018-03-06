@@ -165,9 +165,7 @@ class Create extends Component {
         let res = []
         properties.forEach(el=>{
             if(el.category === category){
-                //console.log(el)
                 res.push(el)
-               // console.log(res)
             }
         })
         let blockProps = res.map((item,key)=>
@@ -238,14 +236,6 @@ class Create extends Component {
                                 hintText="Full width"
                                 fullWidth={true}
                                 onChange={this.handleChangeTags}
-                            />
-                            <p className="titleName-props">Filter</p>
-                            <TextField
-                                className="createProd-input"
-                                name="Tags"
-                                hintText="Full width"
-                                fullWidth={true}
-                                onChange={this.handleChangeFilter}
                             />
                         <p className="titleName-props">Properties</p>
                             <div>

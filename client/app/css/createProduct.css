@@ -89,3 +89,10 @@
     border-color: #77e0ff;
 
 }
+.searchBox-input{
+    text-align: right;
+}
+.searchInput {
+    display: inline;
+    margin-right: 60px;
+}

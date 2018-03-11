@@ -3,7 +3,11 @@ import axios from 'axios'
 import  '../css/createProduct.css'
 import { Link } from 'react-router-dom'
 import TextField from 'material-ui/TextField'
+import Edit from './edit'
 import  '../css/style.css'
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 import {
     Table,
     TableBody,
@@ -18,17 +22,21 @@ class CreatedProduct extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-            product:[],
-            term:'',
-            isOpened:false,
-            id      : '',
-            name    : '',
-            descr   : '',
-            price   : '',
-            weight  : '',
-            active  : '',
-            category: '',
-            class   : 'boxEdit'
+            open       : false,
+            props      : {},
+            sendProduct: {},
+            product    : [],
+            term       : '',
+            isOpened   : false,
+            id         : '',
+            name       : '',
+            descr      : '',
+            price      : '',
+            weight     : '',
+            active     : '',
+            category   : '',
+            images     : '',
+            editBtn    : false,
         } 
         this.updateProduct = this.updateProduct.bind(this)
         this.handleOpen = this.handleOpen.bind(this)
@@ -41,15 +49,14 @@ class CreatedProduct extends Component {
         this.handleChangeWeight = this.handleChangeWeight.bind(this)
         this.handleChangeStatus = this.handleChangeStatus.bind(this)
         this.handleChangeCategory = this.handleChangeCategory.bind(this)
-       /* this.handleChangeTags = this.handleChangeTags.bind(this)
+       // this.handleChangeTags = this.handleChangeTags.bind(this)
         this.handleChangeProps = this.handleChangeProps.bind(this)
-        this.handleChangeImages = this.handleChangeImages.bind(this)*/
+        this.handleChangeImages = this.handleChangeImages.bind(this)
+        this.handleToggle = this.handleToggle.bind(this)
     }
+
     componentWillMount(){
 		axios.get('/product').then(response => this.setState({product: response.data }));
-    }
-    handleOpen(){
-       
     }
 
     searchHeandler(event){
@@ -57,86 +64,141 @@ class CreatedProduct extends Component {
             term: event.target.value
         })
     }
+
     handleOpen(id,event){
-             this.setState({
+        this.setState({
             class:'classActive'
-        })
-        }    
+         })
+    }    
     
     handleChangeName(event){
         this.setState({
             name: event.target.value
         })
     }
+
     handleChangeDescr(event){
         this.setState({
             descr: event.target.value   
             })
     }
+
     handleChangePrice(event){
         this.setState({
             price: event.target.value
         })
     }
+
     handleChangeWeight(event){
         this.setState({
             weight: event.target.value
         })
     }
+
     handleChangeStatus(event){
         this.setState({
             active: event.target.value
         })
     }
+
     handleChangeCategory(event){
         this.setState({
             category: event.target.value
         })
     }
+    
+    handleChangeProps(chosenKey, event){
+        let obj = this.state.props
+        let chosenValue = event.target.name
+        obj[chosenKey] = event.target.value
+        this.setState({
+            props: obj
+        })
+    }
+
+    handleChangeImages(event){
+        this.setState({
+            images: this.state.images
+        })
+    }
+
    updateProduct(product,event){
-        let data = {
-            id      : this.state.id,
-            name    : this.state.name || product.name,
-            descr   : this.state.descr,
-            price   : this.state.price,
-            weight  : this.state.weight,
-            active  : this.state.active,
-            category: this.state.category
+       let productBox= this.state.product
+       let flag 
+       let property = product.props
+       for(let prop in property){
+           (this.state.props.hasOwnProperty(prop)) ? flag = true
+                                                   : flag = false
         }
-        console.log(data)
-   /* axios.put(`/product`+'/'+id,{data})
+       if(flag){
+           property = this.state.props
+       }
+       
+       let data = {
+            id      : product._id,
+            name    : this.state.name     || product.name,
+            descr   : this.state.descr    || product.descr,
+            price   : this.state.price    || product.price,
+            weight  : this.state.weight   || product.weight,
+            active  : this.state.active   || product.active,
+            category: this.state.category || product.category,
+            props   : property,
+            images  : this.state.images   || product.images
+        }
+
+         axios.put(`/product`+'/'+product._id,data)
             .then(res => {
+                productBox.forEach((el,index)=>{
+                    if(el._id == data.id){
+                        productBox.splice(index,1,data)
+                    }
+                })
+                this.setState({
+                    product: productBox
+                })
                 console.log(res);
                 console.log(res.data);
-            })*/
+            })
     }
     
     deleteProduct(id,event){
-     let newState = this.state.product
-         
-         
+     let newState = this.state.product   
       axios.delete(`/product`+'/'+id)
-      .then(res => {
+        .then(res => {
             newState.forEach((el,index)=>{
             if(el._id == id){
                 console.log(el)
                 newState.splice(index,1)
-            }
-         }) 
+             }
+           }) 
             this.setState({
                 product: newState
             })
-        
-        console.log(res);
-        console.log(res.data);
-      })
-
-     
+                console.log(res);
+                console.log(res.data);
+           }) 
   }
-		
+
+  handleToggle () {
+      let edit = this.state.editBtn
+      
+      if (edit == false){
+          edit = true
+        }
+      else{
+          edit = false
+      }  
+          
+        
+      this.setState(
+        {
+          open   : !this.state.open, 
+          editBtn: edit
+        }
+    )}
+
 	render() {
         const product = this.state.product
-        //console.log(this.state.product,'product')     
 		return (
 			<div className="Wrapper">
                 <div className="goodsCatalog">
@@ -190,7 +252,78 @@ class CreatedProduct extends Component {
                         </TableHeader>
                        </Table> 
                     {product.filter(searchingFor(this.state.term)).map((item,key) =>
-                    <div className key ={key}>
+                    <div className key = {key}>
+                     <Drawer open={this.state.open} width={500}>
+                     <div className="DawerList">
+                         <div>name: </div>
+                        <TextField
+                            hintText="name" 
+                            className="searchInput"
+                            onChange = {this.handleChangeName}
+                        />
+                    </div>
+                    <div>
+                        <p>descr</p>
+                        <TextField
+                        hintText="description" 
+                        className="searchInput"
+                        onChange = {this.handleChangeDescr}
+                        />
+                    </div>
+                    <div>
+                        <div>price: </div>
+                        <TextField
+                            hintText="price" 
+                            className="searchInput"
+                            onChange = {this.handleChangePrice}
+                        />
+                    </div>
+                    <div>
+                        <div>weight: </div>
+                        <TextField
+                            hintText="weight" 
+                            className="searchInput"
+                            onChange = {this.handleChangeWeight}
+                        />
+                    </div>
+                    <div>
+                        <div>active: </div>
+                        <TextField
+                            hintText="active" 
+                            className="searchInput"
+                            onChange = {this.handleChangeStatus}
+                        />
+                    </div>
+                    <div>
+                        <div>category: </div>
+                        <TextField
+                            hintText="category" 
+                            className="searchInput"
+                            onChange = {this.handleChangeCategory}
+                        />
+                    </div>
+                    <div>
+                        <div>images: </div>
+                        <TextField
+                            hintText="images" 
+                            className="searchInput"
+                            onChange = {this.handleChangeImages}
+                        />
+                    </div>
+                        <div>Properties</div>
+                    <div>
+                        {Object.keys(item.props).map((val,key)=>
+                            <div key={key}>
+                            <div>{val}</div>
+                                <TextField
+                                    hintText="property default"
+                                    onChange={(event)=>{this.handleChangeProps(val,event)}}
+                                    className="searchInput"
+                                />
+                            </div>
+                        )}
+                     </div>
+                    </Drawer>
                    <Table>
                         <TableBody>
                             <TableRow>
@@ -206,7 +339,12 @@ class CreatedProduct extends Component {
                                 <TableRowColumn>
                                     <button className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
                                             <i class="fas fa-trash deleteIcon"></i>
-                                    </button> 
+                                    </button>
+                                    <RaisedButton
+                                    label="edit"
+                                    onClick={this.handleToggle}
+                                    />
+                                    {this.state.editBtn && <button  onClick = {(event)=>this.updateProduct(item,event)}>edit</button>}
                                 </TableRowColumn>
                             </TableRow>
                         </TableBody>

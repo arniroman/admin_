@@ -37,6 +37,7 @@ router.delete('/:id',(req,res)=>{
 
 router.put('/:id',(req,res)=>{
     const id = req.params.id
+    console.log(req.body.name)
    /* Product.findByIdAndUpdate(req.params.id,{name:req.body.name},(err,docs)=>{
         if(err){
             console.log(err)
@@ -44,7 +45,15 @@ router.put('/:id',(req,res)=>{
         }
         res.send(200)
     })*/
-    controllers.updateProduct(id,req.body.name,(err,todo)=>{
+    controllers.updateProduct(id,req.body.name,
+                                 req.body.descr,
+                                 req.body.price,
+                                 req.body.weight,
+                                 req.body.active,
+                                 req.body.category,
+                                 req.body.props,
+                                 req.body.images,
+                                 (err,todo)=>{
         if (err) return res.status(500).send(err);
         const response = {
             message: "Todo successfully updated",

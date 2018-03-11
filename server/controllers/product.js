@@ -23,8 +23,16 @@ module.exports = {
         })
     },
 
-    updateProduct: (productId,name,callback)=> {
-        Product.findByIdAndUpdate(productId,{name:name},(err,todo)=>{
+    updateProduct: (productId,name,descr,price,weight,active,category,props,images,callback)=> {
+        Product.findByIdAndUpdate(productId,{name:name,
+                                             descr:descr,
+                                             price:price,
+                                             weight:weight,
+                                             active:active,
+                                             category:category,
+                                             props:props,
+                                             images:images},
+                                             (err,todo)=>{
             callback(err,todo)
         })
     }

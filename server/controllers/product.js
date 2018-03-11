@@ -21,6 +21,12 @@ module.exports = {
         Product.findByIdAndRemove(productId,(err,todo)=>{
             callback(err,todo)
         })
+    },
+
+    updateProduct: (productId,name,callback)=> {
+        Product.findByIdAndUpdate(productId,{name:name},(err,todo)=>{
+            callback(err,todo)
+        })
     }
 
 }

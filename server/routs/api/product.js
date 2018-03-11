@@ -24,8 +24,8 @@ router.get('/',(req,res)=>{
     })
 })
 
-router.put('/',(req,res)=>{
-    controllers.deleteProduct(req.body.id,(err, todo) => {  
+router.delete('/:id',(req,res)=>{
+    controllers.deleteProduct(req.params.id,(err, todo) => {  
         if (err) return res.status(500).send(err);
         const response = {
             message: "Todo successfully deleted",
@@ -34,5 +34,25 @@ router.put('/',(req,res)=>{
         return res.status(200).send(response);
     })
 })
+
+router.put('/:id',(req,res)=>{
+    const id = req.params.id
+   /* Product.findByIdAndUpdate(req.params.id,{name:req.body.name},(err,docs)=>{
+        if(err){
+            console.log(err)
+            res.sendStatus(500)
+        }
+        res.send(200)
+    })*/
+    controllers.updateProduct(id,req.body.name,(err,todo)=>{
+        if (err) return res.status(500).send(err);
+        const response = {
+            message: "Todo successfully updated",
+            id: todo._id
+        };
+        return res.status(200).send(response);
+    })
+})
+
 
 module.exports = router

@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Create from './components/create'
 import HomePage from './components/home'
 import CreatedProduct from './components/createdProduct.js'
+import Edit from './components/edit'
 
 
   
@@ -12,9 +13,8 @@ render(
 <MuiThemeProvider>
 	<BrowserRouter>
 		<div>
-			<Route  path='/' component={HomePage}/>
+			<Route exact path='/' component={HomePage}/>
 			<Route exact path='/create' component={Create}/>
-			<Route exact path='/createdProduct' component={CreatedProduct}/>
 		</div>
 	</BrowserRouter>
 </MuiThemeProvider>,

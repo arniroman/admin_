@@ -1,3 +1,75 @@
+.storeCatalog{
+    display: flex;
+    align-items: center;
+    margin: 30px 0 70px 0;
+    padding: 10px;
+    background: #ffecec;
+}
+.countGoods-box{
+    display: flex;
+    width: 82%;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.storeCatalog-box{
+    display: flex;
+    width:10%;
+    padding-left: 10px; 
+    align-items: center;
+}
+.storeCatalog-title{
+    padding-right: 5px;
+}
+.countGoods-length{
+    color: #111;
+    padding-left: 5px;
+}
+.contentCreate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    border: 1px solid #e7e4ea;
+    border-radius: 20px;
+}
+.contentBtn{
+    margin: 0 30px;
+}
+.setting{
+    padding: 3px 20px;
+    border: 1px solid #e7e4ea;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.icon-setting{
+    padding-left: 7px;
+}
+.imageBox-table{
+    width: 65px;
+    height: 65px;
+}
+.imageTable{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .createProduct-wrap{
     display: flex;
     justify-content: center;
@@ -57,7 +129,6 @@
 .productBox{
     width: 100%;
     margin-left: 30px;
-    padding-top: 20px;
 }
 .tecnicPops-box{
     padding-top: 20px;
@@ -73,7 +144,7 @@
 .deleteBtn{
     border: none;
     background: #fff;
-    margin-left: 730px;
+    
 }
 .deleteIcon{
     font-size: 20px;
@@ -96,4 +167,28 @@
 .searchInput {
     display: inline;
     color: #77e0ff;
+}
+.updateInput{
+    display: block;
+}
+.dawer {
+    width: 600px;
+}
+.editTitle {
+    text-align: center
+}
+.editInput {
+    text-align: center;
+}
+.editButton{
+    text-align: center;
+}
+.classActive{
+    background: #ff3939;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.boxEdit{
+    display: none;
 }

@@ -41,6 +41,9 @@
     cursor: pointer;
     border-radius: 10px;
 }
+.setting:hover{
+    background:#ffecec;
+}
 .icon-setting{
     padding-left: 7px;
 }

@@ -71,3 +71,9 @@
  .PropertiesTitle-style{
      background: #ffe5e5;
  }
+.propsWrap-create{
+    text-align: right;
+}
+.propsWrap-name{
+    padding-right: 10px;
+}

@@ -228,10 +228,10 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
-                    <div className="contentBtn setting">import SVG
+                    <div className="contentBtn setting">import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>
-                    <div className="contentBtn setting ">export SVG
+                    <div className="contentBtn setting ">export CSV
                         <i class="fas fa-upload icon-setting"></i>
                     </div>
                     <div className="contentBtn">

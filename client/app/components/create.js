@@ -9,7 +9,6 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 import HomePage from './home'
-
 import '../css/create.css'
 import index from 'material-ui/TextField';
 
@@ -31,23 +30,22 @@ class Create extends Component {
             props   : {},
             images  : "",
         }
-        this.handleChangeName  = this.handleChangeName.bind(this)
-        this.handleChangeDescr = this.handleChangeDescr.bind(this)
-        this.handleChangePrice = this.handleChangePrice.bind(this)
-        this.handleChangeWeight = this.handleChangeWeight.bind(this)
-        this.handleChangeStatus = this.handleChangeStatus.bind(this)
+        this.handleChangeName     = this.handleChangeName.bind(this)
+        this.handleChangeDescr    = this.handleChangeDescr.bind(this)
+        this.handleChangePrice    = this.handleChangePrice.bind(this)
+        this.handleChangeWeight   = this.handleChangeWeight.bind(this)
+        this.handleChangeStatus   = this.handleChangeStatus.bind(this)
         this.handleChangeCategory = this.handleChangeCategory.bind(this)
-        this.handleChangeTags = this.handleChangeTags.bind(this)
-        this.handleChangeProps = this.handleChangeProps.bind(this)
-        this.handleChangeImages = this.handleChangeImages.bind(this)
-        this.handleSubmit  = this.handleSubmit.bind(this)
+        this.handleChangeTags     = this.handleChangeTags.bind(this)
+        this.handleChangeProps    = this.handleChangeProps.bind(this)
+        this.handleChangeImages   = this.handleChangeImages.bind(this)
+        this.handleSubmit         = this.handleSubmit.bind(this)
     }
     handleToggle = () => this.setState({open: !this.state.open});
     componentWillMount(){
 		axios.get('/properties').then(response => this.setState({prop: response.data }));
     }
     
-  
     handleChangeName(event){
 		this.setState({
             name : event.target.value
@@ -141,23 +139,21 @@ class Create extends Component {
 	handleSubmit(event){
         event.preventDefault();
 		const product = {
-            name    : this.state.name,
-            descr   : this.state.descr,
-            price   : this.state.price,
-            weight  : this.state.weight,
-            active  : this.state.active,
-            category: this.state.category,
-            tags    : this.state.tags,
-            props   : this.state.props,
-            images  : this.state.images
+            name        : this.state.name,
+            descr       : this.state.descr,
+            price       : this.state.price,
+            weight      : this.state.weight,
+            active      : this.state.active,
+            category    : this.state.category,
+            tags        : this.state.tags,
+            props       : this.state.props,
+            images      : this.state.images
 		}
         console.log(product)
 		axios.post('/product',{product}).then(res => {
 			console.log(res.data,'created product');
 		})
     }
-    
-
 
     render(){
         const properties = this.state.prop
@@ -169,11 +165,13 @@ class Create extends Component {
             }
         })
         let blockProps = res.map((item,key)=>
-            <div key={key}>
-            {item.name}:
-            <input 
+            <div className="propsWrap-create" key={key}>
+            <span className="propsWrap-name" >{item.name}:</span>
+            <TextField 
             className="createProd-inputProp"
                 type="text" 
+                name="text"
+                hintText="new props..."
                 onChange={(event)=>this.handleChangeProps(item.name, event)}/>
             </div>
         )
@@ -244,7 +242,7 @@ class Create extends Component {
                                 onClick={this.handleToggle}
                                 className="drawer-box"
                                 />
-                                <Drawer open={this.state.open}>
+                                <Drawer width={400} open={this.state.open}>
                                     <MenuItem >
                                         <p className="properties-title">Properties</p>
                                     </MenuItem>

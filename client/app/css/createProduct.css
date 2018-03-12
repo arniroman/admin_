@@ -51,27 +51,58 @@
 .imageTable{
     width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .deleteIcon{
     font-size: 20px;
     cursor: pointer;
     color: #fa8080;
+    padding:0 10px;
 }
 .deleteIcon:hover{
     color: #ff3939
 }
+.deleteBtn{
+    border: none;
+    
+}
+.dawerList {
+    text-align: center;
+}
+.dawerList-prop {
+    background: #ffecec;
+    text-align: center;
+    padding: 20px 0;
+    margin: 20px 0;
+}
+.editButton {
+    cursor: pointer;
+}
+.editIcon{
+    font-size: 20px;
+    color: #62cbdc;
+    border: none;
+    padding:0 10px;
+}
+.editIcon:hover{
+    color : #0786fd;
+}
+.dawerList-edit{
+    padding: 20px 0;
+    text-align: center;
+}
+.confirmEdit{
+    width: 300px;
+    height: 40px;
+    font-size: 17px;
+}
+.viewBtn{
+    padding-right: 10px;
+    cursor: pointer;
+}
+.view-icon{
+    font-size: 20px;
+}
+.view-icon:hover{
+    color: #62cbdc;
+}
+
+

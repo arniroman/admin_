@@ -15,7 +15,7 @@ render(
 		<div>
 			<Route exact path='/' component={HomePage}/>
 			<Route exact path='/create' component={Create}/>
-			<Route exact path='/edit' component={Edit}/>
+			
 		</div>
 	</BrowserRouter>
 </MuiThemeProvider>,

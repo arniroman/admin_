@@ -37,12 +37,13 @@ class CreatedProduct extends Component {
             category   : '',
             images     : '',
             editBtn    : false,
+            viewElem   : '',
+            viewFlag   : false,
+            item       : {}
         } 
         this.updateProduct = this.updateProduct.bind(this)
-        this.handleOpen = this.handleOpen.bind(this)
         this.searchHeandler = this.searchHeandler.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
-        this.handleOpen = this.handleOpen.bind(this)
         this.handleChangeName  = this.handleChangeName.bind(this)
         this.handleChangeDescr = this.handleChangeDescr.bind(this)
         this.handleChangePrice = this.handleChangePrice.bind(this)
@@ -53,22 +54,26 @@ class CreatedProduct extends Component {
         this.handleChangeProps = this.handleChangeProps.bind(this)
         this.handleChangeImages = this.handleChangeImages.bind(this)
         this.handleToggle = this.handleToggle.bind(this)
+        this.openProduct = this.openProduct.bind(this)
     }
 
     componentWillMount(){
 		axios.get('/product').then(response => this.setState({product: response.data }));
+    }
+    openProduct(product,event){
+         console.log(this.state.viewFlag)
+       this.setState({
+           viewElem: product,
+           viewFlag: !this.state.viewFlag
+       })
+       
+      
     }
 
     searchHeandler(event){
         this.setState({
             term: event.target.value
         })
-    }
-
-    handleOpen(id,event){
-        this.setState({
-            class:'classActive'
-         })
     }    
     
     handleChangeName(event){
@@ -110,7 +115,7 @@ class CreatedProduct extends Component {
     handleChangeProps(chosenKey, event){
         let obj = this.state.props
         let chosenValue = event.target.name
-        obj[chosenKey] = event.target.value
+        obj[chosenKey]  = event.target.value
         this.setState({
             props: obj
         })
@@ -118,12 +123,13 @@ class CreatedProduct extends Component {
 
     handleChangeImages(event){
         this.setState({
-            images: this.state.images
+            images: event.target.value
         })
     }
 
-   updateProduct(product,event){
-       let productBox= this.state.product
+   updateProduct(){
+       let product = this.state.item
+       let productBox = this.state.product
        let flag 
        let property = product.props
        for(let prop in property){
@@ -135,7 +141,7 @@ class CreatedProduct extends Component {
        }
        
        let data = {
-            id      : product._id,
+            _id     : product._id,
             name    : this.state.name     || product.name,
             descr   : this.state.descr    || product.descr,
             price   : this.state.price    || product.price,
@@ -145,11 +151,11 @@ class CreatedProduct extends Component {
             props   : property,
             images  : this.state.images   || product.images
         }
-
+        console.log(data,'data')
          axios.put(`/product`+'/'+product._id,data)
             .then(res => {
                 productBox.forEach((el,index)=>{
-                    if(el._id == data.id){
+                    if(el._id == data._id){
                         productBox.splice(index,1,data)
                     }
                 })
@@ -179,7 +185,10 @@ class CreatedProduct extends Component {
            }) 
   }
 
-  handleToggle () {
+    handleToggle (product,event) {
+        this.setState({
+            item: product
+        })
       let edit = this.state.editBtn
       
       if (edit == false){
@@ -187,9 +196,7 @@ class CreatedProduct extends Component {
         }
       else{
           edit = false
-      }  
-          
-        
+      }   
       this.setState(
         {
           open   : !this.state.open, 
@@ -201,6 +208,7 @@ class CreatedProduct extends Component {
         const product = this.state.product
 		return (
 			<div className="Wrapper">
+                {this.state.viewFlag && <Edit data={this.state.viewElem} />}
                 <div className="goodsCatalog">
                     <div className="storeCatalog">
                         <div className="storeCatalog-box">
@@ -253,76 +261,81 @@ class CreatedProduct extends Component {
                        </Table> 
                     {product.filter(searchingFor(this.state.term)).map((item,key) =>
                     <div className key = {key}>
-                     <Drawer open={this.state.open} width={500}>
-                     <div className="DawerList">
-                         <div>name: </div>
-                        <TextField
-                            hintText="name" 
+                     <Drawer open={this.state.open} width={700}>
+                        <div className="dawerList">
+                            <div>name </div>
+                            <TextField
+                                hintText="name default" 
+                                className="searchInput"
+                                onChange = {this.handleChangeName}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>descr </div>
+                            <TextField
+                            hintText="description default" 
                             className="searchInput"
-                            onChange = {this.handleChangeName}
-                        />
-                    </div>
-                    <div>
-                        <p>descr</p>
-                        <TextField
-                        hintText="description" 
-                        className="searchInput"
-                        onChange = {this.handleChangeDescr}
-                        />
-                    </div>
-                    <div>
-                        <div>price: </div>
-                        <TextField
-                            hintText="price" 
-                            className="searchInput"
-                            onChange = {this.handleChangePrice}
-                        />
-                    </div>
-                    <div>
-                        <div>weight: </div>
-                        <TextField
-                            hintText="weight" 
-                            className="searchInput"
-                            onChange = {this.handleChangeWeight}
-                        />
-                    </div>
-                    <div>
-                        <div>active: </div>
-                        <TextField
-                            hintText="active" 
-                            className="searchInput"
-                            onChange = {this.handleChangeStatus}
-                        />
-                    </div>
-                    <div>
-                        <div>category: </div>
-                        <TextField
-                            hintText="category" 
-                            className="searchInput"
-                            onChange = {this.handleChangeCategory}
-                        />
-                    </div>
-                    <div>
-                        <div>images: </div>
-                        <TextField
-                            hintText="images" 
-                            className="searchInput"
-                            onChange = {this.handleChangeImages}
-                        />
-                    </div>
-                        <div>Properties</div>
-                    <div>
-                        {Object.keys(item.props).map((val,key)=>
-                            <div key={key}>
-                            <div>{val}</div>
-                                <TextField
-                                    hintText="property default"
-                                    onChange={(event)=>{this.handleChangeProps(val,event)}}
-                                    className="searchInput"
-                                />
-                            </div>
-                        )}
-                     </div>
+                            onChange = {this.handleChangeDescr}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>price </div>
+                            <TextField
+                                hintText="price default" 
+                                className="searchInput"
+                                onChange = {this.handleChangePrice}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>weight </div>
+                            <TextField
+                                hintText="weight default" 
+                                className="searchInput"
+                                onChange = {this.handleChangeWeight}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>active </div>
+                            <TextField
+                                hintText="active default" 
+                                className="searchInput"
+                                onChange = {this.handleChangeStatus}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>category </div>
+                            <TextField
+                                hintText="category default" 
+                                className="searchInput"
+                                onChange = {this.handleChangeCategory}
+                            />
+                        </div>
+                        <div className="dawerList">
+                            <div>images </div>
+                            <TextField
+                                hintText="images default" 
+                                className="searchInput"
+                                onChange = {this.handleChangeImages}
+                            />
+                        </div>
+                            <div className="dawerList-prop">Properties</div>
+                        <div>
+                            {Object.keys(item.props).map((val,key)=>
+                                <div className="dawerList" key={key}>
+                                <div>{val}</div>
+                                    <TextField
+                                        hintText="property default"
+                                        onChange={(event)=>{this.handleChangeProps(val,event)}}
+                                        className="searchInput"
+                                    />
+                                </div>
+                            )}
+                        </div>
+                        <div className="dawerList-edit">
+                            <button className="confirmEdit" onClick = {this.updateProduct}>
+                                    Confirm       
+                            </button>
+                        </div>
                     </Drawer>
                    <Table>
                         <TableBody>
@@ -337,14 +350,15 @@ class CreatedProduct extends Component {
                                 <TableRowColumn>{item.name}</TableRowColumn>
                                 <TableRowColumn>{item.price}$</TableRowColumn>
                                 <TableRowColumn>
-                                    <button className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
-                                            <i class="fas fa-trash deleteIcon"></i>
-                                    </button>
-                                    <RaisedButton
-                                    label="edit"
-                                    onClick={this.handleToggle}
-                                    />
-                                    {this.state.editBtn && <button  onClick = {(event)=>this.updateProduct(item,event)}>edit</button>}
+                                    <span className="viewBtn" onClick={(event)=>this.openProduct(item,event)}>
+                                        <i class="fas fa-eye view-icon"></i>
+                                    </span>
+                                    <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
+                                        <i class="fas fa-trash deleteIcon"></i>
+                                    </span>
+                                    <span label="edit" onClick={(event)=>this.handleToggle(item,event)} className="editButton">
+                                        <i class="fas fa-pencil-alt editIcon"></i>
+                                    </span>
                                 </TableRowColumn>
                             </TableRow>
                         </TableBody>

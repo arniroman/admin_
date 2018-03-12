@@ -37,14 +37,7 @@ router.delete('/:id',(req,res)=>{
 
 router.put('/:id',(req,res)=>{
     const id = req.params.id
-    console.log(req.body.name)
-   /* Product.findByIdAndUpdate(req.params.id,{name:req.body.name},(err,docs)=>{
-        if(err){
-            console.log(err)
-            res.sendStatus(500)
-        }
-        res.send(200)
-    })*/
+    console.log(id)
     controllers.updateProduct(id,req.body.name,
                                  req.body.descr,
                                  req.body.price,

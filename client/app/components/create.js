@@ -10,7 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 import HomePage from './home'
 
-import '../css/createProduct.css'
+import '../css/create.css'
 import index from 'material-ui/TextField';
 
  

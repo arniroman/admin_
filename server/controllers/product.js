@@ -11,11 +11,11 @@ module.exports = {
         })
     },
 
-    getAllProduct: (callback)=>{
+   /* getAllProduct: (callback)=>{
         Product.find({},(err,product) => {
             callback(err,product)
         })
-    },
+    },*/
 
     deleteProduct: (productId,callback)=> {
         Product.findByIdAndRemove(productId,(err,todo)=>{

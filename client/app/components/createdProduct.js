@@ -22,52 +22,52 @@ class CreatedProduct extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-            open       : false,
-            props      : {},
-            sendProduct: {},
-            product    : [],
-            term       : '',
-            isOpened   : false,
-            id         : '',
-            name       : '',
-            descr      : '',
-            price      : '',
-            weight     : '',
-            active     : '',
-            category   : '',
-            images     : '',
-            editBtn    : false,
-            viewElem   : '',
-            viewFlag   : false,
-            item       : {}
+            open             : false,
+            props            : {},
+            sendProduct      : {},
+            productAllProps  : [],
+            productCurrent      : [],
+            term             : '',
+            isOpened         : false,
+            id               : '',
+            name             : '',
+            descr            : '',
+            price            : '',
+            weight           : '',
+            active           : '',
+            category         : '',
+            images           : '',
+            editBtn          : false,
+            viewElem         : '',
+            viewFlag         : false,
+            item             : {},
         } 
-        this.updateProduct = this.updateProduct.bind(this)
-        this.searchHeandler = this.searchHeandler.bind(this)
-        this.deleteProduct = this.deleteProduct.bind(this)
-        this.handleChangeName  = this.handleChangeName.bind(this)
-        this.handleChangeDescr = this.handleChangeDescr.bind(this)
-        this.handleChangePrice = this.handleChangePrice.bind(this)
-        this.handleChangeWeight = this.handleChangeWeight.bind(this)
-        this.handleChangeStatus = this.handleChangeStatus.bind(this)
+        this.updateProduct        = this.updateProduct.bind(this)
+        this.searchHeandler       = this.searchHeandler.bind(this)
+        this.deleteProduct        = this.deleteProduct.bind(this)
+        this.handleChangeName     = this.handleChangeName.bind(this)
+        this.handleChangeDescr    = this.handleChangeDescr.bind(this)
+        this.handleChangePrice    = this.handleChangePrice.bind(this)
+        this.handleChangeWeight   = this.handleChangeWeight.bind(this)
+        this.handleChangeStatus   = this.handleChangeStatus.bind(this)
         this.handleChangeCategory = this.handleChangeCategory.bind(this)
-       // this.handleChangeTags = this.handleChangeTags.bind(this)
-        this.handleChangeProps = this.handleChangeProps.bind(this)
-        this.handleChangeImages = this.handleChangeImages.bind(this)
-        this.handleToggle = this.handleToggle.bind(this)
-        this.openProduct = this.openProduct.bind(this)
+       // this.handleChangeTags   = this.handleChangeTags.bind(this)
+        this.handleChangeProps    = this.handleChangeProps.bind(this)
+        this.handleChangeImages   = this.handleChangeImages.bind(this)
+        this.handleToggle         = this.handleToggle.bind(this)
+        this.productCurrent       = this.productCurrent.bind(this)
     }
 
     componentWillMount(){
-		axios.get('/product').then(response => this.setState({product: response.data }));
+		axios.get('/product/:id').then(response => this.setState({productAllProps: response.data }));
     }
-    openProduct(product,event){
+
+    productCurrent(product,event){
          console.log(this.state.viewFlag)
        this.setState({
            viewElem: product,
            viewFlag: !this.state.viewFlag
-       })
-       
-      
+       })  
     }
 
     searchHeandler(event){
@@ -129,7 +129,8 @@ class CreatedProduct extends Component {
 
    updateProduct(){
        let product = this.state.item
-       let productBox = this.state.product
+       let productBox = this.state.productAllProps.product
+       console.log(productBox)
        let flag 
        let property = product.props
        for(let prop in property){
@@ -160,7 +161,7 @@ class CreatedProduct extends Component {
                     }
                 })
                 this.setState({
-                    product: productBox
+                    productCurrent: productBox
                 })
                 console.log(res);
                 console.log(res.data);
@@ -168,7 +169,7 @@ class CreatedProduct extends Component {
     }
     
     deleteProduct(id,event){
-     let newState = this.state.product   
+     let newState = this.state.productAllProps.product  
       axios.delete(`/product`+'/'+id)
         .then(res => {
             newState.forEach((el,index)=>{
@@ -178,7 +179,7 @@ class CreatedProduct extends Component {
              }
            }) 
             this.setState({
-                product: newState
+                productCurrent: newState
             })
                 console.log(res);
                 console.log(res.data);
@@ -204,10 +205,30 @@ class CreatedProduct extends Component {
         }
     )}
 
+    handlePaginationList(event){      
+        let id = this.state.currentNum
+        axios.get(`/product`+'/'+event.target.id)
+                .then(response => this.setState({
+                                  productAllProps : response.data,
+                                  productCurrent  :response.data.product 
+                                }))
+    }
+
 	render() {
-        const product = this.state.product
+        const product = this.state.productAllProps.countProduct
+        const pages = this.state.productAllProps.pages
+
+        let renderList
+    
+        if(this.state.productAllProps.product){
+            renderList = this.state.productAllProps.product
+        }
+
+        if(this.state.productCurrent == true){
+                renderList = this.state.productCurrent
+            }
 		return (
-			<div className="Wrapper">
+            <div className="Wrapper">
                 {this.state.viewFlag && <Edit data={this.state.viewElem} />}
                 <div className="goodsCatalog">
                     <div className="storeCatalog">
@@ -217,7 +238,7 @@ class CreatedProduct extends Component {
                         </div>
                         <div className="countGoods-box">
                             <div className="countGoods">count goods 
-                                <span className="countGoods-length">{product.length}</span>
+                                {product && <span className="countGoods-length">{product}</span>}
                             </div>
                         </div>
                     </div>
@@ -259,7 +280,7 @@ class CreatedProduct extends Component {
                             </TableRow>
                         </TableHeader>
                        </Table> 
-                    {product.filter(searchingFor(this.state.term)).map((item,key) =>
+                    {renderList && renderList.filter(searchingFor(this.state.term)).map((item,key) =>
                     <div className key = {key}>
                      <Drawer open={this.state.open} width={700}>
                         <div className="dawerList">
@@ -350,7 +371,7 @@ class CreatedProduct extends Component {
                                 <TableRowColumn>{item.name}</TableRowColumn>
                                 <TableRowColumn>{item.price}$</TableRowColumn>
                                 <TableRowColumn>
-                                    <span className="viewBtn" onClick={(event)=>this.openProduct(item,event)}>
+                                    <span className="viewBtn" onClick={(event)=>this.productCurrent(item,event)}>
                                         <i class="fas fa-eye view-icon"></i>
                                     </span>
                                     <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
@@ -366,11 +387,16 @@ class CreatedProduct extends Component {
                     </div>
                     )}
                 </div>
+                <div className = "paginationBox">
+                    {pages&&pages.map((val,key)=>  
+                        <button onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val}
+                    </button>)}
+                </div>
 			</div>
 		);
 	}
 }
-
+//-- filtring product  by tags and name --//
 function searchingFor(term){
     return function(x){
         return x.name.toLowerCase().includes(term.toLowerCase()) || x.tags.includes(term) 

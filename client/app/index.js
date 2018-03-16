@@ -6,8 +6,6 @@ import Create from './components/create'
 import HomePage from './components/home'
 import CreatedProduct from './components/createdProduct.js'
 
-
-
   
 render(
 <MuiThemeProvider>

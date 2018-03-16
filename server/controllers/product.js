@@ -3,38 +3,63 @@ const Product = require('../models/product')
 
 module.exports = {
 
-    newProduct: (product,callback) => {
+    newProduct: (product,req,res) => {
         const productDb = new Product(product)
-        productDb.save((err,createProduct) => {
-            console.log(`result: ${createProduct}`)
-            callback(err,createProduct)
-        })
+        productDb.save()
+                 .then((doc) => {
+                        res.send(doc)
+                     },(err) => {
+                        console.log(err)
+                        res.send(500)
+                })      
     },
 
-   /* getAllProduct: (callback)=>{
-        Product.find({},(err,product) => {
-            callback(err,product)
-        })
-    },*/
-
-    deleteProduct: (productId,callback)=> {
-        Product.findByIdAndRemove(productId,(err,todo)=>{
-            callback(err,todo)
-        })
+    getAllProduct: (req,res)=>{
+        const perPage = 5
+        const page = req.params.id || 1
+        Product.find({})
+               .skip((perPage * page) - page)
+               .limit(perPage)
+               .exec((err,products) => {
+                    Product.count().exec((err,count) => {
+                      if(err) return next(err)
+                      res.send({
+                        product: products,
+                        current: page,
+                        pages  : Math.ceil(count/perPage),
+                        perPage: perPage
+                    })
+                })
+            })
     },
 
-    updateProduct: (productId,name,descr,price,weight,active,category,props,images,callback)=> {
-        Product.findByIdAndUpdate(productId,{name:name,
-                                             descr:descr,
-                                             price:price,
-                                             weight:weight,
-                                             active:active,
+    deleteProduct: (productId,req,res)=> {
+        Product.findByIdAndRemove(productId)
+               .then((doc) => {
+                      res.send(doc)
+                    },(err) => {
+                       console.log(err)
+                       res.send(500)
+                    })
+    },
+
+    updateProduct: (productId,req,res,name,descr,price,weight,active,category,props,images) => {
+        Product.findByIdAndUpdate(productId,{name    :name,
+                                             descr   :descr,
+                                             price   :price,
+                                             weight  :weight,
+                                             active  :active,
                                              category:category,
-                                             props:props,
-                                             images:images},
-                                             (err,todo)=>{
-            callback(err,todo)
-        })
+                                             props   :props,
+                                             images  :images})
+
+                                             .then((doc) => {
+                                                    res.send(doc)
+                                                  },(err) => {
+                                                     console.log(err)
+                                                     res.send(500)
+                                             })
+                                                
     }
 
 }

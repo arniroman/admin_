@@ -26,7 +26,7 @@ class CreatedProduct extends Component {
             props            : {},
             sendProduct      : {},
             productAllProps  : [],
-            productCurrent      : [],
+            productCurrent   : [],
             term             : '',
             isOpened         : false,
             id               : '',
@@ -215,9 +215,13 @@ class CreatedProduct extends Component {
     }
 
 	render() {
-        const product = this.state.productAllProps.countProduct
-        const pages = this.state.productAllProps.pages
 
+        const product = this.state.productAllProps.countProduct
+        const page = this.state.productAllProps.pages
+        const pages = []
+              for(let i = 0; i < this.state.productAllProps.pages; i++){
+                  pages.push(i)
+              }
         let renderList
     
         if(this.state.productAllProps.product){
@@ -227,6 +231,7 @@ class CreatedProduct extends Component {
         if(this.state.productCurrent == true){
                 renderList = this.state.productCurrent
             }
+
 		return (
             <div className="Wrapper">
                 {this.state.viewFlag && <Edit data={this.state.viewElem} />}
@@ -238,7 +243,7 @@ class CreatedProduct extends Component {
                         </div>
                         <div className="countGoods-box">
                             <div className="countGoods">count goods 
-                                {product && <span className="countGoods-length">{product}</span>}
+                                 <span className="countGoods-length">count</span>
                             </div>
                         </div>
                     </div>

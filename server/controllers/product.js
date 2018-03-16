@@ -8,7 +8,7 @@ module.exports = {
         productDb.save()
                  .then((doc) => {
                         res.send(doc)
-                     },(err) => {
+                        },(err) => {
                         console.log(err)
                         res.send(500)
                 })      

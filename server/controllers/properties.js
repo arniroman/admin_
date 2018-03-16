@@ -5,16 +5,23 @@ module.exports = {
    
     newProperties: (properties,callback) => {
         const propertiesDb = new Properties(properties)
-              propertiesDb.save((err,createProperties)=>{
-                  console.log(`result${createProperties}`)
-                  callback(properties)
-              })
+              propertiesDb.save()
+                          .then((doc) => {
+                                 res.send(doc)
+                              },(err) => {
+                                 console.log(err)
+                                 resizeBy.send(500)
+                          })
     },
 
-    getAllProperties: (callback) => {
-        Properties.find({},(err,properties)=>{
-            callback(err,properties)
-        })
+    getAllProperties: (req,res) => {
+            Properties.find({})
+                    .then((doc) => {
+                            res.send(doc)
+                        },(err) => {
+                            console.log(err)
+                            res.send(500)
+                    })
     }
 
 }

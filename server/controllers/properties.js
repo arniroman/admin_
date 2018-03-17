@@ -16,12 +16,12 @@ module.exports = {
 
     getAllProperties: (req,res) => {
             Properties.find({})
-                    .then((doc) => {
-                            res.send(doc)
-                        },(err) => {
-                            console.log(err)
-                            res.send(500)
-                    })
+                      .then((doc) => {
+                             res.send(doc)
+                          },(err) => {
+                             console.log(err)
+                             res.send(500)
+                     })
     }
 
 }

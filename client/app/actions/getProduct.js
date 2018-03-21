@@ -1,13 +1,11 @@
 import axios from 'axios'
 
-export const loadDataProperties = () => dispatch => {
-        axios.get('/properties')
+export const loadDataProduct = () => dispatch => {
+        axios.get('/product/:id')
                 .then((response)=> {
                     dispatch({
-                        type: 'LOAD',
+                        type: 'LOAD_ALL_PRODUCT',
                         payload: response.data
                     })
-                })
-}   
-        
-
+                })  
+} 

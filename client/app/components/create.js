@@ -115,7 +115,7 @@ class Create extends Component {
             images      : this.state.images
 		}
         this.props.postProduct(product)
-        console.log(this.props.postdata,'respons')
+        console.log(this.props.postData,'respons')
     }
     
     render(){
@@ -237,7 +237,7 @@ class Create extends Component {
 const mapStateToProps = (state)=>{
     return {
         properties  : state.properties.payload,
-        postdata    : state.postDatas
+        postData    : state.postDatas
     }
 }
 export default connect (mapStateToProps,{loadDataProperties,postProduct})(Create)

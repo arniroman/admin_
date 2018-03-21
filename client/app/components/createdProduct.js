@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom'
 import TextField from 'material-ui/TextField'
 import Edit from './edit'
 import  '../css/style.css'
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
+import { connect } from 'react-redux'
+import { loadDataProduct } from '../actions/getProduct'
+import { handlePaginationLists } from '../actions/paginationList'
 import {
     Table,
     TableBody,
@@ -15,18 +18,16 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
-  } from 'material-ui/Table';
+  } from 'material-ui/Table'
 
 
 class CreatedProduct extends Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
             open             : false,
             props            : {},
             sendProduct      : {},
-            productAllProps  : [],
-            productCurrent   : [],
             term             : '',
             isOpened         : false,
             id               : '',
@@ -42,27 +43,13 @@ class CreatedProduct extends Component {
             viewFlag         : false,
             item             : {},
         } 
-        this.updateProduct        = this.updateProduct.bind(this)
-        this.searchHeandler       = this.searchHeandler.bind(this)
-        this.deleteProduct        = this.deleteProduct.bind(this)
-        this.handleChangeName     = this.handleChangeName.bind(this)
-        this.handleChangeDescr    = this.handleChangeDescr.bind(this)
-        this.handleChangePrice    = this.handleChangePrice.bind(this)
-        this.handleChangeWeight   = this.handleChangeWeight.bind(this)
-        this.handleChangeStatus   = this.handleChangeStatus.bind(this)
-        this.handleChangeCategory = this.handleChangeCategory.bind(this)
-       // this.handleChangeTags   = this.handleChangeTags.bind(this)
-        this.handleChangeProps    = this.handleChangeProps.bind(this)
-        this.handleChangeImages   = this.handleChangeImages.bind(this)
-        this.handleToggle         = this.handleToggle.bind(this)
-        this.productCurrent       = this.productCurrent.bind(this)
     }
 
-    componentWillMount(){
-		axios.get('/product/:id').then(response => this.setState({productAllProps: response.data }));
+    componentWillMount = () => {
+        this.props.loadDataProduct()
     }
 
-    productCurrent(product,event){
+    productCurrent = (product,event) => {
          console.log(this.state.viewFlag)
        this.setState({
            viewElem: product,
@@ -70,49 +57,49 @@ class CreatedProduct extends Component {
        })  
     }
 
-    searchHeandler(event){
+    searchHeandler = (event) => {
         this.setState({
             term: event.target.value
         })
     }    
     
-    handleChangeName(event){
+    handleChangeName = (event) => {
         this.setState({
             name: event.target.value
         })
     }
 
-    handleChangeDescr(event){
+    handleChangeDescr = (event) => {
         this.setState({
             descr: event.target.value   
             })
     }
 
-    handleChangePrice(event){
+    handleChangePrice = (event) => {
         this.setState({
             price: event.target.value
         })
     }
 
-    handleChangeWeight(event){
+    handleChangeWeight = (event) => {
         this.setState({
             weight: event.target.value
         })
     }
 
-    handleChangeStatus(event){
+    handleChangeStatus = (event) => {
         this.setState({
             active: event.target.value
         })
     }
 
-    handleChangeCategory(event){
+    handleChangeCategory = (event) => {
         this.setState({
             category: event.target.value
         })
     }
     
-    handleChangeProps(chosenKey, event){
+    handleChangeProps = (chosenKey, event) => {
         let obj = this.state.props
         let chosenValue = event.target.name
         obj[chosenKey]  = event.target.value
@@ -121,13 +108,13 @@ class CreatedProduct extends Component {
         })
     }
 
-    handleChangeImages(event){
+    handleChangeImages = (event) => {
         this.setState({
             images: event.target.value
         })
     }
 
-   updateProduct(){
+   updateProduct = () => {
        let product = this.state.item
        let productBox = this.state.productAllProps.product
        console.log(productBox)
@@ -163,12 +150,12 @@ class CreatedProduct extends Component {
                 this.setState({
                     productCurrent: productBox
                 })
-                console.log(res);
-                console.log(res.data);
+                console.log(res)
+                console.log(res.data)
             })
     }
     
-    deleteProduct(id,event){
+    deleteProduct = (id,event) => {
      let newState = this.state.productAllProps.product  
       axios.delete(`/product`+'/'+id)
         .then(res => {
@@ -181,12 +168,12 @@ class CreatedProduct extends Component {
             this.setState({
                 productCurrent: newState
             })
-                console.log(res);
-                console.log(res.data);
+                console.log(res)
+                console.log(res.data)
            }) 
   }
 
-    handleToggle (product,event) {
+    handleToggle = (product,event) =>{
         this.setState({
             item: product
         })
@@ -205,32 +192,27 @@ class CreatedProduct extends Component {
         }
     )}
 
-    handlePaginationList(event){      
-        let id = this.state.currentNum
+    handlePaginationList = (event) => {      
+        /*let id = this.state.currentNum
         axios.get(`/product`+'/'+event.target.id)
                 .then(response => this.setState({
                                   productAllProps : response.data,
                                   productCurrent  :response.data.product 
-                                }))
+                                }))*/
+      this.props.handlePaginationLists(event.target.id)
+      //console.log(this.props.paginateList,'list')
     }
 
 	render() {
-        const product = this.state.productAllProps.countProduct
-        const page = this.state.productAllProps.pages
+        console.log(this.props,'list')
         const pages = []
-              for(let i = 0; i < this.state.productAllProps.pages; i++){
+        if(this.props.allProduct){
+            console.log(this.props.allProduct.pages)
+            for(let i = 0 ;i < this.props.allProduct.pages ;i++){
                   pages.push(i)
               }
-        let renderList
+        } 
     
-        if(this.state.productAllProps.product){
-            renderList = this.state.productAllProps.product
-        }
-
-        if(this.state.productCurrent == true){
-                renderList = this.state.productCurrent
-            }
-
 		return (
             <div className="Wrapper">
                 {this.state.viewFlag && <Edit data={this.state.viewElem} />}
@@ -284,7 +266,7 @@ class CreatedProduct extends Component {
                             </TableRow>
                         </TableHeader>
                        </Table> 
-                    {renderList && renderList.filter(searchingFor(this.state.term)).map((item,key) =>
+                    {this.props.allProduct && this.props.allProduct.product.filter(searchingFor(this.state.term)).map((item,key) =>
                     <div className key = {key}>
                      <Drawer open={this.state.open} width={700}>
                         <div className="dawerList">
@@ -296,7 +278,7 @@ class CreatedProduct extends Component {
                             />
                         </div>
                         <div className="dawerList">
-                            <div>descr </div>
+                            <div>descr</div>
                             <TextField
                             hintText="description default" 
                             className="searchInput"
@@ -397,7 +379,7 @@ class CreatedProduct extends Component {
                     </button>)}
                 </div>
 			</div>
-		);
+		)
 	}
 }
 //-- filtring product  by tags and name --//
@@ -407,4 +389,10 @@ function searchingFor(term){
     }  
 }
 
-export default CreatedProduct;
+const mapStateToProps = (state)=>{
+    return {
+        allProduct : state.getAllProducts.payload,
+    }
+}
+
+export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists})(CreatedProduct)

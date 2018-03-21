@@ -11,8 +11,11 @@ import Toggle from 'material-ui/Toggle';
 import HomePage from './home'
 import '../css/create.css'
 import index from 'material-ui/TextField';
+import { connect } from 'react-redux'
+import { loadDataProperties } from '../actions/getProperties'
+import { postProduct } from '../actions/createProduct'
 
- 
+
 class Create extends Component {
     constructor(props){
         super(props)
@@ -25,59 +28,51 @@ class Create extends Component {
             active  : true,
             category: "",
             tags    : [],
-            prop    : [],
-            //filter  : new Map(),
             props   : {},
             images  : "",
         }
-        this.handleChangeName     = this.handleChangeName.bind(this)
-        this.handleChangeDescr    = this.handleChangeDescr.bind(this)
-        this.handleChangePrice    = this.handleChangePrice.bind(this)
-        this.handleChangeWeight   = this.handleChangeWeight.bind(this)
-        this.handleChangeStatus   = this.handleChangeStatus.bind(this)
-        this.handleChangeCategory = this.handleChangeCategory.bind(this)
-        this.handleChangeTags     = this.handleChangeTags.bind(this)
-        this.handleChangeProps    = this.handleChangeProps.bind(this)
-        this.handleChangeImages   = this.handleChangeImages.bind(this)
-        this.handleSubmit         = this.handleSubmit.bind(this)
     }
-    handleToggle = () => this.setState({open: !this.state.open});
-    componentWillMount(){
-		axios.get('/properties').then(response => this.setState({prop: response.data }));
+
+    handleToggle = () => {
+        this.setState({open: !this.state.open})
     }
+   
+    componentWillMount() {
+        this.props.loadDataProperties()
+     }
     
-    handleChangeName(event){
+     handleChangeName = (event) => {
 		this.setState({
             name : event.target.value
 		})
     }
-    handleChangeDescr(event){
+    handleChangeDescr = (event) => {
 		this.setState({
 			descr : event.target.value
 		})
     }
-    handleChangePrice(event){
+    handleChangePrice = (event) => {
 		this.setState({
 			price : event.target.value
 		})
     }
-    handleChangeWeight(event){
+    handleChangeWeight = (event) => {
 		this.setState({
 			weight : event.target.value
 		})
     }
-    handleChangeStatus(){
+    handleChangeStatus = () => {
 		this.setState({
 			active : !this.state.active
         })
         console.log(this.state.active)
     }
-    handleChangeCategory(event){
+    handleChangeCategory = (event) => {
 		this.setState({
 			category : event.target.value
 		})
     }
-    handleChangeTags(event){
+    handleChangeTags = (event) => {
         let resEvent = event.target.value
         let res = resEvent.split(',')
         console.log(res)
@@ -85,50 +80,20 @@ class Create extends Component {
 			tags : res
 		})
     }
-    handleChangeProps(chosenKey, event){
-       // let isChecked = event.target.checked
+
+    handleChangeProps = (chosenKey, event) => {
         let chosenValue = event.target.name
         let filteredItems = this.state.filter
         let obj = this.state.props
-        console.log(event.target.value)
         obj[chosenKey] = event.target.value
         console.log(obj)
-        /*     
-        if(isChecked){
-            obj[chosenKey] = chosenValue
-        }
-        else{
-            delete obj[chosenKey]
-        }*/
-       this.setState({
-            props: obj
-        })
-        // Map filtering
-       /* if(!filteredItems.has(chosenKey)){
-            filteredItems.set(chosenKey , new Set([chosenValue]))   
-        }else{
-            filteredItems.forEach((value, key, map)=>{
-                if(key === chosenKey){
-                    if(isChecked) value.add(chosenValue)
-                    else value.delete(chosenValue)
-                }
-                if(value.size == 0){
-                    filteredItems.delete(key)
-                }
-            })
-        }
-           let obj = Array.from(filteredItems).reduce((obj, [key, value]) => (
-            Object.assign(obj, { [key]: value }) 
-          ), {});
-
-          console.log(obj,'obj')
-
+       
         this.setState({
-            result : obj
-        })*/     
+                props: obj
+            })
     }
 
-    handleChangeImages(event){
+    handleChangeImages = (event) => {
         let resEvent = event.target.value
         let res = resEvent.split(',')
         console.log(res)
@@ -136,7 +101,7 @@ class Create extends Component {
 			images : res
 		})
     }
-	handleSubmit(event){
+	handleSubmit = (event) => {
         event.preventDefault();
 		const product = {
             name        : this.state.name,
@@ -149,22 +114,23 @@ class Create extends Component {
             props       : this.state.props,
             images      : this.state.images
 		}
-        console.log(product)
-		axios.post('/product',{product}).then(res => {
-			console.log(res.data,'created product');
-		})
+        this.props.postProduct(product)
+        console.log(this.props.postdata,'respons')
     }
-
+    
     render(){
-        const properties = this.state.prop
+        const properties = this.props.properties
         const category = this.state.category
-        let res = []
-        properties.forEach(el=>{
+        let renderProps = []
+        if(properties){
+            properties.forEach(el=>{
             if(el.category === category){
-                res.push(el)
+                renderProps.push(el)
             }
         })
-        let blockProps = res.map((item,key)=>
+        }
+        
+        let blockProps = renderProps.map((item,key)=>
             <div className="propsWrap-create" key={key}>
             <span className="propsWrap-name" >{item.name}:</span>
             <TextField 
@@ -268,6 +234,12 @@ class Create extends Component {
     }
 }
 
-export default Create
+const mapStateToProps = (state)=>{
+    return {
+        properties  : state.properties.payload,
+        postdata    : state.postDatas
+    }
+}
+export default connect (mapStateToProps,{loadDataProperties,postProduct})(Create)
 
 

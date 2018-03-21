@@ -215,7 +215,6 @@ class CreatedProduct extends Component {
     }
 
 	render() {
-
         const product = this.state.productAllProps.countProduct
         const page = this.state.productAllProps.pages
         const pages = []
@@ -273,8 +272,8 @@ class CreatedProduct extends Component {
                     </div>
                 </div>
                  <div className="productList-box" >
-                     <Table>
-                        <TableHeader>
+                     <Table >
+                        <TableHeader >
                             <TableRow>
                                 <TableHeaderColumn>№</TableHeaderColumn>
                                 <TableHeaderColumn>Category</TableHeaderColumn>
@@ -379,11 +378,11 @@ class CreatedProduct extends Component {
                                     <span className="viewBtn" onClick={(event)=>this.productCurrent(item,event)}>
                                         <i class="fas fa-eye view-icon"></i>
                                     </span>
-                                    <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
-                                        <i class="fas fa-trash deleteIcon"></i>
-                                    </span>
                                     <span label="edit" onClick={(event)=>this.handleToggle(item,event)} className="editButton">
                                         <i class="fas fa-pencil-alt editIcon"></i>
+                                    </span>
+                                    <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
+                                        <i class="fas fa-trash deleteIcon"></i>
                                     </span>
                                 </TableRowColumn>
                             </TableRow>

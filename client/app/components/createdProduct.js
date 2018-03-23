@@ -11,6 +11,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import { loadDataProduct } from '../actions/getProduct'
 import { handlePaginationLists } from '../actions/paginationList'
+import { deleteProduct } from '../actions/deleteProduct'
+import { updateProducts } from '../actions/updateProduct'
 import {
     Table,
     TableBody,
@@ -48,7 +50,7 @@ class CreatedProduct extends Component {
     componentWillMount = () => {
         this.props.loadDataProduct()
     }
-
+   
     productCurrent = (product,event) => {
          console.log(this.state.viewFlag)
        this.setState({
@@ -116,7 +118,8 @@ class CreatedProduct extends Component {
 
    updateProduct = () => {
        let product = this.state.item
-       let productBox = this.state.productAllProps.product
+       console.log(product,'product')
+     /*  let productBox = this.state.productAllProps.product
        console.log(productBox)
        let flag 
        let property = product.props
@@ -126,7 +129,7 @@ class CreatedProduct extends Component {
         }
        if(flag){
            property = this.state.props
-       }
+       }*/
        
        let data = {
             _id     : product._id,
@@ -136,44 +139,35 @@ class CreatedProduct extends Component {
             weight  : this.state.weight   || product.weight,
             active  : this.state.active   || product.active,
             category: this.state.category || product.category,
-            props   : property,
+            props   : product.props,
             images  : this.state.images   || product.images
         }
         console.log(data,'data')
-         axios.put(`/product`+'/'+product._id,data)
-            .then(res => {
-                productBox.forEach((el,index)=>{
-                    if(el._id == data._id){
-                        productBox.splice(index,1,data)
-                    }
-                })
-                this.setState({
-                    productCurrent: productBox
-                })
-                console.log(res)
-                console.log(res.data)
-            })
+
+        this.props.updateProducts(product._id,data)
+         /*axios.put(`/product`+'/'+product._id,data)
+                .then(res => {
+                    productBox.forEach((el,index)=>{
+                        if(el._id == data._id){
+                            productBox.splice(index,1,data)
+                        }
+                    })
+                    this.setState({
+                        productCurrent: productBox
+                    })
+                    console.log(res)
+                    console.log(res.data)
+                })*/
     }
     
     deleteProduct = (id,event) => {
-     let newState = this.state.productAllProps.product  
-      axios.delete(`/product`+'/'+id)
-        .then(res => {
-            newState.forEach((el,index)=>{
-            if(el._id == id){
-                console.log(el)
-                newState.splice(index,1)
-             }
-           }) 
-            this.setState({
-                productCurrent: newState
-            })
-                console.log(res)
-                console.log(res.data)
-           }) 
+        this.props.deleteProduct(id)
   }
+ 
+       
+  
 
-    handleToggle = (product,event) =>{
+    handleToggle = (product,event) => {
         this.setState({
             item: product
         })
@@ -193,29 +187,142 @@ class CreatedProduct extends Component {
     )}
 
     handlePaginationList = (event) => {      
-        /*let id = this.state.currentNum
-        axios.get(`/product`+'/'+event.target.id)
-                .then(response => this.setState({
-                                  productAllProps : response.data,
-                                  productCurrent  :response.data.product 
-                                }))*/
       this.props.handlePaginationLists(event.target.id)
-      //console.log(this.props.paginateList,'list')
     }
 
+
 	render() {
-        console.log(this.props,'list')
+        console.log(this.props.allProduct)
+        let render
+        if(this.props.allProduct){
+        
+            if(this.props.allProduct.product){
+                console.log(this.props.allProduct)
+                render = this.props.allProduct.product.filter(searchingFor(this.state.term)).map((item,key) =>
+                <div className key = {key}>
+                 <Drawer open={this.state.open} width={700}>
+                    <div className="dawerList">
+                        <div>name </div>
+                        <TextField
+                            hintText="name default" 
+                            className="searchInput"
+                            onChange = {this.handleChangeName}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>descr</div>
+                        <TextField
+                        hintText="description default" 
+                        className="searchInput"
+                        onChange = {this.handleChangeDescr}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>price </div>
+                        <TextField
+                            hintText="price default" 
+                            className="searchInput"
+                            onChange = {this.handleChangePrice}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>weight </div>
+                        <TextField
+                            hintText="weight default" 
+                            className="searchInput"
+                            onChange = {this.handleChangeWeight}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>active </div>
+                        <TextField
+                            hintText="active default" 
+                            className="searchInput"
+                            onChange = {this.handleChangeStatus}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>category </div>
+                        <TextField
+                            hintText="category default" 
+                            className="searchInput"
+                            onChange = {this.handleChangeCategory}
+                        />
+                    </div>
+                    <div className="dawerList">
+                        <div>images </div>
+                        <TextField
+                            hintText="images default" 
+                            className="searchInput"
+                            onChange = {this.handleChangeImages}
+                        />
+                    </div>
+                        <div className="dawerList-prop">Properties</div>
+                    <div>
+                        {Object.keys(item.props).map((val,key)=>
+                            <div className="dawerList" key={key}>
+                            <div>{val}</div>
+                                <TextField
+                                    hintText="property default"
+                                    onChange={(event)=>{this.handleChangeProps(val,event)}}
+                                    className="searchInput"
+                                />
+                            </div>
+                        )}
+                    </div>
+                    <div className="dawerList-edit">
+                        <button className="confirmEdit" onClick = {this.updateProduct}>
+                                Confirm       
+                        </button>
+                    </div>
+                </Drawer>
+               <Table>
+                    <TableBody>
+                        <TableRow>
+                        <TableRowColumn>{key}</TableRowColumn>
+                            <TableRowColumn>{item.category}</TableRowColumn>
+                            <TableRowColumn>
+                                    <div className="imageBox-table">
+                                        <img className="imageTable" src={item.images} />
+                                    </div>
+                            </TableRowColumn>
+                            <TableRowColumn>{item.name}</TableRowColumn>
+                            <TableRowColumn>{item.price}$</TableRowColumn>
+                            <TableRowColumn>
+                                <span className="viewBtn" onClick={(event)=>this.productCurrent(item,event)}>
+                                    <i class="fas fa-eye view-icon"></i>
+                                </span>
+                                <span label="edit" onClick={(event)=>this.handleToggle(item,event)} className="editButton">
+                                    <i class="fas fa-pencil-alt editIcon"></i>
+                                </span>
+                                <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
+                                    <i class="fas fa-trash deleteIcon"></i>
+                                </span>
+                            </TableRowColumn>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+                </div>
+                )} 
+            }
+            
+                    else{
+                        render = <div>Loading ...</div>
+                    }
+        
+        
         const pages = []
         if(this.props.allProduct){
             console.log(this.props.allProduct.pages)
-            for(let i = 0 ;i < this.props.allProduct.pages ;i++){
+            for(let i = 0; i < this.props.allProduct.pages; i++){
                   pages.push(i)
               }
         } 
     
 		return (
             <div className="Wrapper">
-                {this.state.viewFlag && <Edit data={this.state.viewElem} />}
+            
+                 {this.state.viewFlag && <Edit data={this.state.viewElem} />}
                 <div className="goodsCatalog">
                     <div className="storeCatalog">
                         <div className="storeCatalog-box">
@@ -265,114 +372,9 @@ class CreatedProduct extends Component {
                                 <TableHeaderColumn>Actions</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
-                       </Table> 
-                    {this.props.allProduct && this.props.allProduct.product.filter(searchingFor(this.state.term)).map((item,key) =>
-                    <div className key = {key}>
-                     <Drawer open={this.state.open} width={700}>
-                        <div className="dawerList">
-                            <div>name </div>
-                            <TextField
-                                hintText="name default" 
-                                className="searchInput"
-                                onChange = {this.handleChangeName}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>descr</div>
-                            <TextField
-                            hintText="description default" 
-                            className="searchInput"
-                            onChange = {this.handleChangeDescr}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>price </div>
-                            <TextField
-                                hintText="price default" 
-                                className="searchInput"
-                                onChange = {this.handleChangePrice}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>weight </div>
-                            <TextField
-                                hintText="weight default" 
-                                className="searchInput"
-                                onChange = {this.handleChangeWeight}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>active </div>
-                            <TextField
-                                hintText="active default" 
-                                className="searchInput"
-                                onChange = {this.handleChangeStatus}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>category </div>
-                            <TextField
-                                hintText="category default" 
-                                className="searchInput"
-                                onChange = {this.handleChangeCategory}
-                            />
-                        </div>
-                        <div className="dawerList">
-                            <div>images </div>
-                            <TextField
-                                hintText="images default" 
-                                className="searchInput"
-                                onChange = {this.handleChangeImages}
-                            />
-                        </div>
-                            <div className="dawerList-prop">Properties</div>
-                        <div>
-                            {Object.keys(item.props).map((val,key)=>
-                                <div className="dawerList" key={key}>
-                                <div>{val}</div>
-                                    <TextField
-                                        hintText="property default"
-                                        onChange={(event)=>{this.handleChangeProps(val,event)}}
-                                        className="searchInput"
-                                    />
-                                </div>
-                            )}
-                        </div>
-                        <div className="dawerList-edit">
-                            <button className="confirmEdit" onClick = {this.updateProduct}>
-                                    Confirm       
-                            </button>
-                        </div>
-                    </Drawer>
-                   <Table>
-                        <TableBody>
-                            <TableRow>
-                            <TableRowColumn>{key}</TableRowColumn>
-                                <TableRowColumn>{item.category}</TableRowColumn>
-                                <TableRowColumn>
-                                        <div className="imageBox-table">
-                                            <img className="imageTable" src={item.images} />
-                                        </div>
-                                </TableRowColumn>
-                                <TableRowColumn>{item.name}</TableRowColumn>
-                                <TableRowColumn>{item.price}$</TableRowColumn>
-                                <TableRowColumn>
-                                    <span className="viewBtn" onClick={(event)=>this.productCurrent(item,event)}>
-                                        <i class="fas fa-eye view-icon"></i>
-                                    </span>
-                                    <span label="edit" onClick={(event)=>this.handleToggle(item,event)} className="editButton">
-                                        <i class="fas fa-pencil-alt editIcon"></i>
-                                    </span>
-                                    <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
-                                        <i class="fas fa-trash deleteIcon"></i>
-                                    </span>
-                                </TableRowColumn>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                    </div>
-                    )}
-                </div>
+                       </Table>  
+                 </div> 
+                 {render}
                 <div className = "paginationBox">
                     {pages&&pages.map((val,key)=>  
                         <button onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val}
@@ -391,8 +393,8 @@ function searchingFor(term){
 
 const mapStateToProps = (state)=>{
     return {
-        allProduct : state.getAllProducts.payload,
+        allProduct   : state.getAllProducts,
     }
 }
 
-export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists})(CreatedProduct)
+export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,deleteProduct,updateProducts})(CreatedProduct)

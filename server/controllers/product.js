@@ -33,9 +33,10 @@ module.exports = {
             })
     },
 
-    deleteProduct: (productId,req,res)=> {
+    deleteProduct: (productId,req,res) => {
         Product.findByIdAndRemove(productId)
-               .then((doc) => {
+               .then((doc) => { 
+                   console.log(doc,'dooc')
                       res.send(doc)
                     },(err) => {
                        console.log(err)

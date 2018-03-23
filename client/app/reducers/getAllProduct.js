@@ -1,23 +1,36 @@
-export default function assyncGetProduct(state={}, action) {
+export default function assyncGetProduct(state=null, action) {
     switch (action.type){
         case 'LOAD_ALL_PRODUCT':
-        return {
-            ...state,
-            payload: action.payload
-       }
+            return  { 
+                ...action.payload 
+            }
         break
         case 'HANDLE_LIST':
-        return {
-            ...state,
-            payload: action.payload
-       }
-       break
-       case 'DELETE_PRODUCT':
-
-       default:
-       return{
-           ...state
-       }
+            return {
+            ...action.payload
+            }
+        break
+        case 'DELETE_PRODUCT':
+            return deleteProduct(action.payload,state)
+        break
+        case 'UPDATE_PRODUCT':
+            return {
+                ...state
+            }
+        break
+        default:
+            return {
+                ...state
+            }
     }
 } 
- 
+
+
+// --- logic for reducer --- // 
+function deleteProduct(product,state){
+    let newState = {...state}
+    newState.product = newState.product.filter((el,index) => {
+        return el._id !== product._id;
+    })
+    return newState
+}

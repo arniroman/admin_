@@ -1,16 +1,13 @@
-export default function assyncGet(state={}, action) {
-    if (action.type === 'LOAD'){ 
-        return {
-             ...state,
-             payload: action.payload
-        }
+export default function assyncGet(state=null, action) {
+    switch (action.type){
+        case 'LOAD':
+            return action.payload
+        break
+            default:return state
     } 
-    else {
-        return {
-            ...state
-        }
-    }
-}
+} 
+   
+
 
 
 

@@ -8,7 +8,6 @@ const redusers = combineReducers ({
     properties      : propertie,
     postDatas       : postData,
     getAllProducts  : getAllProduct,
-    
 })
 
 export default redusers

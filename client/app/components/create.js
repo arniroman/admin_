@@ -15,7 +15,6 @@ import { connect } from 'react-redux'
 import { loadDataProperties } from '../actions/getProperties'
 import { postProduct } from '../actions/createProduct'
 
-
 class Create extends Component {
     constructor(props){
         super(props)
@@ -40,42 +39,20 @@ class Create extends Component {
     componentWillMount() {
         this.props.loadDataProperties()
      }
-    
-     handleChangeName = (event) => {
-		this.setState({
-            name : event.target.value
-		})
-    }
-    handleChangeDescr = (event) => {
-		this.setState({
-			descr : event.target.value
-		})
-    }
-    handleChangePrice = (event) => {
-		this.setState({
-			price : event.target.value
-		})
-    }
-    handleChangeWeight = (event) => {
-		this.setState({
-			weight : event.target.value
-		})
-    }
+
+    handleChangeById = (event) => {
+        this.setState({[event.currentTarget.id]: event.target.value})
+     }
+
     handleChangeStatus = () => {
 		this.setState({
 			active : !this.state.active
         })
-        console.log(this.state.active)
     }
-    handleChangeCategory = (event) => {
-		this.setState({
-			category : event.target.value
-		})
-    }
+ 
     handleChangeTags = (event) => {
         let resEvent = event.target.value
         let res = resEvent.split(',')
-        console.log(res)
 		this.setState({
 			tags : res
 		})
@@ -93,14 +70,6 @@ class Create extends Component {
             })
     }
 
-    handleChangeImages = (event) => {
-        let resEvent = event.target.value
-        let res = resEvent.split(',')
-        console.log(res)
-		this.setState({
-			images : res
-		})
-    }
 	handleSubmit = (event) => {
         event.preventDefault();
 		const product = {
@@ -115,11 +84,14 @@ class Create extends Component {
             images      : this.state.images
 		}
         this.props.postProduct(product)
-        console.log(this.props.postData,'respons')
+       // console.log(this.props.postData,'respons')
     }
     
     render(){
-        const properties = this.props.properties
+        let properties
+        if(this.props.properties){
+            properties  = this.props.properties
+        }
         const category = this.state.category
         let renderProps = []
         if(properties){
@@ -129,7 +101,7 @@ class Create extends Component {
             }
         })
         }
-        
+
         let blockProps = renderProps.map((item,key)=>
             <div className="propsWrap-create" key={key}>
             <span className="propsWrap-name" >{item.name}:</span>
@@ -147,40 +119,44 @@ class Create extends Component {
                    <p className="titleName-props">Name product</p>
                         <TextField
                             className="createProd-input"
+                            id = "name"
                             name="name"
                             hintText="name"
                             fullWidth={true}
-                            onChange={this.handleChangeName}
+                            onChange = {this.handleChangeById}
                         />
                         <p className="titleName-props">Description</p>
                             <TextField
                                 className="createProd-input"
+                                id="descr"
                                 name="descr"
                                 hintText="Description"
                                 fullWidth={true}
-                                onChange={this.handleChangeDescr}
+                                onChange = {this.handleChangeById}
+                              
                             />
                         <p className="titleName-props">Price</p>
                             <TextField
                                 className="createProd-input"
+                                id="price"
                                 name="price"
                                 hintText="Price"
                                 fullWidth={true}
-                                onChange={this.handleChangePrice}
+                                onChange = {this.handleChangeById}
                             />
                         <p className="titleName-props">Weight</p>
                             <TextField
                                 className="createProd-input"
+                                id="weight"
                                 name="weight"
                                 hintText="Weight"
                                 fullWidth={true}
-                                onChange={this.handleChangeWeight}
+                                onChange = {this.handleChangeById}
                             />
                         <p className="titleName-props">Active</p>
                             <div className ="toggle-status">
                                 <div >
                                 <Toggle
-                               
                                 onClick={this.handleChangeStatus}
                                 />
                                 </div>
@@ -188,10 +164,11 @@ class Create extends Component {
                         <p className="titleName-props">Category</p>
                             <TextField
                                 className="createProd-input"
+                                id="category"
                                 name="Category"
                                 hintText="Full width"
                                 fullWidth={true}
-                                onChange={this.handleChangeCategory}
+                                onChange = {this.handleChangeById}
                             />
                         <p className="titleName-props">Tags</p>
                             <TextField
@@ -218,10 +195,11 @@ class Create extends Component {
                         <p className="titleName-props">Images</p>
                             <TextField
                                 className="createProd-input"
+                                id="images"
                                 name="Images"
                                 hintText="Full width"
                                 fullWidth={true}
-                                onChange={this.handleChangeImages}
+                                onChange = {this.handleChangeById}
                             />
                         <RaisedButton 
                         className="create-btn" 
@@ -236,7 +214,7 @@ class Create extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        properties  : state.properties.payload,
+        properties  : state.properties,
         postData    : state.postDatas
     }
 }

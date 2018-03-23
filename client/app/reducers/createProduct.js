@@ -1,9 +1,8 @@
-export default function post (state={}, action) {
+export default function post (state=null, action) {
     if (action.type === 'POST_DATA'){ 
-        return {
-             ...state,
-             payload: action.payload
-        }
+        //console.log(state,'state its')
+        return {...action.payload}
+        
     }
         else {
         return {

@@ -18,6 +18,7 @@ class ProductEdit extends Component {
             tags    : [],
             props   : {},
             images  : "",
+            obj     : {}
         }
     }
 
@@ -33,9 +34,31 @@ class ProductEdit extends Component {
 			tags : res
 		})
     }
+
+    handleChangeProps = (chosenKey, event) => {
+        let prop = this.props.productWichUpdate.props
+        for (let key in prop){
+            if(chosenKey == key){
+                prop[key] = event.target.value
+            }
+        }
+       this.setState({
+         obj: prop
+       })  
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         let product = this.props.productWichUpdate
+        let flag 
+        let property = this.props.productWichUpdate.props
+        for(let prop in property){
+           (this.state.props.hasOwnProperty(prop)) ? flag = true
+                                                   : flag = false
+        }
+       if(flag){
+           property = this.state.obj
+       }
         let newObj = {
             _id     : product._id,
             name    : this.state.name     || product.name,
@@ -44,16 +67,14 @@ class ProductEdit extends Component {
             weight  : this.state.weight   || product.weight,
             active  : this.state.active   || product.active,
             category: this.state.category || product.category,
-            props   : product.props,
+            props   : property,
             images  : this.state.images   || product.images
         }
-        //console.log(newObj)
+        console.log(newObj)
         this.props.updateProducts(product._id,newObj)
     }
 
-
     render(){
-        console.log(this.props.productWichUpdate)
         let product = this.props.productWichUpdate
         return(
             <div>
@@ -121,7 +142,7 @@ class ProductEdit extends Component {
                                     type="text" 
                                     name="text"
                                     hintText="new props..."
-                                   // onChange={(event)=>this.handleChangeProps(item.name, event)}
+                                    onChange={(event)=>this.handleChangeProps(val, event)}
                                     />
                             </div>    
                             )}

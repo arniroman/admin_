@@ -83,7 +83,6 @@ class Create extends Component {
             images      : this.state.images
 		}
         this.props.postProduct(product)
-       // console.log(this.props.postData,'respons')
     }
     
     render(){

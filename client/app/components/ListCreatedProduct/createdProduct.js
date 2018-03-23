@@ -17,13 +17,10 @@ import {
     TableRowColumn,
   } from 'material-ui/Table'
 
-
 class CreatedProduct extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-            props : {},
-            item  : {},
             term: ''
         } 
     }
@@ -38,42 +35,11 @@ class CreatedProduct extends Component {
         })
     }    
 
-   updateProduct = () => {
-       let product = this.state.item
-       console.log(product,'product')
-     /*  let productBox = this.state.productAllProps.product
-       console.log(productBox)
-       let flag 
-       let property = product.props
-       for(let prop in property){
-           (this.state.props.hasOwnProperty(prop)) ? flag = true
-                                                   : flag = false
-        }
-       if(flag){
-           property = this.state.props
-       }*/
-       
-       let data = {
-            _id     : product._id,
-            name    : this.state.name     || product.name,
-            descr   : this.state.descr    || product.descr,
-            price   : this.state.price    || product.price,
-            weight  : this.state.weight   || product.weight,
-            active  : this.state.active   || product.active,
-            category: this.state.category || product.category,
-            props   : product.props,
-            images  : this.state.images   || product.images
-        }
-        console.log(data,'data')
-
-        this.props.updateProducts(product._id,data)
-    }
-    
     handlePaginationList = (event) => {      
       this.props.handlePaginationLists(event.target.id)
     }
 
-	render() {
+    render() {
         /*--- Pages for pagination list ---*/
         const pages = []
         if(this.props.allProduct){
@@ -136,7 +102,7 @@ class CreatedProduct extends Component {
                         </TableHeader>
                        </Table>  
                  </div> 
-                 <ListProduct term={this.state.term} />
+                <ListProduct term={this.state.term} />
                 <div className = "paginationBox">
                     {pages&&pages.map((val,key)=>  
                         <button 

@@ -4,16 +4,15 @@ import axios from 'axios'
 import TextField from 'material-ui/TextField'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-import Toggle from 'material-ui/Toggle';
-import HomePage from './home'
-import '../css/create.css'
-import index from 'material-ui/TextField';
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
+import Toggle from 'material-ui/Toggle'
+import '../../css/create.css'
+import index from 'material-ui/TextField'
 import { connect } from 'react-redux'
-import { loadDataProperties } from '../actions/getProperties'
-import { postProduct } from '../actions/createProduct'
+import { loadDataProperties } from '../../actions/getProperties'
+import { postProduct } from '../../actions/createProduct'
 
 class Create extends Component {
     constructor(props){
@@ -101,18 +100,6 @@ class Create extends Component {
             }
         })
         }
-
-        let blockProps = renderProps.map((item,key)=>
-            <div className="propsWrap-create" key={key}>
-            <span className="propsWrap-name" >{item.name}:</span>
-            <TextField 
-            className="createProd-inputProp"
-                type="text" 
-                name="text"
-                hintText="new props..."
-                onChange={(event)=>this.handleChangeProps(item.name, event)}/>
-            </div>
-        )
         return(
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
@@ -189,7 +176,19 @@ class Create extends Component {
                                     <MenuItem >
                                         <p className="properties-title">Properties</p>
                                     </MenuItem>
-                                <MenuItem>{blockProps}</MenuItem>
+                                    <MenuItem>
+                                    {renderProps.map((item,key)=>
+                                        <div className="propsWrap-create" key={key}>
+                                        <span className="propsWrap-name" >{item.name}:</span>
+                                        <TextField 
+                                        className="createProd-inputProp"
+                                            type="text" 
+                                            name="text"
+                                            hintText="new props..."
+                                            onChange={(event)=>this.handleChangeProps(item.name, event)}/>
+                                        </div>
+                                    )}
+                                    </MenuItem>
                                 </Drawer>
                             </div>
                         <p className="titleName-props">Images</p>

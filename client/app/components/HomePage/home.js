@@ -1,20 +1,9 @@
-import React from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-import CreatedProduct from './createdProduct'
+import React,{Component} from 'react'
+import CreatedProduct from '../ListCreatedProduct/createdProduct'
+import  '../../css/style.css'
+import '../../css/home.css'
 
-import  '../css/style.css'
-import '../css/home.css'
-
-export default class HomePage extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			data:[]
-		}
-	}
+export default class HomePage extends Component {
 	render() {
 		return (
 			<div className="Wrapper">
@@ -34,7 +23,7 @@ export default class HomePage extends React.Component {
 					<CreatedProduct />
 				</div>
 			</div>
-		);
+		)
 	}
 }
 	

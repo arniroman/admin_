@@ -24,11 +24,9 @@ class ListProduct extends Component {
         this.props.deleteProduct(id)
   }
   productCurrent = (item,event) => {
-      console.log(item)
       this.props.productViewWithTable(item)
   }
   handleToggleEdit = (item,event) => {
-      //console.log(item)
       this.props.productWhichUpdate(item)
   }
   

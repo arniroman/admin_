@@ -123,7 +123,8 @@ class CreatedProduct extends Component {
                 </div>
                  <div className="productList-box" >
                      <Table >
-                        <TableHeader >
+                        <TableHeader displaySelectAll={false}
+                                     adjustForCheckbox={false}>
                             <TableRow>
                                 <TableHeaderColumn>№</TableHeaderColumn>
                                 <TableHeaderColumn>Category</TableHeaderColumn>

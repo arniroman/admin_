@@ -14,6 +14,7 @@ export default function assyncGetProduct(state=null, action) {
             return deleteProduct(action.payload,state)
         break
         case 'UPDATE_PRODUCT':
+            console.log(action.payload,'update')
             return {
                 ...state
             }

@@ -7,17 +7,19 @@ import Create from './components/Create/create'
 import HomePage from './components/HomePage/home'
 import ProductDescr from './components/ProductViewDescr/productDescr'
 import CreatedProduct from './components/ListCreatedProduct/createdProduct'
+import ProductEdit from './components/ProductEdit/productEdit'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 render(
-	<Provider store = {store}>
+	<Provider store={store}>
 		<MuiThemeProvider>
 			<Router>
 					<div>
 						<Route exact path='/' component={HomePage}/>
 						<Route exact path='/create' component={Create}/>
 						<Route exact path='/viewProduct' component={ProductDescr}/>
+						<Route exact path='/editProduct' component={ProductEdit}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

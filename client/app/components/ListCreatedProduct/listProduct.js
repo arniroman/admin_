@@ -6,8 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import { handlePaginationLists } from '../../actions/paginationList'
 import { deleteProduct } from '../../actions/deleteProduct'
-import { updateProducts } from '../../actions/updateProduct'
+import { productWhichUpdate } from '../../actions/productWichUpdate'
 import { productViewWithTable } from '../../actions/productView'
+
 import {
     Table,
     TableBody,
@@ -18,25 +19,29 @@ import {
   } from 'material-ui/Table'
 
 class ListProduct extends Component {
-    deleteProduct = (id,event) => {
+
+  deleteProduct = (id,event) => {
         this.props.deleteProduct(id)
   }
-  productCurrent = (item,event) =>{
+  productCurrent = (item,event) => {
       console.log(item)
       this.props.productViewWithTable(item)
   }
+  handleToggleEdit = (item,event) => {
+      //console.log(item)
+      this.props.productWhichUpdate(item)
+  }
+  
     render(){
         let render
-        console.log(this.props.allProduct)
         if(this.props.allProduct){
             if(this.props.allProduct.product){
-                console.log(this.props.allProduct)
                 render = this.props.allProduct.product.filter(searchingFor(this.props.term)).map((item,key) =>
                 <div className key = {key}> 
                <Table>
-                    <TableBody>
+                    <TableBody  displayRowCheckbox={false}>
                         <TableRow>
-                        <TableRowColumn>{key}</TableRowColumn>
+                        <TableRowColumn>{key+1}</TableRowColumn>
                             <TableRowColumn>{item.category}</TableRowColumn>
                             <TableRowColumn>
                                     <div className="imageBox-table">
@@ -51,9 +56,11 @@ class ListProduct extends Component {
                                         <i class="fas fa-eye view-icon"></i>
                                     </span>
                                 </Link>
-                                <span label="edit" onClick={(event)=>this.handleToggle(item,event)} className="editButton">
+                                <Link to ='/editProduct'>
+                                <span label="edit" onClick={(event)=>this.handleToggleEdit(item,event)} className="editButton">
                                     <i class="fas fa-pencil-alt editIcon"></i>
                                 </span>
+                                </Link>
                                 <span className="deleteBtn" onClick={(event)=>this.deleteProduct(item._id,event)} className="deleteBtn">
                                     <i class="fas fa-trash deleteIcon"></i>
                                 </span>
@@ -86,4 +93,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps,{deleteProduct,productViewWithTable})(ListProduct)
+export default connect(mapStateToProps,{deleteProduct,productViewWithTable,productWhichUpdate})(ListProduct)

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { handlePaginationLists } from '../../actions/paginationList'
 import { deleteProduct } from '../../actions/deleteProduct'
 import { updateProducts } from '../../actions/updateProduct'
+import { productViewWithTable } from '../../actions/productView'
 import {
     Table,
     TableBody,
@@ -19,6 +20,10 @@ import {
 class ListProduct extends Component {
     deleteProduct = (id,event) => {
         this.props.deleteProduct(id)
+  }
+  productCurrent = (item,event) =>{
+      console.log(item)
+      this.props.productViewWithTable(item)
   }
     render(){
         let render
@@ -81,4 +86,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps,{deleteProduct})(ListProduct)
+export default connect(mapStateToProps,{deleteProduct,productViewWithTable})(ListProduct)

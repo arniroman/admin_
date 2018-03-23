@@ -2,9 +2,10 @@ import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from 'react-dom'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Create from './components/Create/create'
 import HomePage from './components/HomePage/home'
+import ProductDescr from './components/ProductViewDescr/productDescr'
 import CreatedProduct from './components/ListCreatedProduct/createdProduct'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -16,6 +17,7 @@ render(
 					<div>
 						<Route exact path='/' component={HomePage}/>
 						<Route exact path='/create' component={Create}/>
+						<Route exact path='/viewProduct' component={ProductDescr}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

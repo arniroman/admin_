@@ -58,7 +58,7 @@ class CreatedProduct extends Component {
                         </div>
                         <div className="countGoods-box">
                             <div className="countGoods">count goods 
-                                 <span className="countGoods-length">count</span>
+                                 <span className="countGoods-length">{this.props.allProduct.count}</span>
                             </div>
                         </div>
                     </div>
@@ -72,9 +72,11 @@ class CreatedProduct extends Component {
                     <div className="contentBtn setting">import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>
-                    <div className="contentBtn setting ">export CSV
-                        <i class="fas fa-upload icon-setting"></i>
-                    </div>
+                    <a href="/exporttocsv">
+                        <div className="contentBtn setting ">export CSV
+                            <i class="fas fa-upload icon-setting"></i>
+                        </div>
+                    </a>
                     <div className="contentBtn">
                         <label>
                             <TextField

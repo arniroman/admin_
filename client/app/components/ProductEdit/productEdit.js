@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {updateProducts} from '../../actions/updateProduct'
+import '../../css/productEdit.css'
 import  '../../css/style.css'
 
 class ProductEdit extends Component {
@@ -70,7 +71,6 @@ class ProductEdit extends Component {
             props   : property,
             images  : this.state.images   || product.images
         }
-        console.log(newObj)
         this.props.updateProducts(product._id,newObj)
     }
 
@@ -78,85 +78,111 @@ class ProductEdit extends Component {
         let product = this.props.productWichUpdate
         return(
             <div>
-                <form  className='createProd-form' onSubmit={this.handleSubmit}>
-                   <p className="titleName-props">Name product</p>
-                        <TextField
-                            className="createProd-input"
-                            id = "name"
-                            name="name"
-                            hintText="name"
-                            fullWidth={true}
-                            onChange = {this.handleChangeById}
-                        />
-                        <p className="titleName-props">Description</p>
-                            <TextField
-                                className="createProd-input"
-                                id="descr"
-                                name="descr"
-                                hintText="Description"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                              
-                            />
-                        <p className="titleName-props">Price</p>
-                            <TextField
-                                className="createProd-input"
-                                id="price"
-                                name="price"
-                                hintText="Price"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                        <p className="titleName-props">Weight</p>
-                            <TextField
-                                className="createProd-input"
-                                id="weight"
-                                name="weight"
-                                hintText="Weight"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                      
-                        <p className="titleName-props">Category</p>
-                            <TextField
-                                className="createProd-input"
-                                id="category"
-                                name="Category"
-                                hintText="Full width"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                        <p className="titleName-props">Tags</p>
-                            <TextField
-                                className="createProd-input"
-                                name="Tags"
-                                hintText="Full width"
-                                fullWidth={true}
-                                onChange={this.handleChangeTags}
-                            />
-                            {Object.keys(product.props).map((val,key) => 
-                            <div key={key}>
-                                <p>{val}</p>
-                                <TextField 
-                                    className="createProd-inputProp"
-                                    type="text" 
-                                    name="text"
-                                    hintText="new props..."
-                                    onChange={(event)=>this.handleChangeProps(val, event)}
+            <header className="headerEdit">
+                <p>Product Setting</p>
+                <i class="fas fa-wrench hederEdit-icon"></i>
+            </header>
+            <div className="editContainer">
+                <div className='imageBoxEdit'>
+                    <img className= 'productImg' src = {product.images} />
+                </div>
+                    <div className="editForm-wrapper">
+                        <form  className='createProd-formEdit' onSubmit={this.handleSubmit}>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Name product</p>
+                                    <TextField
+                                        //  className="createProd-inputEdit"
+                                        id = "name"
+                                        name="name"
+                                        hintText="name"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                        />
+                            </div>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Description</p>
+                                    <TextField
+                                       // className="createProd-inputEdit"
+                                        id="descr"
+                                        name="descr"
+                                        hintText="Description"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                    
+                                    />
+                            </div>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Price</p>
+                                    <TextField
+                                      //  className="createProd-inputEdit"
+                                        id="price"
+                                        name="price"
+                                        hintText="Price"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                    />
+                            </div>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Weight</p>
+                                    <TextField
+                                       // className="createProd-inputEdit"
+                                        id="weight"
+                                        name="weight"
+                                        hintText="Weight"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                    />
+                            </div>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Category</p>
+                                    <TextField
+                                       // className="createProd-inputEdit"
+                                        id="category"
+                                        name="Category"
+                                        hintText="Full width"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                    />
+                            </div>
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEditTags">Tags</p>
+                                    <TextField
+                                       // className="createProd-inputEdit"
+                                        name="Tags"
+                                        hintText="Full width"
+                                        fullWidth={true}
+                                        onChange={this.handleChangeTags}
+                                    />
+                            </div>
+                                {Object.keys(product.props).map((val,key) => 
+                            <div  key={key} className='wrapItem'>
+                                <p className="titleName-propsEdit-P">{val}</p>
+                                    <TextField 
+                                        //className="ccreateProd-inputEdit"
+                                        type="text" 
+                                        name="text"
+                                        hintText="new props..."
+                                        onChange={(event)=>this.handleChangeProps(val, event)}
                                     />
                             </div>    
-                            )}
-                            <p className="titleName-props">Images</p>
-                            <TextField
-                                className="createProd-input"
-                                id="images"
-                                name="Images"
-                                hintText="Full width"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                            <button>Update</button>
-               </form>
+                                    )}
+                            <div className='wrapItem'>
+                                <p className="titleName-propsEdit">Images</p>
+                                    <TextField
+                                        //className="createProd-inputEdit"
+                                        id="images"
+                                        name="Images"
+                                        hintText="Full width"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                    />
+                            </div>
+                                    <button className="editSubmit">
+                                        <i className = "fas fa-pencil-alt editSubmit-icon"></i>
+                                    </button>
+                    </form>
+               </div>
+            </div>
             </div>
         )
     }

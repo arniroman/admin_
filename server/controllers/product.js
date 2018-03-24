@@ -27,7 +27,8 @@ module.exports = {
                         product: products,
                         current: page,
                         pages  : Math.ceil(count/perPage),
-                        perPage: perPage
+                        perPage: perPage,
+                        count  : count
                     })
                 })
             })

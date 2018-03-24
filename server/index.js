@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const config = require('./config')
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
+
 //connected to db
 //mongoose.Promise = global.Promise
 mongoose.connect(config.url)
@@ -24,7 +25,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
 }))
-
 
 app.use(express.static('client'))
 //create routes for app

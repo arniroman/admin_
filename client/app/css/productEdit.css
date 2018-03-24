@@ -1,0 +1,58 @@
+.headerEdit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #98989a99;
+    font-size: 30px;
+    height: 100px;
+    background: #ccd1eb;
+    padding: 5px;
+}
+.hederEdit-icon{
+    font-size: 30px;
+    margin-left: 10px;
+}
+.editContainer{
+    display: flex;
+    padding: 20px 0 0 100px;
+}
+.editForm-wrapper{
+    margin-left: 100px;
+    border: 1px solid #e4e2e2;
+}
+.wrapItem{
+    display: flex;
+    padding: 7px;
+}
+.titleName-propsEdit{
+    display: inline;
+    width: 100%;
+}
+.titleName-propsEdit-P{
+    width: 80%;
+    
+}
+.titleName-propsEditTags{
+    width: 100%;
+}
+.imageBoxEdit{
+    width:  450px;
+    height: 550px; 
+}
+.productImg{
+    width: 100%;
+}
+.editSubmit{
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: #ccd1eb;
+}
+.editSubmit:hover{
+    background: #b0bdff;
+}
+.editSubmit-icon{
+    font-size: 30px;
+    color: #f7fcff;
+}

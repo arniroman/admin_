@@ -34,7 +34,7 @@ class ListProduct extends Component {
         let render
         if(this.props.allProduct){
             if(this.props.allProduct.product){
-                render = this.props.allProduct.product.filter(searchingFor(this.props.term)).map((item,key) =>
+                render = this.props.allProduct.product.map((item,key) =>
                 <div className key = {key}> 
                <Table>
                     <TableBody  displayRowCheckbox={false}>
@@ -79,11 +79,7 @@ class ListProduct extends Component {
         )
     }
 }
-function searchingFor(term){
-    return function(x){
-        return x.name.toLowerCase().includes(term.toLowerCase()) || x.tags.includes(term) 
-    }  
-}
+
 
 const mapStateToProps = (state)=>{
     return {

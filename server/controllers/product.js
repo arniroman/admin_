@@ -16,8 +16,15 @@ module.exports = {
 
     getAllProduct: (req,res)=>{
         const perPage = 5
-        const page = req.params.id || 1
-        Product.find({})
+        let productData = req.params.id.split(',')
+        let resultsPagination = productData[0]
+        const page = resultsPagination || 0
+
+        Product.find({
+            name: {
+                $regex: new RegExp(productData[1],"i")
+              }
+        })
                .skip((perPage * page) - page)
                .limit(perPage)
                .exec((err,products) => {
@@ -27,7 +34,6 @@ module.exports = {
                         product: products,
                         current: page,
                         pages  : Math.ceil(count/perPage),
-                        perPage: perPage,
                         count  : count
                     })
                 })

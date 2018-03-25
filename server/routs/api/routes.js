@@ -1,8 +1,8 @@
 const product = require('./product')
 const properties = require('./properties')
-const exporttocsv = require('./exporttocsv')
+const exportImportToCSV = require('./exportImportToCsv')
 module.exports = function(app){
     app.use('/product', product),
     app.use('/properties', properties)
-    app.use('/exporttocsv', exporttocsv)
+    app.use('/exporttocsv', exportImportToCSV)
 }

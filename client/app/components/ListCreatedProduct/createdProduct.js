@@ -21,7 +21,7 @@ class CreatedProduct extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-            term: ''
+            id: ''
         } 
     }
 
@@ -30,13 +30,14 @@ class CreatedProduct extends Component {
     }
    
     searchHeandler = (event) => {
-        this.setState({
-            term: event.target.value
-        })
+        this.props.handlePaginationLists(this.state.id,event.target.value)
     }    
 
-    handlePaginationList = (event) => {      
-      this.props.handlePaginationLists(event.target.id)
+    handlePaginationList = (event) => {   
+        this.setState({
+            id:event.target.value
+        })   
+      this.props.handlePaginationLists(event.target.id,'')
     }
 
     render() {
@@ -69,7 +70,7 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
-                <form action="/csv" method="POST" encType="multipart/form-data">
+                <form action="/exporttocsv" method="POST" encType="multipart/form-data">
                     <input type="file" name="file" accept="*.csv" /><br/><br/>
                     <input type="submit" value="Upload Authors" />
                 </form>
@@ -108,7 +109,7 @@ class CreatedProduct extends Component {
                         </TableHeader>
                        </Table>  
                  </div> 
-                <ListProduct term={this.state.term} />
+                <ListProduct />
                 <div className = "paginationBox">
                     {pages&&pages.map((val,key)=>  
                         <button 

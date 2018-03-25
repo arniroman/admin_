@@ -69,6 +69,10 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
+                <form action="/csv" method="POST" encType="multipart/form-data">
+                    <input type="file" name="file" accept="*.csv" /><br/><br/>
+                    <input type="submit" value="Upload Authors" />
+                </form>
                     <div className="contentBtn setting">import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>

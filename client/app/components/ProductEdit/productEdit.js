@@ -6,6 +6,7 @@ import {updateProducts} from '../../actions/updateProduct'
 import '../../css/productEdit.css'
 import  '../../css/style.css'
 
+
 class ProductEdit extends Component {
     constructor(props){
         super(props)

@@ -30,7 +30,7 @@ class ListProduct extends Component {
       this.props.productWhichUpdate(item)
   }
   
-    render(){
+    render(){ 
         let render
         if(this.props.allProduct){
             if(this.props.allProduct.product){

@@ -20,7 +20,7 @@ class ProductEdit extends Component {
             tags        : [],
             props       : {},
             images      : "",
-            obj         : {},
+            obj        : {},
             nameValue   : "",
             product     : {}
         }
@@ -30,15 +30,15 @@ class ProductEdit extends Component {
         let products = this.props.productWichUpdate
         if(products){
             this.setState({
-                product  : products,
-                name     : products.name,
-                descr    : products.descr,
-                price    : products.price,
-                weight   : products.weight,
-                category : products.category,
-                tags     : products.tags,
-                props    : products.props,
-                images   : products.images
+                product     : products,
+                name        : products.name,
+                descr       : products.descr,
+                price       : products.price,
+                weight      : products.weight,
+                category    : products.category,
+                tags        : products.tags,
+                props       : products.props,
+                images      : products.images
            })
         }
     }   
@@ -74,9 +74,7 @@ class ProductEdit extends Component {
     }
 
     handleChangeProps = (chosenKey, event) => {
-        console.log(chosenKey)
         let prop = this.state.props
-        console.log(prop)
         for (let key in prop){
             if(chosenKey == key){
                 prop[key] = event.target.value
@@ -92,25 +90,20 @@ class ProductEdit extends Component {
         let product = this.state.product
         let property = this.state.props
         let newObj = {
-            _id     : product._id,
-            name    : this.state.name     || product.name,
-            descr   : this.state.descr    || product.descr,
-            price   : this.state.price    || product.price,
-            weight  : this.state.weight   || product.weight,
-            active  : this.state.active   || product.active,
-            category: this.state.category || product.category,
-            props   : property,
-            images  : this.state.images   || product.images
+            _id       : product._id,
+            name      : this.state.name     || product.name,
+            descr     : this.state.descr    || product.descr,
+            price     : this.state.price    || product.price,
+            weight    : this.state.weight   || product.weight,
+            active    : this.state.active   || product.active,
+            category  : this.state.category || product.category,
+            props     : property,
+            images    : this.state.images   || product.images
         }
         this.props.updateProducts(product._id,newObj)
     }
 
     render(){
-        let product = this.props.productWichUpdate
-        let obj = this.state.props
-        let arr = []
-        arr.push(obj)
-        console.log(arr)
         return(
             <div>
             <header className="headerEdit">
@@ -119,7 +112,7 @@ class ProductEdit extends Component {
             </header>
             <div className="editContainer">
                 <div className='imageBoxEdit'>
-                    <img className= 'productImg' src = {product.images} />
+                    <img className= 'productImg' src = {this.state.images} />
                 </div>
                     <div className="editForm-wrapper">
                         <form  className='createProd-formEdit' onSubmit={this.handleSubmit}>
@@ -142,7 +135,6 @@ class ProductEdit extends Component {
                                         value={this.state.descr}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
-                                    
                                     />
                             </div>
                             <div className='wrapItem'>
@@ -200,9 +192,9 @@ class ProductEdit extends Component {
                                         onChange = {this.handleChangeById}
                                     />
                             </div>
-                                    <button className="editSubmit">
-                                        <i className = "fas fa-pencil-alt editSubmit-icon"></i>
-                                    </button>
+                            <button className="editSubmit">
+                                    <i className = "fas fa-pencil-alt editSubmit-icon"></i>
+                             </button>
                     </form>
                </div>
             </div>

@@ -5,8 +5,6 @@ const config = require('./config')
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 const Product = require('./models/product')
-
-var csv1 = require('fast-csv')
 const fileUpload = require('express-fileupload')
 
 //connected to db
@@ -32,10 +30,11 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }))
 
+
 app.use(express.static('client'))
 //create routes for app
 const routes = require('./routs/api/routes')(app)
-
+module.exports = app
 
 module.exports.start = () => app.listen(config.port, () => console.log('App listening on port '+ config.port))
 

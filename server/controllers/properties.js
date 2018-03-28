@@ -8,9 +8,10 @@ module.exports = {
               propertiesDb.save()
                           .then((doc) => {
                                  res.send(doc)
-                              },(err) => {
-                                 console.log(err)
-                                 resizeBy.send(500)
+                              })
+                          .catch(err => {
+                            res.status(400).send(err);
+                            console.log("we got an error");
                           })
     },
 
@@ -18,10 +19,11 @@ module.exports = {
             Properties.find({})
                       .then((doc) => {
                              res.send(doc)
-                          },(err) => {
-                             console.log(err)
-                             res.send(500)
-                     })
+                          })
+                      .catch(err => {
+                        res.status(400).send(err);
+                        console.log("we got an error");
+                      })
     }
 
 }

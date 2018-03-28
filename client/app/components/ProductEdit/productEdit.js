@@ -11,22 +11,42 @@ class ProductEdit extends Component {
     constructor(props){
         super(props)
         this.state = {
-            name    : "",
-            descr   : "",
-            price   : "",
-            weight  : "",
-            active  : true,
-            category: "",
-            tags    : [],
-            props   : {},
-            images  : "",
-            obj     : {}
+            name        : "",
+            descr       : "",
+            price       : "",
+            weight      : "",
+            active      : true,
+            category    : "",
+            tags        : [],
+            props       : {},
+            images      : "",
+            obj         : {},
+            nameValue   : "",
+            product     : {}
         }
     }
 
-    handleChangeById = (event) => {
-        console.log(event.currentTarget.id)
-        this.setState({[event.currentTarget.id]: event.target.value})
+    componentWillMount(){
+        let products = this.props.productWichUpdate
+        if(products){
+            this.setState({
+                product  : products,
+                name     : products.name,
+                descr    : products.descr,
+                price    : products.price,
+                weight   : products.weight,
+                category : products.category,
+                tags     : products.tags,
+                props    : products.props,
+                images   : products.images
+           })
+        }
+    }   
+
+     handleChangeById = (event) => {
+        const el = event.target
+       console.log(el.value)
+        this.setState({[el.id]: el.value});
      }
  
     handleChangeTags = (event) => {
@@ -37,8 +57,26 @@ class ProductEdit extends Component {
 		})
     }
 
+    renderObject = () => {
+        return Object.keys(this.state.props).map((obj, i) => {
+        return (
+            <div className='wrapItem' key={i}>
+               <p className="titleName-propsEdit-P">{obj}</p>
+                 <TextField 
+                    type="text" 
+                    name="text"
+                    value ={this.state.props[obj]}
+                    onChange={(event)=>this.handleChangeProps(obj, event)}
+                    />
+            </div> 
+        )
+    })
+    }
+
     handleChangeProps = (chosenKey, event) => {
-        let prop = this.props.productWichUpdate.props
+        console.log(chosenKey)
+        let prop = this.state.props
+        console.log(prop)
         for (let key in prop){
             if(chosenKey == key){
                 prop[key] = event.target.value
@@ -51,16 +89,8 @@ class ProductEdit extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let product = this.props.productWichUpdate
-        let flag 
-        let property = this.props.productWichUpdate.props
-        for(let prop in property){
-           (this.state.props.hasOwnProperty(prop)) ? flag = true
-                                                   : flag = false
-        }
-       if(flag){
-           property = this.state.obj
-       }
+        let product = this.state.product
+        let property = this.state.props
         let newObj = {
             _id     : product._id,
             name    : this.state.name     || product.name,
@@ -77,6 +107,10 @@ class ProductEdit extends Component {
 
     render(){
         let product = this.props.productWichUpdate
+        let obj = this.state.props
+        let arr = []
+        arr.push(obj)
+        console.log(arr)
         return(
             <div>
             <header className="headerEdit">
@@ -91,14 +125,13 @@ class ProductEdit extends Component {
                         <form  className='createProd-formEdit' onSubmit={this.handleSubmit}>
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Name product</p>
-                                    <TextField
-                                        //  className="createProd-inputEdit"
-                                        id = "name"
-                                        name="name"
-                                        hintText="name"
-                                        fullWidth={true}
-                                        onChange = {this.handleChangeById}
-                                        />
+                                        <TextField
+                                         value={this.state.name}
+                                         id = "name"
+                                         name="name"
+                                         fullWidth={true}
+                                         onChange = {this.handleChangeById}
+                                         />
                             </div>
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Description</p>
@@ -106,7 +139,7 @@ class ProductEdit extends Component {
                                        // className="createProd-inputEdit"
                                         id="descr"
                                         name="descr"
-                                        hintText="Description"
+                                        value={this.state.descr}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
                                     
@@ -118,7 +151,7 @@ class ProductEdit extends Component {
                                       //  className="createProd-inputEdit"
                                         id="price"
                                         name="price"
-                                        hintText="Price"
+                                        value={this.state.price}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
                                     />
@@ -129,7 +162,7 @@ class ProductEdit extends Component {
                                        // className="createProd-inputEdit"
                                         id="weight"
                                         name="weight"
-                                        hintText="Weight"
+                                        value={this.state.weight}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
                                     />
@@ -140,7 +173,7 @@ class ProductEdit extends Component {
                                        // className="createProd-inputEdit"
                                         id="category"
                                         name="Category"
-                                        hintText="Full width"
+                                        value={this.state.category}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
                                     />
@@ -150,30 +183,19 @@ class ProductEdit extends Component {
                                     <TextField
                                        // className="createProd-inputEdit"
                                         name="Tags"
-                                        hintText="Full width"
+                                        value={this.state.tags}
                                         fullWidth={true}
                                         onChange={this.handleChangeTags}
                                     />
                             </div>
-                                {Object.keys(product.props).map((val,key) => 
-                            <div  key={key} className='wrapItem'>
-                                <p className="titleName-propsEdit-P">{val}</p>
-                                    <TextField 
-                                        //className="ccreateProd-inputEdit"
-                                        type="text" 
-                                        name="text"
-                                        hintText="new props..."
-                                        onChange={(event)=>this.handleChangeProps(val, event)}
-                                    />
-                            </div>    
-                                    )}
-                            <div className='wrapItem'>
-                                <p className="titleName-propsEdit">Images</p>
+                                {this.renderObject()} 
+                            <div className='wrapItem edit-img'>
+                                <p className="titleName-propsEdit ">Images</p>
                                     <TextField
                                         //className="createProd-inputEdit"
                                         id="images"
                                         name="Images"
-                                        hintText="Full width"
+                                        value={this.state.images}
                                         fullWidth={true}
                                         onChange = {this.handleChangeById}
                                     />

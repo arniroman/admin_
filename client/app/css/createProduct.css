@@ -7,13 +7,13 @@
 }
 .countGoods-box{
     display: flex;
-    width: 82%;
+    width: 80%;
     flex-direction: row-reverse;
     align-items: center;
 }
 .storeCatalog-box{
     display: flex;
-    width:10%;
+    
     padding-left: 10px; 
     align-items: center;
 }

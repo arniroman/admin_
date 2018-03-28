@@ -7,7 +7,9 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import { loadDataProduct } from '../../actions/getProduct'
 import { handlePaginationLists } from '../../actions/paginationList'
+import { ipmortToCSV } from '../../actions/ipmortToCSV'
 import ListProduct from '../../components/ListCreatedProduct/listProduct'
+import Pagination  from 'material-ui-pagination-react'
 import {
     Table,
     TableBody,
@@ -28,10 +30,19 @@ class CreatedProduct extends Component {
     componentWillMount = () => {
         this.props.loadDataProduct()
     }
+    ipmortCSV = () => {
+        this.props.ipmortToCSV(this.inputData)
+        //console.log(this.inputData)
+        el.files
+        event.target.files[0]
+    }
    
     searchHeandler = (event) => {
         this.props.handlePaginationLists(this.state.id,event.target.value)
-    }    
+    }
+    dataFile =(event) => {
+        console.log(event.target.files[0])
+    } 
 
     handlePaginationList = (event) => {   
         this.setState({
@@ -53,10 +64,16 @@ class CreatedProduct extends Component {
             <div className="Wrapper">
                 <div className="goodsCatalog">
                     <div className="storeCatalog">
-                        <div className="storeCatalog-box">
+                        {/* <div className="storeCatalog-box">
                             <span className="storeCatalog-title">Store catalog</span>
                             <i class="fas fa-cart-arrow-down"></i>
-                        </div>
+                        </div> */}
+                        <Link  to="/history">
+                            <div className="storeCatalog-box">
+                                <span className="storeCatalog-title">Shopping history</span>
+                                <i class="fas fa-cart-arrow-down"></i>
+                            </div>
+                        </Link>
                         <div className="countGoods-box">
                             <div className="countGoods">count goods 
                                  <span className="countGoods-length">{this.props.allProduct.count}</span>
@@ -74,7 +91,11 @@ class CreatedProduct extends Component {
                     <input type="file" name="file" accept="*.csv" /><br/><br/>
                     <input type="submit" value="Upload Authors" />
                 </form>
-                    <div className="contentBtn setting">import CSV
+                 {/* <form id="file" encType="multipart/form-data">
+                    <input type="file" name="file" onClick={this.dataFile} accept="*.csv"/><br/><br/>
+                     <input type="submit" value="Upload Authors" /> 
+                </form>  */}
+                    <div className="contentBtn setting" onClick={this.ipmortCSV} >import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>
                     <a href="/exporttocsv">
@@ -123,8 +144,8 @@ class CreatedProduct extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        allProduct   : state.getAllProducts,
+        allProduct : state.getAllProducts,
     }
 }
 
-export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists})(CreatedProduct)
+export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,ipmortToCSV})(CreatedProduct)

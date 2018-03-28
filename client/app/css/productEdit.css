@@ -56,3 +56,6 @@
     font-size: 30px;
     color: #f7fcff;
 }
+.edit-img{
+    overflow: hidden;
+}

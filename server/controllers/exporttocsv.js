@@ -24,76 +24,17 @@ module.exports = {
                       const json2csvParser = new Json2csvParser();
                       const csv = json2csvParser.parse(products);
                       res.send(csv)
-
-               },(err)=>{
-                  res.send(err)
-		          res.statusCode = 20
-            })
-       
-
-//         const filename   = "products.csv"
-//         res.setHeader('Content-Type', 'text/csv')
-//         res.setHeader("Content-Disposition", 'attachment; filename='+filename)
-//         // res.contentType('csv')
-//        // res.Types('buffer') //responseType('buffer')
-
-//      Product.find().then((products)=>{
-//         //           res.setHeader('Content-Type', 'text/csv')
-//         //           res.setHeader("Content-Disposition", 'attachment; filename='+filename)
-     
-     
-//      /*stream()
-//                     .on('data', (file)=>{
-//                         console.log(file)
-//                          res.write()
-//                      })
-//                                 .on('close', ()=> {res.end()})
-//                                 .on('error',(err)=>{
-//                                     console.log(err)
-//                                 })*/
-                                
-
-
-//  //res.setHeader('Content-Type', 'text/csv')
-//    //  res.setHeader("Content-Disposition", 'attachment; filename='+filename)
-     
-//     // res.pipe(new require('stream').PassThrough())
-//     // res.write(inputStream)
-              
-//             //    .then((products)=>{
-//             //           res.setHeader('Content-Type', 'text/csv')
-//             //           res.setHeader("Content-Disposition", 'attachment; filename='+filename)
-
-//                       const fields = ['name']
-//                       const opts = { fields }
-
-
-//                     const json2csvParser = new Json2csvParser({});
-//                     const csv = json2csvParser.parse(products);
-
-
-
-
-
-
-
-
-//                    // const columnNames = ['name', 'descr', 'price', 'weight','active','category','tags','props','images']
-                    
-
-
-//                      // let csv =  json2csv(products,options )
-//                       res.send(csv)
-//                },(err)=>{
-//                   res.send(err)
-// 		          res.statusCode = 20
-//             })
+               })
+               .catch(err => {
+                res.status(400).send(err);
+                console.log("we got an error");
+              })
        },
 
        importToCsv: (req, res) => {
         if (!req.files)
         return res.status(400).send('No files were uploaded.')
-     
+        console.log(req.files.file)
         var productFile = req.files.file
         var goods = []
         csv1
@@ -114,7 +55,6 @@ module.exports = {
         Product.create(goods, function(err, documents) {
                 if (err) throw err
             })
-            
           res.send(goods.length + ' goods have been successfully uploaded.')
         })
        }

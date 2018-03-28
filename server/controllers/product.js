@@ -8,10 +8,11 @@ module.exports = {
         productDb.save()
                  .then((doc) => {
                         res.send(doc)
-                        },(err) => {
-                        console.log(err)
-                        res.send(500)
-                })      
+                        })
+                 .catch(err => {
+                    res.status(400).send(err);
+                    console.log("we got an error");
+                  })  
     },
 
     getAllProduct: (req,res)=>{
@@ -20,7 +21,7 @@ module.exports = {
         let resultsPagination = productData[0]
         const page = resultsPagination || 0
 
-        Product.find({
+        Product.find({ 
             name: {
                 $regex: new RegExp(productData[1],"i")
               }
@@ -45,10 +46,11 @@ module.exports = {
                .then((doc) => { 
                    console.log(doc,'dooc')
                       res.send(doc)
-                    },(err) => {
-                       console.log(err)
-                       res.send(500)
                     })
+               .catch(err => {
+                      res.status(400).send(err);
+                      console.log("we got an error");
+                      })
     },
 
     updateProduct: (productId,req,res,name,descr,price,weight,active,category,props,images) => {
@@ -63,10 +65,11 @@ module.exports = {
 
                                              .then((doc) => {
                                                     res.send(doc)
-                                                  },(err) => {
-                                                     console.log(err)
-                                                     res.send(500)
-                                             })
+                                                  })
+                                             .catch(err => {
+                                                res.status(400).send(err);
+                                                console.log("we got an error");
+                                              })
                                                 
     }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 var formData = new FormData()
 
-var file = document.querySelector('#file')
+//var file = document.querySelector('#file')
 //const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 export const ipmortToCSV = (file) => dispatch => {
     console.log(file)

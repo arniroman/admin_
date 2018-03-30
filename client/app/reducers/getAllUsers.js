@@ -1,4 +1,4 @@
-export default function assyncGetUsers(state=null, action) {
+export default function assyncGetUsers(state=[], action) {
     switch (action.type){
         case 'LOAD_ALL_USERS':
             return action.payload
@@ -6,9 +6,11 @@ export default function assyncGetUsers(state=null, action) {
             
         break
         default:
-            return {
+            return [
                 ...state
-            }
+            ]
+                
+            
     }
 } 
 

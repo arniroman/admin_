@@ -7,6 +7,7 @@ import productWichUpdate from './productWichUpdate'
 import importToCSV from './importToCSV'
 import assyncGetHistory from './getAllHistory'
 import getAllUsers from './getAllUsers'
+import getCurrentDataHistory from './getCurrentDataHistory'
 
 const redusers = combineReducers ({
     properties        : propertie,
@@ -16,7 +17,8 @@ const redusers = combineReducers ({
     productWichUpdate : productWichUpdate,
     importToCSV       : importToCSV,
     assyncGetHistory  : assyncGetHistory,
-    getAllUsers       : getAllUsers
+    getAllUsers       : getAllUsers,
+    getCurrentHistory : getCurrentDataHistory
 })
 
 export default redusers

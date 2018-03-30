@@ -9,6 +9,7 @@ import ProductDescr from './components/ProductViewDescr/productDescr'
 import CreatedProduct from './components/ListCreatedProduct/createdProduct'
 import ProductEdit from './components/ProductEdit/productEdit'
 import shoppingHistory from './components/History/shoppingHistory'
+import currentDataHistory from './components/History/currentDataHistory'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ render(
 						<Route exact path='/viewProduct' component={ProductDescr}/>
 						<Route exact path='/editProduct' component={ProductEdit}/>
 						<Route exact path='/history' component={shoppingHistory}/>
+						<Route exact path='/viewCurrentHistory' component={currentDataHistory}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

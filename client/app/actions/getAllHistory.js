@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const getAllHistory = () => dispatch => {
-        axios.get('/history')
+        axios.get('/historyShop')
                 .then((response)=> {
                     dispatch({
                         type: 'LOAD_HISTORY',

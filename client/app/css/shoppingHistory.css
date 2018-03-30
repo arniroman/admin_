@@ -1,0 +1,17 @@
+.userData-history{
+    width: 1000px;
+}
+.userData-wrapp{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+.iconHistory{
+    font-size: 25px;
+}
+.viewBtn-history{
+    margin-left: 5px;
+}
+.book-icon{
+    margin-left: 5px;
+}

@@ -7,6 +7,6 @@ module.exports = function(app){
     app.use('/product', product),
     app.use('/properties', properties),
     app.use('/exporttocsv', exportImportToCSV),
-    app.use('/history', historyShopping),
+    app.use('/historyShop', historyShopping),
     app.use('/users', allUsers)
 }

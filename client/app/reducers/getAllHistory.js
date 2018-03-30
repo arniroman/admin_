@@ -1,18 +1,26 @@
-export default function assyncGetHistory(state=null, action) {
+export default function assyncGetHistory(state={}, action) {
     switch (action.type){
         case 'LOAD_HISTORY':
-       // getHistory(action.payload)
-            return action.payload 
+          console.log(action.payload,'reducer')
+            return action.payload
         
         break
         default:
-            return {
-                ...state
-            }
+            return [...state]
+            
     }
 } 
 
 //
-/*function getHistory(data){
-    console.log(data,'lalla')
-}*/
+
+function getHistory(data){
+    
+    let newArr = []
+    if(Array.isArray(data)){
+        data.forEach(el=>{
+            newArr.push(el.us)
+        })
+    }
+    console.log(newArr)
+    return newArr
+}

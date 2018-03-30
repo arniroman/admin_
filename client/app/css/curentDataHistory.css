@@ -1,0 +1,33 @@
+.headerCurrentHistory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #98989a99;
+    font-size: 30px;
+    height: 100px;
+    background: #eaeeff;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+.imagesHistory-block{
+    width: 100px;
+    height: 150px;
+}
+.imagesHistory-img{
+    width: 100%;
+}
+.historyData-container{
+    max-width: 900px; 
+}
+.historyData-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.historyBtn{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+.history-icon{
+    margin-left: 5px;
+}

@@ -24,6 +24,7 @@ class Create extends Component {
             price   : "",
             weight  : "",
             active  : true,
+            unavailable: false,
             category: "",
             tags    : [],
             props   : {},
@@ -46,6 +47,12 @@ class Create extends Component {
     handleChangeStatus = () => {
 		this.setState({
 			active : !this.state.active
+        })
+    }
+
+    handleUnavilable = () => {
+		this.setState({
+			unavailable : !this.state.active
         })
     }
  
@@ -77,6 +84,7 @@ class Create extends Component {
             price       : this.state.price,
             weight      : this.state.weight,
             active      : this.state.active,
+            unavailable : this.state.unavailable,
             category    : this.state.category,
             tags        : this.state.tags,
             props       : this.state.props,
@@ -144,6 +152,14 @@ class Create extends Component {
                                 <div >
                                 <Toggle
                                 onClick={this.handleChangeStatus}
+                                />
+                                </div>
+                        </div>
+                        <p className="titleName-props">Unavailable</p>
+                            <div className ="toggle-status">
+                                <div >
+                                <Toggle
+                                onClick={this.handleUnavilable}
                                 />
                                 </div>
                         </div>

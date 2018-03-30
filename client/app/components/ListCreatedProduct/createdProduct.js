@@ -10,6 +10,7 @@ import { handlePaginationLists } from '../../actions/paginationList'
 import { ipmortToCSV } from '../../actions/ipmortToCSV'
 import ListProduct from '../../components/ListCreatedProduct/listProduct'
 import Pagination  from 'material-ui-pagination-react'
+import FlatButton from 'material-ui/FlatButton'
 import {
     Table,
     TableBody,
@@ -23,25 +24,27 @@ class CreatedProduct extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-            id: ''
+            id: '',
+            data: {}
         } 
     }
 
     componentWillMount = () => {
         this.props.loadDataProduct()
     }
-    ipmortCSV = () => {
-        this.props.ipmortToCSV(this.inputData)
-        //console.log(this.inputData)
-        el.files
-        event.target.files[0]
+    ipmortCSV = (event) => {
+        event.preventDefault()
+        this.props.ipmortToCSV(this.state.data)
     }
    
     searchHeandler = (event) => {
         this.props.handlePaginationLists(this.state.id,event.target.value)
     }
-    dataFile =(event) => {
+    dataFile = (event) => {
         console.log(event.target.files[0])
+        this.setState({
+            data:event.target.files[0]
+        })
     } 
 
     handlePaginationList = (event) => {   
@@ -70,7 +73,8 @@ class CreatedProduct extends Component {
                         </div> */}
                         <Link  to="/history">
                             <div className="storeCatalog-box">
-                                <span className="storeCatalog-title">Shopping history</span>
+                                {/* <span className="storeCatalog-title">Shopping history</span> */}
+                                <FlatButton label="Shopping history" primary={true} />
                                 <i class="fas fa-cart-arrow-down"></i>
                             </div>
                         </Link>
@@ -87,18 +91,15 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
-                <form action="/exporttocsv" method="POST" encType="multipart/form-data">
+                 {/* <form action="/exporttocsv" method="POST"  encType="multipart/form-data">
                     <input type="file" name="file" accept="*.csv" /><br/><br/>
                     <input type="submit" value="Upload Authors" />
-                </form>
-                 {/* <form id="file" encType="multipart/form-data">
-                    <input type="file" name="file" onClick={this.dataFile} accept="*.csv"/><br/><br/>
-                     <input type="submit" value="Upload Authors" /> 
-                </form>  */}
+                </form>   */}
+                    <input type="file" className="choiceFile" name="file" onChange={this.dataFile} accept="*.csv"/>
                     <div className="contentBtn setting" onClick={this.ipmortCSV} >import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>
-                    <a href="/exporttocsv">
+                    <a href="/upload">
                         <div className="contentBtn setting ">export CSV
                             <i class="fas fa-upload icon-setting"></i>
                         </div>

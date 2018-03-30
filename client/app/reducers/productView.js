@@ -1,11 +1,11 @@
-export default function productViewWithTable (state=null,action){
+export default function productViewWithTable (state=[],action){
     switch (action.type){
         case 'VIEW_INDIVIDUAL_ITEM':
-            return {
-                ...action.payload
-            }
+        console.log(action.payload,'payload')
+            return action.payload
+            
         break
-            default: return state
+            default: return [...state]
     }
 
 }

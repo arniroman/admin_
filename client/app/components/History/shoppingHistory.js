@@ -30,6 +30,8 @@ class shoppingHistory extends Component {
 
     currentUserHistory = (el,event) => {
         this.props.getCurrentDataHistory(el)
+        console.log(el,'el')
+        console.log(this.props.allHistory)
     }
 
     historyList = () => {
@@ -50,6 +52,7 @@ class shoppingHistory extends Component {
             })
        
             arrTest.forEach( elem => {
+                console.log(arrTest,'test')
             users.forEach(el=>{
             if(el.googleId == elem.userID){
                 elem['name'] = el.fullName
@@ -59,9 +62,11 @@ class shoppingHistory extends Component {
           })
    
         newArr.forEach( el => {  
+            console.log(el.userID,'elll')
             el.userPurchase.forEach( elem => {
                 for(let i in elem){
-                    elem[i]['userID'] = i
+                    elem[i]['id']= el.userID
+                    elem[i]['numberOrder'] = i
                     elem[i]['name']   = el.name
                     resArr.push(elem[i])
                 }
@@ -76,7 +81,7 @@ class shoppingHistory extends Component {
                     <TableBody displayRowCheckbox={false} >
                         <TableRow>
                         <TableRowColumn>{key+1}</TableRowColumn>
-                            <TableRowColumn onClick={this.currentUserHistory}>{el.userID}</TableRowColumn>
+                            <TableRowColumn onClick={this.currentUserHistory}>{el.numberOrder}</TableRowColumn>
                             <TableRowColumn>{el.name}</TableRowColumn>
                             <TableRowColumn>{el.currentTime}</TableRowColumn>
                             <TableRowColumn>${el.totalPrice}</TableRowColumn>

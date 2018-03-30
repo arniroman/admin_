@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class ProductDescr extends Component {
+  
+    componentWillMount(){
+        this.props.separatedProducts
+    }
     render(){
+     
        let renderListProduct = this.props.separateProduct
+       console.log(renderListProduct)
         return(
             <div>
                  <div className="productWrap">
@@ -50,8 +56,7 @@ class ProductDescr extends Component {
                       <i class="fas fa-arrow-circle-left btnBack-icon"></i>
                     </span>
                     </Link>  
-                </div> 
-                             
+                </div>               
             </div>
         )
     }

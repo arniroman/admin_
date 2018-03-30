@@ -19,11 +19,13 @@ import {
   } from 'material-ui/Table'
 
 class ListProduct extends Component {
+   
 
   deleteProduct = (id,event) => {
         this.props.deleteProduct(id)
   }
   productCurrent = (item,event) => {
+     // console.log(item._id,'item')
       this.props.productViewWithTable(item)
   }
   handleToggleEdit = (item,event) => {

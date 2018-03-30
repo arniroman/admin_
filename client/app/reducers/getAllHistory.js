@@ -1,7 +1,7 @@
 export default function assyncGetHistory(state={}, action) {
     switch (action.type){
         case 'LOAD_HISTORY':
-          console.log(action.payload,'reducer')
+       //   console.log(action.payload,'reducer')
             return action.payload
         
         break

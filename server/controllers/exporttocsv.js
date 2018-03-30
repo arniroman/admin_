@@ -34,7 +34,6 @@ module.exports = {
        importToCsv: (req, res) => {
         if (!req.files)
         return res.status(400).send('No files were uploaded.')
-        console.log(req.files.file)
         var productFile = req.files.file
         var goods = []
         csv1

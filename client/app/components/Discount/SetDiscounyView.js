@@ -7,6 +7,7 @@ import { loadDataProduct } from '../../actions/getProduct'
 import { createDiscount } from '../../actions/createDiscount'
 import Checkbox from 'material-ui/Checkbox'
 import RaisedButton from 'material-ui/RaisedButton'
+import TimePicker from 'material-ui/TimePicker';
 import  '../../css/style.css'
 import '../../css/discountView.css'
 import {
@@ -35,7 +36,7 @@ class SetDiscountView extends Component {
 
         this.state = {
             name      : '',
-            data      : new Date,
+            data: null,
             discount  : '',
             products  :{},
             }
@@ -61,7 +62,11 @@ class SetDiscountView extends Component {
             data: date,
             })
         }
-    
+
+        handleChangeTimePicker12 = (event, date) => {
+            this.setState({data: date});
+          }
+
         updateCheck = (el,event) => {
             let arr=[]
             let obj = this.state.products
@@ -82,7 +87,7 @@ class SetDiscountView extends Component {
           }
 
     render(){
-         console.log(this.state.props)
+         console.log(this.state.data)
         let product = this.props.allProduct.product
         return(
             <div>
@@ -102,12 +107,18 @@ class SetDiscountView extends Component {
                             onChange = {this.handleChangeName}
                         />
                 <p className="titleName-discount">Chose data</p>
-                     <DatePicker
+                     {/* <DatePicker
                         floatingLabelText="Ranged Date Picker"
                        
                         data={this.state.data}
                        // disableYearSelection={this.state.disableYearSelection}
-                    />
+                    /> */}
+                    <TimePicker
+          format="ampm"
+          hintText="12hr Format"
+          value={this.state.data}
+          onChange={this.handleChangeTimePicker12}
+        />
                     <p className="titleName-discount">Discount %</p>
                         <TextField
                             className="createProd-input"

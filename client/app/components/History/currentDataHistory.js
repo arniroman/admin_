@@ -31,7 +31,6 @@ class currentDataHistory extends Component {
         let history = this.props.historyUser
         let totalPrice = history.totalPrice
         let resArr = []
-        //console.log(history)
         for(let key in history.products){
             resArr.push(history.products[key])  
         }
@@ -48,7 +47,7 @@ class currentDataHistory extends Component {
             <div className="historyData-wrapper">
                 <div className="historyData-container">
                     <Table >
-                        <TableHeader displaySelectAll = {false}
+                        <TableHeader displaySelectAll  = {false}
                                      adjustForCheckbox = {false}>
                             <TableRow>
                                     <TableHeaderColumn>№</TableHeaderColumn>

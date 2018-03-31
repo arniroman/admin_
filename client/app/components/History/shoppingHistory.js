@@ -92,8 +92,7 @@ class shoppingHistory extends Component {
                                 </span>
                              </Link>
                             </TableRowColumn>
-                        </TableRow>
-                        
+                        </TableRow> 
                     </TableBody>
                 </Table>
             </div>

@@ -1,0 +1,38 @@
+
+.inputContent{
+    width: 400px;
+    margin: 0 auto;
+}
+.titleName-discount{
+    text-align: center;
+}
+.CheckWrapper{
+    display: flex;
+}
+.TitleCheck{
+    width: 20%;
+
+}
+.checkboxDiscount{
+    width: 20%;
+}
+.createDiscount-btn{
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+.tableSale-content{
+    max-width: 900px;
+    height: 392px;
+    overflow: auto;
+    margin: 0 auto;
+}
+.discount-icon{
+    margin-left: 5px;
+}
+.discountBtn_wrapp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}

@@ -10,6 +10,7 @@ import CreatedProduct from './components/ListCreatedProduct/createdProduct'
 import ProductEdit from './components/ProductEdit/productEdit'
 import shoppingHistory from './components/History/shoppingHistory'
 import currentDataHistory from './components/History/currentDataHistory'
+import setDiscountView from './components/Discount/SetDiscounyView'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -24,6 +25,7 @@ render(
 						<Route exact path='/editProduct' component={ProductEdit}/>
 						<Route exact path='/history' component={shoppingHistory}/>
 						<Route exact path='/viewCurrentHistory' component={currentDataHistory}/>
+						<Route exact path='/setDiscount' component={setDiscountView}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

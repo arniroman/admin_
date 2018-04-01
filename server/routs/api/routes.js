@@ -5,6 +5,7 @@ const historyShopping = require('./historyShopping')
 const currentHistory = require('./currentHistory')
 const discount = require('./discountForProduct')
 const allUsers = require('./users')
+
 module.exports = function(app){
     app.use('/product', product),
     app.use('/properties', properties),

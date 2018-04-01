@@ -78,12 +78,18 @@ class CreatedProduct extends Component {
                             </div>
                         </Link>
                         <div className="countGoods-box">
-                            <Link to='/setDiscount'>
-                                <div className="countGoods">
-                                    {/* <span className="countGoods-length">{this.props.allProduct.count}</span> */}
-                                    <RaisedButton label="Set discount" secondary={true}  />
-                                </div>
-                            </Link>
+                            <div className="countGoods">
+                                <Link to='/viewDiscount'>
+                                    <span>
+                                        <FlatButton label="View discount" primary={true} />
+                                    </span>
+                                </Link>
+                                <Link to='/setDiscount'>
+                                    <span className="setDiscount-btn" >
+                                        <RaisedButton label="Set discount" secondary={true}  /> 
+                                    </span> 
+                                </Link>
+                            </div>
                         </div>
                     </div>
 				</div>

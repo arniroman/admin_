@@ -1,0 +1,19 @@
+.discountImage-wrapp{
+    width: 30px;
+    padding: 20px 0;
+    
+}
+.discountImages{
+    width: 100%;
+}
+.outputFor-elem{
+   padding: 30px 0;
+}
+.backHome-discount{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.foo{
+    margin-right: 20px;
+}

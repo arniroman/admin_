@@ -8,6 +8,7 @@ import importToCSV from './importToCSV'
 import assyncGetHistory from './getAllHistory'
 import getAllUsers from './getAllUsers'
 import getCurrentDataHistory from './getCurrentDataHistory'
+import loadAllDiscount from './loadAllDiscount'
 
 const redusers = combineReducers ({
     properties        : propertie,
@@ -18,7 +19,8 @@ const redusers = combineReducers ({
     importToCSV       : importToCSV,
     assyncGetHistory  : assyncGetHistory,
     getAllUsers       : getAllUsers,
-    getCurrentHistory : getCurrentDataHistory
+    getCurrentHistory : getCurrentDataHistory,
+    allDiscount   : loadAllDiscount
 })
 
 export default redusers

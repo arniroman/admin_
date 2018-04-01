@@ -11,6 +11,7 @@ import ProductEdit from './components/ProductEdit/productEdit'
 import shoppingHistory from './components/History/shoppingHistory'
 import currentDataHistory from './components/History/currentDataHistory'
 import setDiscountView from './components/Discount/SetDiscounyView'
+import viewDiscount from './components/Discount/viewDiscounts'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -19,13 +20,14 @@ render(
 		<MuiThemeProvider>
 			<Router>
 					<div>
-						<Route exact path='/' component={HomePage}/>
-						<Route exact path='/create' component={Create}/>
-						<Route exact path='/viewProduct' component={ProductDescr}/>
-						<Route exact path='/editProduct' component={ProductEdit}/>
-						<Route exact path='/history' component={shoppingHistory}/>
-						<Route exact path='/viewCurrentHistory' component={currentDataHistory}/>
-						<Route exact path='/setDiscount' component={setDiscountView}/>
+						<Route  exact path='/' component={HomePage}/>
+						<Route  path='/create' component={Create}/>
+						<Route  path='/viewProduct' component={ProductDescr}/>
+						<Route  path='/editProduct' component={ProductEdit}/>
+						<Route  path='/history' component={shoppingHistory}/>
+						<Route  path='/viewCurrentHistory' component={currentDataHistory}/>
+						<Route  path='/setDiscount' component={setDiscountView}/>
+						<Route  path='/viewDiscount' component={viewDiscount}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

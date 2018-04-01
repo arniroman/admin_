@@ -52,16 +52,19 @@ module.exports = {
                              res.status(400).send(err);
                             console.log("we got an error");
                             })
-                    },7000)
+                    },5000)
 
-//   Product.findByIdAndUpdate(products[key]._id,{salePrice:newPrice})
-//                         .then((doc) => {
-//                                res.send(doc)
-//                              })
-//                         .catch(err => {
-//                            res.status(400).send(err);
-//                            console.log("we got an error");
-//                          })
+    },
+
+    getDiscount: (req,res) => {
+        Discount.find({})
+                .then(doc => {
+                    res.send(doc)
+                })
+                .catch(err => {
+                    res.status(400).send(err)
+                    console.log('we got an error')
+                }) 
     }
 
 }

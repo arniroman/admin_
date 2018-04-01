@@ -6,4 +6,8 @@ router.post('/',(req,res) => {
     controllers.setDiscount(req,res)   
 })
 
+router.get('/',(req,res) => {
+    controllers.getDiscount(req,res)
+})
+
 module.exports = router

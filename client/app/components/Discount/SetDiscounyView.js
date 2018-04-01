@@ -92,12 +92,6 @@ class SetDiscountView extends Component {
                                 onChange = {this.handleChangeName}
                             />
                         <p className="titleName-discount">Chose data</p>
-                        {/* <DatePicker
-                            floatingLabelText="Ranged Date Picker"
-                        
-                            data={this.state.data}
-                        // disableYearSelection={this.state.disableYearSelection}
-                        /> */}
                             <TimePicker
                             format="ampm"
                             hintText="12hr Format"

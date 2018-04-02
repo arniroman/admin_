@@ -15,7 +15,7 @@ module.exports = {
                   })  
     },
 
-    getAllProduct: (req,res)=>{
+    getAllProduct: (req,res) => {
         const perPage = 5
         let productData = req.params.id.split(',')
         let resultsPagination = productData[0]

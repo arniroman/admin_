@@ -51,7 +51,7 @@ class ListProduct extends Component {
                             <TableRowColumn>{item.name}</TableRowColumn>
                             <TableRowColumn>{item.price}$</TableRowColumn>
                             <TableRowColumn>
-                                <Link to='/viewProduct'>
+                                <Link to={`/viewProduct/${item._id}`}>
                                     <span className="viewBtn" onClick={(event)=>this.productCurrent(item,event)}>
                                         <i class="fas fa-eye view-icon"></i>
                                     </span>

@@ -28,7 +28,8 @@ class SetDiscountView extends Component {
             name      : '',
             data      : null,
             discount  : '',
-            products  : {},
+            products  : [],
+            flag      : ''
             }
         }
 
@@ -55,27 +56,36 @@ class SetDiscountView extends Component {
         }
 
         updateCheck = (el,event) => {
-            let arr = []
-            let obj = this.state.products
+            let resultArr = this.state.products
             if(event.target.checked){
-                obj[el.name] = el
+                resultArr.push({
+                    productId: el._id,
+                    discount : this.state.discount
+                }) 
             } else {
-                 delete obj[el.name]
+                resultArr.pop(el)
             }
             this.setState({
-                products: obj
-                }) 
+                products: resultArr
+                })
+                
           }
 
           handleSubmit = () => {
-              console.log(this.state)
-              this.props.createDiscount(this.state)
+            let resultObj = {
+                name    : this.state.name,
+                data    : this.state.data,
+                product : this.state.products
+            }
+              this.props.createDiscount(resultObj)
           }
 
     render(){
+        console.log(this.state.products)
         let product = this.props.allProduct.product
         return(
             <div>
+                
             <header className="headerCurrentHistory">
                 <p>Discount</p>
                 <i class="fas fa-gift discount-icon"></i>

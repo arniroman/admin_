@@ -1,11 +1,12 @@
 export default function importToCSV (state=null,action){
+  //  console.log(action.payload,'csvsdsd')
     switch (action.type){
-        case 'POST_CSV':
-            return {
-                ...action.payload
-            }
+        case 'IMPORT_CSV':
+            return action.payload
+            
         break
-            default: return state
+            default: 
+            return state
     }
-
 }
+

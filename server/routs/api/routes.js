@@ -5,6 +5,7 @@ const historyShopping = require('./historyShopping')
 const currentHistory = require('./currentHistory')
 const discount = require('./discountForProduct')
 const allUsers = require('./users')
+const getGeneralPage = require('./generalPage')
 
 module.exports = function(app){
     app.use('/product', product),
@@ -14,4 +15,5 @@ module.exports = function(app){
     app.use('/users', allUsers),
     app.use('/currentHistory',currentHistory),
     app.use('/discount',discount)
+    app.use('/compareData',getGeneralPage)
 }

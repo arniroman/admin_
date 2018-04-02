@@ -53,7 +53,6 @@ module.exports = {
                             console.log("we got an error");
                             })
                     },5000)
-
     },
 
     getDiscount: (req,res) => {

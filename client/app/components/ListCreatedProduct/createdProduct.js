@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { loadDataProduct } from '../../actions/getProduct'
 import { handlePaginationLists } from '../../actions/paginationList'
 import { ipmortToCSV } from '../../actions/ipmortToCSV'
+import { compareData } from '../../actions/compareData'
 import ListProduct from '../../components/ListCreatedProduct/listProduct'
 import Pagination  from 'material-ui-pagination-react'
 import FlatButton from 'material-ui/FlatButton'
@@ -24,17 +25,24 @@ class CreatedProduct extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-            id: '',
-            data: {}
+            id          : '',
+            data        : {},
+            classClosed : 'open',
+            flag        : ''
         } 
     }
 
     componentWillMount = () => {
         this.props.loadDataProduct()
+        this.props.compareData()
     }
+    
     ipmortCSV = (event) => {
         event.preventDefault()
-        this.props.ipmortToCSV(this.state.data)
+        this.props.ipmortToCSV(this.state.data) 
+        this.setState({
+            flag: true
+        })
     }
    
     searchHeandler = (event) => {
@@ -53,6 +61,36 @@ class CreatedProduct extends Component {
         })   
       this.props.handlePaginationLists(event.target.id,'')
     }
+  
+    closedHandleBoxUpdatedCSV = () => {
+        let closed = this.state.classClosed
+        if(closed == 'open'){
+           closed = 'closed'
+        } else{
+           closed = 'open'
+        }
+        this.setState({
+            classClosed: closed,
+            flag       : false
+        })
+        this.componentDidUpdate = () => {
+            this.props.loadDataProduct()
+        }
+    }
+    
+    handleBoxUpdatedCSV = () => {
+        let result = this.props.importCSV
+        return(
+            <div className={this.state.classClosed} >
+                <span className='closedBoxCSV' onClick={this.closedHandleBoxUpdatedCSV} >
+                    <i class="fas fa-check-circle"></i>
+                </span>
+                <div>
+                    {result}
+                </div> 
+            </div>
+        )
+    }
 
     render() {
         /*--- Pages for pagination list ---*/
@@ -65,12 +103,9 @@ class CreatedProduct extends Component {
         /*--- ---*/ 
 		return (
             <div className="Wrapper">
+            {this.state.flag && this.props.importCSV && this.handleBoxUpdatedCSV()} 
                 <div className="goodsCatalog">
                     <div className="storeCatalog">
-                        {/* <div className="storeCatalog-box">
-                            <span className="storeCatalog-title">Store catalog</span>
-                            <i class="fas fa-cart-arrow-down"></i>
-                        </div> */}
                         <Link  to="/history">
                             <div className="storeCatalog-box">
                             <FlatButton label="Shopping history" primary={true} />
@@ -99,10 +134,6 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
-                 {/* <form action="/exporttocsv" method="POST"  encType="multipart/form-data">
-                    <input type="file" name="file" accept="*.csv" /><br/><br/>
-                    <input type="submit" value="Upload Authors" />
-                </form>   */}
                     <input type="file" className="choiceFile" name="file" onChange={this.dataFile} accept="*.csv"/>
                     <div className="contentBtn setting" onClick={this.ipmortCSV} >import CSV
                         <i class="fas fa-download icon-setting"></i>
@@ -154,7 +185,8 @@ class CreatedProduct extends Component {
 const mapStateToProps = (state)=>{
     return {
         allProduct : state.getAllProducts,
+        importCSV  : state.importCSV
     }
 }
 
-export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,ipmortToCSV})(CreatedProduct)
+export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,ipmortToCSV,compareData})(CreatedProduct)

@@ -93,10 +93,10 @@ class SetDiscountView extends Component {
                             />
                         <p className="titleName-discount">Chose data</p>
                             <TimePicker
-                            format="ampm"
-                            hintText="12hr Format"
-                            value={this.state.data}
-                            onChange={this.handleChangeTimePicker12}
+                                format="ampm"
+                                hintText="12hr Format"
+                                value={this.state.data}
+                                onChange={this.handleChangeTimePicker12}
                             />
                         <p className="titleName-discount">Discount %</p>
                             <TextField

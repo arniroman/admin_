@@ -16,11 +16,11 @@ const redusers = combineReducers ({
     getAllProducts    : getAllProduct,
     separatedProducts : separatedProduct,
     productWichUpdate : productWichUpdate,
-    importToCSV       : importToCSV,
+    importCSV         : importToCSV,
     assyncGetHistory  : assyncGetHistory,
     getAllUsers       : getAllUsers,
     getCurrentHistory : getCurrentDataHistory,
-    allDiscount   : loadAllDiscount
+    allDiscount       : loadAllDiscount
 })
 
 export default redusers

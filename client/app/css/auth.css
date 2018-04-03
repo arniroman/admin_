@@ -1,0 +1,18 @@
+.containerLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;    
+}
+.loginContent{
+    text-align: center;
+    width: 450px;
+    border: 1px solid rgb(237, 234, 234);
+    padding: 40px;
+}
+.sing-in{
+    margin-top: 20px;
+}
+.alertMessages{
+    color: rgb(247, 36, 36);
+}

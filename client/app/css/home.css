@@ -20,10 +20,14 @@
  border-radius: 50%;
  background: #3e3e3e;
 }
+
 .icon-header{
    font-size: 17px;
    color: #fff;
    cursor: pointer;
+}
+.icon-header:hover{
+    color: rgb(0, 188, 212);
 }
 .linkOnBack-site{
     border: 1px solid #111;

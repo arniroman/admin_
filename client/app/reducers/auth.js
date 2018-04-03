@@ -1,13 +1,14 @@
-export default function post (state=null, action) {
-   // console.log(action.payload,'lalal')
-   
+export default function post (state=[], action) {
+    
     if (action.type === 'POST_AUTH'){ 
         return setTokenToLocalStorage(action.payload)
     }
         else {
-        return {
+        return [
             ...state
-        }
+        ]
+            
+        
     }
 }
 /** logic for reducer **/

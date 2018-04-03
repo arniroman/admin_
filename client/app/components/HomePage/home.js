@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import CreatedProduct from '../ListCreatedProduct/createdProduct'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
-import Login from '../login'
 import  '../../css/style.css'
 import '../../css/home.css'
 

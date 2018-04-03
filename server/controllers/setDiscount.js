@@ -16,7 +16,7 @@ module.exports = {
                     Product.find({})
                            .then(product => {
                             product.forEach(prod => {
-                            let discount = prod.originalPrice /100 * el.discount,
+                            let discount = prod.originalPrice / 100 * el.discount,
                                 discountPrice = prod.originalPrice - discount 
                              if(prod._id == el.productId){
                              Product.findByIdAndUpdate(prod._id, {price: discountPrice})

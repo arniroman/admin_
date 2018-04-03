@@ -49,6 +49,7 @@ router.post('/signup',(req,res) => {
 })
 
 router.post('/login',(req,res) => {
+    console.log(req.body)
     console.log(req.body.password)
     Admin.find({email: req.body.email})
          .exec()

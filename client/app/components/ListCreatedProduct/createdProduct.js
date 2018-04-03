@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import { loadDataProduct } from '../../actions/getProduct'
 import { handlePaginationLists } from '../../actions/paginationList'
 import { ipmortToCSV } from '../../actions/ipmortToCSV'
-import { compareData } from '../../actions/compareData'
 import ListProduct from '../../components/ListCreatedProduct/listProduct'
 import Pagination  from 'material-ui-pagination-react'
 import FlatButton from 'material-ui/FlatButton'
@@ -34,7 +33,6 @@ class CreatedProduct extends Component {
 
     componentWillMount = () => {
         this.props.loadDataProduct()
-        this.props.compareData()
     }
     
     ipmortCSV = (event) => {
@@ -189,4 +187,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,ipmortToCSV,compareData})(CreatedProduct)
+export default connect(mapStateToProps,{loadDataProduct,handlePaginationLists,ipmortToCSV})(CreatedProduct)

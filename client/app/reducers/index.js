@@ -9,6 +9,7 @@ import assyncGetHistory from './getAllHistory'
 import getAllUsers from './getAllUsers'
 import getCurrentDataHistory from './getCurrentDataHistory'
 import loadAllDiscount from './loadAllDiscount'
+import loginAdmin from  './auth'
 
 const redusers = combineReducers ({
     properties        : propertie,
@@ -20,7 +21,8 @@ const redusers = combineReducers ({
     assyncGetHistory  : assyncGetHistory,
     getAllUsers       : getAllUsers,
     getCurrentHistory : getCurrentDataHistory,
-    allDiscount       : loadAllDiscount
+    allDiscount       : loadAllDiscount,
+    loginAdminToken   : loginAdmin
 })
 
 export default redusers

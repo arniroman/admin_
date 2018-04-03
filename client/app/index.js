@@ -15,21 +15,23 @@ import viewDiscount from './components/Discount/viewDiscounts'
 import login from './components/login'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { PrivateRoute } from './components/routePrivate'
+
 
 render(
 	<Provider store={store}>
 		<MuiThemeProvider>
 			<Router>
 					<div>
-						<Route  exact path='/' component={login}/>
-						<Route  exact path='/home' component={HomePage}/>
-						<Route  path='/create' component={Create}/>
-						<Route  path='/viewProduct' component={ProductDescr}/>
-						<Route  path='/editProduct' component={ProductEdit}/>
-						<Route  path='/history' component={shoppingHistory}/>
-						<Route  path='/viewCurrentHistory' component={currentDataHistory}/>
-						<Route  path='/setDiscount' component={setDiscountView}/>
-						<Route  path='/viewDiscount' component={viewDiscount}/>
+						<Route  exact path='/login' component={login}/>
+						<PrivateRoute exact path='/' component={HomePage}/>
+						<PrivateRoute  exact path='/create' component={Create}/>
+						<PrivateRoute exact path='/viewProduct' component={ProductDescr}/>
+						<PrivateRoute exact path='/editProduct' component={ProductEdit}/>
+						<PrivateRoute exact path='/history' component={shoppingHistory}/>
+						<PrivateRoute exact path='/viewCurrentHistory' component={currentDataHistory}/>
+						<PrivateRoute exact path='/setDiscount' component={setDiscountView}/>
+						<PrivateRoute  path='/viewDiscount' component={viewDiscount}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

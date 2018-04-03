@@ -6,11 +6,12 @@ import Login from '../login'
 import  '../../css/style.css'
 import '../../css/home.css'
 
+
 export default class HomePage extends Component {
 	
 
 	logaut = () => {
-			localStorage.removeItem('log')
+			localStorage.removeItem('user')
 		}
 
 	render() {

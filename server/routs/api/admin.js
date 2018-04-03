@@ -3,6 +3,8 @@ const controllers = require('../../controllers/product')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const Admin = require('../../models/admin')
+const jwt = require('jsonwebtoken')
+const config = require('../../config')
 
 router.post('/signup',(req,res) => {
     Admin.find({
@@ -47,7 +49,43 @@ router.post('/signup',(req,res) => {
 })
 
 router.post('/login',(req,res) => {
+    console.log(req.body.password)
     Admin.find({email: req.body.email})
+         .exec()
+         .then()
+         .then ((admin) => {
+             if(admin.length < 1){
+               return res.send({
+                    message : 'Mail not found,'
+                })
+             }
+             console.log(admin,'admin')
+             bcrypt.compare(req.body.password, admin[0].password, (error,result) => {
+                 if (error){
+                    console.log(error)
+                    res.send(error)
+                 }
+                 else if(result){
+                    const token =  jwt.sign({
+                         email: admin[0].email,
+                         adminId: admin[0]._id
+                     },config.JWT_KEY,
+                     {
+                         expiresIn: '1h'
+                     })
+                     res.send({
+                        message: 'Auth successful',
+                        token: token
+                     })
+                 }
+             })
+         })
+         .catch((err) => {
+           console.log(err)
+           res.status(500).json({
+           error: err
+            })
+        })
 })
 
 

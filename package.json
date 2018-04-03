@@ -34,6 +34,7 @@
     "json-2-csv": "^2.2.0",
     "json2csv": "^4.0.2",
     "jsonexport": "^2.0.11",
+    "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.5",
     "material-ui": "^0.20.0",
     "material-ui-pagination-react": "^1.9.0",

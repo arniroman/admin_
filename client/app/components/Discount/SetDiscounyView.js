@@ -65,6 +65,7 @@ class SetDiscountView extends Component {
             } else {
                 resultArr.pop(el)
             }
+            console.log(resultArr)
             this.setState({
                 products: resultArr
                 })
@@ -78,10 +79,11 @@ class SetDiscountView extends Component {
                 product : this.state.products
             }
               this.props.createDiscount(resultObj)
+              console.log(resultObj)
           }
 
     render(){
-        console.log(this.state.products)
+        
         let product = this.props.allProduct.product
         return(
             <div>

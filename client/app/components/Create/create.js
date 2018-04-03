@@ -18,17 +18,18 @@ class Create extends Component {
     constructor(props){
         super(props)
         this.state = {
-            open    : false,
-            name    : "",
-            descr   : "",
-            price   : "",
-            weight  : "",
-            active  : true,
-            unavailable: false,
-            category: "",
-            tags    : [],
-            props   : {},
-            images  : "",
+            open          : false,
+            name          : "",
+            descr         : "",
+            originalPrice : "",
+            price         : "",
+            weight        : "",
+            active        : true,
+            unavailable   : false,
+            category      : "",
+            tags          : [],
+            props         : {},
+            images        : "",
         }
     }
 
@@ -79,16 +80,17 @@ class Create extends Component {
 	handleSubmit = (event) => {
         event.preventDefault();
 		const product = {
-            name        : this.state.name,
-            descr       : this.state.descr,
-            price       : this.state.price,
-            weight      : this.state.weight,
-            active      : this.state.active,
-            unavailable : this.state.unavailable,
-            category    : this.state.category,
-            tags        : this.state.tags,
-            props       : this.state.props,
-            images      : this.state.images
+            name          : this.state.name,
+            descr         : this.state.descr,
+            price         : this.state.price,
+            originalPrice : this.state.originalPrice,
+            weight        : this.state.weight,
+            active        : this.state.active,
+            unavailable   : this.state.unavailable,
+            category      : this.state.category,
+            tags          : this.state.tags,
+            props         : this.state.props,
+            images        : this.state.images
 		}
         this.props.postProduct(product)
     }
@@ -128,6 +130,15 @@ class Create extends Component {
                                 fullWidth={true}
                                 onChange = {this.handleChangeById}
                               
+                            />
+                         <p className="titleName-props">Original Price</p>
+                            <TextField
+                                className="createProd-input"
+                                id="originalPrice"
+                                name="price"
+                                hintText="Price"
+                                fullWidth={true}
+                                onChange = {this.handleChangeById}
                             />
                         <p className="titleName-props">Price</p>
                             <TextField

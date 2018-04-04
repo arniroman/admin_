@@ -39,7 +39,7 @@ app.get("*", (request, response) => {
 	response.sendFile(path.resolve(__dirname, "../client/", "index.html"))
   });
 
-module.exports.start = () => app.listen(config.port, () => console.log('App listening on port '+ config.port))
+module.exports.start = () => app.listen(config.port || process.env.PORT, () => console.log('App listening on port '+ config.port))
 
 
 

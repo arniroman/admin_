@@ -1,16 +1,15 @@
-export default function post (state=[], action) {
+export default function post (state=null, action) {
     
     if (action.type === 'POST_AUTH'){ 
         return setTokenToLocalStorage(action.payload)
     }
-        else {
-        return [
-            ...state
-        ]
-            
-        
+     else {
+        return state   
     }
 }
+
+
+
 /** logic for reducer **/
 function setTokenToLocalStorage(data){
         if(data.message == 'Auth successful'){

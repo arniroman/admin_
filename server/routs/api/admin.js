@@ -57,7 +57,7 @@ router.post('/login',(req,res) => {
          .then ((admin) => {
              if(admin.length < 1){
                return res.send({
-                    message : 'Mail not found,'
+                    message : 'Mail not found!'
                 })
              }
              console.log(admin,'admin')

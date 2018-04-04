@@ -11,7 +11,6 @@
 }
 .TitleCheck{
     width: 20%;
-
 }
 .checkboxDiscount{
     width: 20%;
@@ -23,9 +22,9 @@
 }
 .tableSale-content{
     max-width: 900px;
-    height: 392px;
     overflow: auto;
     margin: 0 auto;
+    padding-bottom: 10px;
 }
 .discount-icon{
     margin-left: 5px;
@@ -34,5 +33,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+}
+.searchDiscount-wrapper{
+    display: flex;
+    justify-content: center;
 }

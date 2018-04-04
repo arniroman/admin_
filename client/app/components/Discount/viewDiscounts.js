@@ -17,8 +17,7 @@ import {
 
 class viewDiscount extends Component {
     constructor(props){
-        super(props)
-        
+        super(props)   
     }
 
     componentWillMount() {
@@ -35,7 +34,7 @@ class viewDiscount extends Component {
 
         return (
             <div>
-                {discounts.map((el,key) => 
+                {this.props.allDiscounts.map((el,key) => 
                 <div key={key} className="CheckWrapper" >
                     <Table>
                         <TableBody  displayRowCheckbox={false}>
@@ -43,35 +42,12 @@ class viewDiscount extends Component {
                                 <TableRowColumn>{key+1}</TableRowColumn>
                                 <TableRowColumn>{el.name}</TableRowColumn>
                                 <TableRowColumn>{el.data}</TableRowColumn>
-                                <TableRowColumn>{el.discount}</TableRowColumn>
-                                <TableRowColumn>
-                                    <div>
-                                    {Object.keys(el.products).map((elem,key) =>
-                                        <div className="outputFor-elem" key={key}>${el.products[elem].price}</div>
-                                    )}
-                                    </div>
-                                </TableRowColumn>
-                                <TableRowColumn>
-                                    <div>
-                                    {Object.keys(el.products).map((elem,key) =>
-                                        <div className="outputFor-elem" key={key}>${el.products[elem].discountPrice}</div>
-                                    )}
-                                    </div>
-                                </TableRowColumn>
-                                <TableRowColumn>
-                                    {Object.keys(el.products).map((elem,key) =>
-                                        <div className="outputFor-elem" key={key}>{el.products[elem].name}</div>
-                                    )}
-                                </TableRowColumn>
-                                <TableRowColumn>
-                                    {Object.keys(el.products).map((elem,key) =>
-                                    <div key={key}>
-                                        <div className="discountImage-wrapp" key={key}>
-                                            <img className="discountImages" src={el.products[elem].images} />
-                                        </div>
-                                    </div>    
-                                    )}
-                                </TableRowColumn>
+                                {el.product.map((el,key) => 
+                                <TableRowColumn key={key}>{el.discount}</TableRowColumn>
+                                )}
+                                 {el.product.map((el,key) => 
+                                <TableRowColumn key={key}>{el.productId}</TableRowColumn>
+                                )}
                             </TableRow>
                          </TableBody>
                     </Table>
@@ -82,7 +58,7 @@ class viewDiscount extends Component {
     }    
 
     render() {
-       
+       console.log(this.props.allDiscounts)
         return(
             <div>
                 <header className="headerCurrentHistory">
@@ -97,10 +73,7 @@ class viewDiscount extends Component {
                         <TableHeaderColumn>Discount name</TableHeaderColumn>
                         <TableHeaderColumn>Data</TableHeaderColumn>
                         <TableHeaderColumn>Discount % </TableHeaderColumn>
-                        <TableHeaderColumn>Price </TableHeaderColumn>
-                        <TableHeaderColumn>Discount price </TableHeaderColumn>
-                        <TableHeaderColumn>Name products</TableHeaderColumn>
-                        <TableHeaderColumn>Images</TableHeaderColumn>
+                        <TableHeaderColumn>Produc id </TableHeaderColumn>
                     </TableRow>
                     </TableHeader>
                 </Table>

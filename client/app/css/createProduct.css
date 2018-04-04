@@ -117,22 +117,6 @@
 .setDiscount-btn{
     margin-left: 10px;
 }
-
-/* .foo{
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    align-items: center;
-    width: 400px;
-    border: 1px solid;
-    color: #947b7b;
-    border-radius: 10px;
-    border-color: #bfa6a6;
-    height: 100px;
-    background: #f5e2e2;
-    left: 450px;
-} */
 .open{
     position: fixed;
     display: flex;

@@ -26,18 +26,18 @@ import '../../css/auth.css'
     }
     
     alertMessages = () => {
-       let a = this.props.getToken
-       console.log(a)
-    return (
-        <span className="alertMessages">{a}</span>
-    )
+       let result = this.props.getToken
+       console.log(result,';;;')
+       if(result == 'Auth successful'){
+        result = ''
+       }
+        return (
+            <span className="alertMessages">{result}</span>
+        )
     }
 
 	render() {
-        if(this.props.getToken){
-           console.log(this.props.getToken,) 
-        }
-
+       
        if(localStorage.getItem('token')){
          return <Redirect to='/'/>
        }

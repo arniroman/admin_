@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import DatePicker from 'material-ui/DatePicker'
 import { loadDataProduct } from '../../actions/getProduct'
 import { createDiscount } from '../../actions/createDiscount'
+import { handlePaginationLists } from '../../actions/paginationList'
 import Checkbox from 'material-ui/Checkbox'
 import RaisedButton from 'material-ui/RaisedButton'
 import TimePicker from 'material-ui/TimePicker'
@@ -25,6 +26,7 @@ class SetDiscountView extends Component {
         super(props)
         
         this.state = {
+            id        : '',
             name      : '',
             data      : null,
             discount  : '',
@@ -44,6 +46,7 @@ class SetDiscountView extends Component {
         }
 
         handleChangeDiscount = (event) => {
+            console.log(event.target.value)
             this.setState({
                 discount: event.target.value
             })
@@ -53,6 +56,10 @@ class SetDiscountView extends Component {
             this.setState({
                 data: date
             })
+        }
+
+        searchHeandler = (event) => {
+            this.props.handlePaginationLists(0,event.target.value)
         }
 
         updateCheck = (el,event) => {
@@ -72,6 +79,13 @@ class SetDiscountView extends Component {
                 
           }
 
+          handlePaginationList = (event) => {   
+            this.setState({
+                id:event.target.value
+            })   
+          this.props.handlePaginationLists(event.target.id,'')
+        }
+
           handleSubmit = () => {
             let resultObj = {
                 name    : this.state.name,
@@ -83,7 +97,14 @@ class SetDiscountView extends Component {
           }
 
     render(){
-        
+        /*--- Pages for pagination list ---*/
+        const pages = []
+        if(this.props.allProduct){
+            for(let i = 0; i < this.props.allProduct.pages; i++){
+                  pages.push(i)
+              }
+        }
+        /*--- ---*/ 
         let product = this.props.allProduct.product
         return(
             <div>
@@ -113,17 +134,29 @@ class SetDiscountView extends Component {
                         <p className="titleName-discount">Discount %</p>
                             <TextField
                                 className="createProd-input"
-                                id = "name"
-                                name="name"
-                                hintText="name"
+                                id = "discount"
+                                name="dicount"
+                                hintText="discount"
                                 fullWidth={true}
-
                                 onChange = {this.handleChangeDiscount}
                             />
                     </div>
                     <p className="titleName-discount">Products</p>
                     <div className="tableSale-wrapp">
                         <div className="tableSale-content">
+                        <div className='searchDiscount-wrapper' >
+                        <div className="contentBtn">
+                        <label>
+                            <TextField
+                            type="search"
+                            hintText="Search..."
+                            onChange={this.searchHeandler}
+                            className="searchInput"
+                            />
+                            <i class="fas fa-search searchInput"></i>
+                        </label>
+                        </div>
+                    </div>
                             <Table >
                                     <TableHeader displaySelectAll={false}
                                                 adjustForCheckbox={false}>
@@ -132,7 +165,7 @@ class SetDiscountView extends Component {
                                             <TableHeaderColumn>Image</TableHeaderColumn>
                                             <TableHeaderColumn>Name</TableHeaderColumn>
                                             <TableHeaderColumn>Price</TableHeaderColumn>
-                                            <TableHeaderColumn>Actions</TableHeaderColumn>
+                                            <TableHeaderColumn>Choice</TableHeaderColumn>
                                         </TableRow>
                                     </TableHeader>
                                 </Table> 
@@ -162,6 +195,12 @@ class SetDiscountView extends Component {
                                     </div>
                                 )}
                             </div>
+                            <div className = "paginationBox">
+                                {pages&&pages.map((val,key)=>  
+                                    <button 
+                                    onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val}
+                                    </button>)}
+                            </div>
                             <div className="discountBtn_wrapp">
                                 <div className="createDiscount-btn">
                                     <RaisedButton onClick={this.handleSubmit} label="Create discount" secondary={true} />
@@ -185,4 +224,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,{loadDataProduct,createDiscount})(SetDiscountView)
+export default connect(mapStateToProps,{loadDataProduct,createDiscount,handlePaginationLists})(SetDiscountView)

@@ -18,6 +18,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { PrivateRoute } from './components/Auth/routePrivate'
 
 
+
 render(
 	<Provider store={store}>
 		<MuiThemeProvider>

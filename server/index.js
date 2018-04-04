@@ -37,9 +37,9 @@ const routes = require('./routs/api/routes')(app)
 
 app.get("*", (request, response) => {
 	response.sendFile(path.resolve(__dirname, "../client/", "index.html"))
-  });
+  });config.port 
 
-module.exports.start = () => app.listen(config.port || process.env.PORT, () => console.log('App listening on port '+ config.port))
+module.exports.start = () => app.listen(process.env.PORT || 8800, () => console.log('App listening on port '+ config.port))
 
 
 

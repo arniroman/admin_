@@ -1,15 +1,13 @@
 const express = require('express')
-var path = require("path");
-const http = require('http')
+const path = require("path")
 const bodyParser = require('body-parser')
 const config = require('./config')
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
-const Product = require('./models/product')
 const fileUpload = require('express-fileupload')
 
 //connected to db
-//mongoose.Promise = global.Promise
+
 mongoose.connect(config.url)
 
 const db = mongoose.connection

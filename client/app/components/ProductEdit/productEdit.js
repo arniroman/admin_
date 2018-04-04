@@ -20,8 +20,7 @@ class ProductEdit extends Component {
             tags        : [],
             props       : {},
             images      : "",
-            obj        : {},
-            nameValue   : "",
+            obj         : {},
             product     : {}
         }
     }
@@ -118,18 +117,17 @@ class ProductEdit extends Component {
                         <form  className='createProd-formEdit' onSubmit={this.handleSubmit}>
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Name product</p>
-                                        <TextField
-                                         value={this.state.name}
-                                         id = "name"
-                                         name="name"
-                                         fullWidth={true}
-                                         onChange = {this.handleChangeById}
-                                         />
+                                    <TextField
+                                        value={this.state.name}
+                                        id = "name"
+                                        name="name"
+                                        fullWidth={true}
+                                        onChange = {this.handleChangeById}
+                                        />
                             </div>
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Description</p>
                                     <TextField
-                                       // className="createProd-inputEdit"
                                         id="descr"
                                         name="descr"
                                         value={this.state.descr}
@@ -140,7 +138,6 @@ class ProductEdit extends Component {
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Price</p>
                                     <TextField
-                                      //  className="createProd-inputEdit"
                                         id="price"
                                         name="price"
                                         value={this.state.price}
@@ -151,7 +148,6 @@ class ProductEdit extends Component {
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Weight</p>
                                     <TextField
-                                       // className="createProd-inputEdit"
                                         id="weight"
                                         name="weight"
                                         value={this.state.weight}
@@ -162,7 +158,6 @@ class ProductEdit extends Component {
                             <div className='wrapItem'>
                                 <p className="titleName-propsEdit">Category</p>
                                     <TextField
-                                       // className="createProd-inputEdit"
                                         id="category"
                                         name="Category"
                                         value={this.state.category}
@@ -173,7 +168,6 @@ class ProductEdit extends Component {
                             <div className='wrapItem'>
                                 <p className="titleName-propsEditTags">Tags</p>
                                     <TextField
-                                       // className="createProd-inputEdit"
                                         name="Tags"
                                         value={this.state.tags}
                                         fullWidth={true}
@@ -184,7 +178,6 @@ class ProductEdit extends Component {
                             <div className='wrapItem edit-img'>
                                 <p className="titleName-propsEdit ">Images</p>
                                     <TextField
-                                        //className="createProd-inputEdit"
                                         id="images"
                                         name="Images"
                                         value={this.state.images}

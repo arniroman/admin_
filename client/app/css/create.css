@@ -6,7 +6,9 @@
      margin: 0 auto;
      width: 400px;
  }
- 
+ .create {
+     margin-bottom: 20px;
+ }
  .createProd-form{
      width: 400px;
      text-align: center;

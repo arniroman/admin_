@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const controllers = require('../../controllers/product')
-//const Product = require('../../models/product')
+
 
 router.post('/',(req,res) => {
     const result = req.body.product

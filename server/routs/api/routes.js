@@ -2,10 +2,9 @@ const product = require('./product')
 const properties = require('./properties')
 const exportImportToCSV = require('./exportImportToCsv')
 const historyShopping = require('./historyShopping')
-const currentHistory = require('./currentHistory')
 const discount = require('./discountForProduct')
 const allUsers = require('./users')
-const admin = require('./admin')
+const auth = require('./auth')
 
 
 module.exports = function(app){
@@ -14,7 +13,6 @@ module.exports = function(app){
     app.use('/upload', exportImportToCSV),
     app.use('/historyShop', historyShopping),
     app.use('/users', allUsers),
-    app.use('/currentHistory',currentHistory),
     app.use('/discount',discount),
-    app.use('/admin', admin)
+    app.use('/admin', auth)
 }

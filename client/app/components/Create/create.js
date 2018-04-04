@@ -1,15 +1,11 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import TextField from 'material-ui/TextField'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import RaisedButton from 'material-ui/RaisedButton'
 import Toggle from 'material-ui/Toggle'
 import '../../css/create.css'
-import index from 'material-ui/TextField'
 import { connect } from 'react-redux'
 import { loadDataProperties } from '../../actions/getProperties'
 import { postProduct } from '../../actions/createProduct'
@@ -29,7 +25,7 @@ class Create extends Component {
             category      : "",
             tags          : [],
             props         : {},
-            images        : "",
+            images        : ""
         }
     }
 
@@ -94,8 +90,12 @@ class Create extends Component {
 		}
         this.props.postProduct(product)
     }
+    foo = () =>{
+        
+    }
     
     render(){
+        /** filter props for category **/
         let properties
         if(this.props.properties){
             properties  = this.props.properties
@@ -110,6 +110,11 @@ class Create extends Component {
         })
         }
         return(
+        <div>
+             <header className="headerEdit create">
+                <p>Create product</p>
+                <i class="fas fa-wrench hederEdit-icon"></i>
+            </header>
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
                    <p className="titleName-props">Name product</p>
@@ -129,7 +134,6 @@ class Create extends Component {
                                 hintText="Description"
                                 fullWidth={true}
                                 onChange = {this.handleChangeById}
-                              
                             />
                          <p className="titleName-props">Original Price</p>
                             <TextField
@@ -217,22 +221,29 @@ class Create extends Component {
                                     </MenuItem>
                                 </Drawer>
                             </div>
-                        <p className="titleName-props">Images</p>
-                            <TextField
-                                className="createProd-input"
-                                id="images"
-                                name="Images"
-                                hintText="Full width"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                        <RaisedButton 
-                        className="create-btn" 
-                        type="submit" 
-                        label="Create" 
-                        primary={true}/>
+                             <p className="titleName-props">Images</p>
+                                <TextField
+                                    className="createProd-input"
+                                    id="images"
+                                    name="Images"
+                                    hintText="Full width"
+                                    fullWidth={true}
+                                    onChange = {this.handleChangeById}
+                                />
+                                <Link to='/'>
+                                    <RaisedButton 
+                                        label="Home page" 
+                                        secondary={true} 
+                                    />
+                                </Link>
+                                <RaisedButton 
+                                    className="create-btn" 
+                                    type="submit" 
+                                    label="Create Product" 
+                                    primary={true}/>
 				</form>
            </div>
+        </div>   
         )
     }
 }

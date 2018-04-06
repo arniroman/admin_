@@ -11,7 +11,7 @@ module.exports = {
         const filename  = "products.csv";
         Product.find({})
                .lean()
-               .exec({})
+               //.exec({})
                .then((products)=>{
                       res.setHeader('Content-Type', 'text/csv')
                       res.setHeader("Content-Disposition", 'attachment; filename='+filename)

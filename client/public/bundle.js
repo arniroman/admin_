@@ -31647,14 +31647,16 @@
 	        };
 
 	        _this.handleChangeStatus = function () {
+	            console.log(_this.state.active);
 	            _this.setState({
 	                active: !_this.state.active
 	            });
 	        };
 
 	        _this.handleUnavilable = function () {
+	            console.log(_this.state.available);
 	            _this.setState({
-	                unavailable: !_this.state.active
+	                available: !_this.state.available
 	            });
 	        };
 
@@ -31687,7 +31689,7 @@
 	                originalPrice: _this.state.price,
 	                weight: _this.state.weight,
 	                active: _this.state.active,
-	                unavailable: _this.state.unavailable,
+	                available: _this.state.available,
 	                category: _this.state.category,
 	                tags: _this.state.tags,
 	                props: _this.state.props,
@@ -31703,8 +31705,8 @@
 	            originalPrice: "",
 	            price: "",
 	            weight: "",
-	            active: true,
-	            unavailable: false,
+	            active: false,
+	            available: false,
 	            category: "",
 	            tags: [],
 	            props: {},
@@ -31827,7 +31829,7 @@
 	                        _react2.default.createElement(
 	                            'p',
 	                            { className: 'titleName-props' },
-	                            'Unavailable'
+	                            'Available'
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',

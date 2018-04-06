@@ -79,7 +79,7 @@ class Create extends Component {
             name          : this.state.name,
             descr         : this.state.descr,
             price         : this.state.price,
-            originalPrice : this.state.originalPrice,
+            originalPrice : this.state.price,
             weight        : this.state.weight,
             active        : this.state.active,
             unavailable   : this.state.unavailable,
@@ -89,9 +89,6 @@ class Create extends Component {
             images        : this.state.images
 		}
         this.props.postProduct(product)
-    }
-    foo = () =>{
-        
     }
     
     render(){
@@ -132,15 +129,6 @@ class Create extends Component {
                                 id="descr"
                                 name="descr"
                                 hintText="Description"
-                                fullWidth={true}
-                                onChange = {this.handleChangeById}
-                            />
-                         <p className="titleName-props">Original Price</p>
-                            <TextField
-                                className="createProd-input"
-                                id="originalPrice"
-                                name="price"
-                                hintText="Price"
                                 fullWidth={true}
                                 onChange = {this.handleChangeById}
                             />

@@ -38,3 +38,14 @@
     display: flex;
     justify-content: center;
 }
+.choosenProduct {
+    width: 600px;
+}
+.choosenProduct-table{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 150px 0;
+}
+.choosenProduct-table-wrapp{
+    text-align: center;
+}

@@ -30,7 +30,8 @@ class SetDiscountView extends Component {
             data      : null,
             discount  : '',
             products  : [],
-            flag      : ''
+            flag      : '',
+            flagPush  : true,
             }
         }
 
@@ -62,27 +63,61 @@ class SetDiscountView extends Component {
         }
 
         updateCheck = (el,event) => {
-            let resultArr = this.state.products
-            if(event.target.checked){
+             let resultArr = this.state.products
+             let strongCompare = this.state.flagPush
+             let compare
+             resultArr.forEach((prod) => {
+               
+                if(el._id === prod.productId ){
+                    compare = 'not'
+                    strongCompare = false
+                    this.setState({
+                        flagPush: strongCompare
+                    }) 
+                }
+
+                else if (el._id !== prod.productId){
+                    if(compare === 'not'){
+                      strongCompare = false  
+                    }else{
+                      strongCompare = true
+                    }
+                    
+                    this.setState({
+                        flagPush: strongCompare
+                    })
+                }
+                 
+             })
+             
+             if(strongCompare){
                 resultArr.push({
-                    productId: el._id,
-                    discount : this.state.discount
-                }) 
-            } else {
-                resultArr.pop(el)
+                productId: el._id,
+                discount : this.state.discount
+            })
             }
-            console.log(resultArr)
             this.setState({
                 products: resultArr
-                })
-                
-          }
+                })    
+            }
 
           handlePaginationList = (event) => {   
             this.setState({
                 id:event.target.value
             })   
           this.props.handlePaginationLists(event.target.id,'')
+        }
+        deleteDiscount = (el,event) => {
+            let prod = this.state.products
+            prod.forEach((element,key)=>{
+                 if(el.productId == element.productId){
+                    console.log(element.productId)
+                    prod.splice(key,1)
+                }
+              
+            })
+            //console.log(this.state.products)
+            this.componentWillMount()
         }
 
           handleSubmit = () => {
@@ -96,6 +131,8 @@ class SetDiscountView extends Component {
           }
 
     render(){
+        console.log(this.state.products)
+      
         /*--- Pages for pagination list ---*/
         const pages = []
         if(this.props.allProduct){
@@ -106,8 +143,7 @@ class SetDiscountView extends Component {
         /*--- ---*/ 
         let product = this.props.allProduct.product
         return(
-            <div>
-                
+            <div>   
             <header className="headerCurrentHistory">
                 <p>Discount</p>
                 <i class="fas fa-gift discount-icon"></i>
@@ -141,10 +177,10 @@ class SetDiscountView extends Component {
                             />
                     </div>
                     <p className="titleName-discount">Products</p>
-                    <div className="tableSale-wrapp">
-                        <div className="tableSale-content">
-                        <div className='searchDiscount-wrapper' >
-                        <div className="contentBtn">
+                        <div className="tableSale-wrapp">
+                            <div className="tableSale-content">
+                            <div className='searchDiscount-wrapper' >
+                            <div className="contentBtn">
                         <label>
                             <TextField
                             type="search"
@@ -156,17 +192,17 @@ class SetDiscountView extends Component {
                         </label>
                         </div>
                     </div>
-                            <Table >
-                                    <TableHeader displaySelectAll={false}
-                                                adjustForCheckbox={false}>
-                                        <TableRow>
-                                            <TableHeaderColumn>№</TableHeaderColumn>
-                                            <TableHeaderColumn>Image</TableHeaderColumn>
-                                            <TableHeaderColumn>Name</TableHeaderColumn>
-                                            <TableHeaderColumn>Price</TableHeaderColumn>
-                                            <TableHeaderColumn>Choice</TableHeaderColumn>
-                                        </TableRow>
-                                    </TableHeader>
+                        <Table >
+                            <TableHeader displaySelectAll={false}
+                                         adjustForCheckbox={false}>
+                                <TableRow>
+                                    <TableHeaderColumn>№</TableHeaderColumn>
+                                    <TableHeaderColumn>Image</TableHeaderColumn>
+                                    <TableHeaderColumn>Name</TableHeaderColumn>
+                                    <TableHeaderColumn>Price</TableHeaderColumn>
+                                    <TableHeaderColumn>Choice</TableHeaderColumn>
+                                </TableRow>
+                            </TableHeader>
                                 </Table> 
                                 {product && product.map((el,key) => 
                                         <div key={key} className="CheckWrapper" >
@@ -179,14 +215,10 @@ class SetDiscountView extends Component {
                                                                 <img className="imageTable" src={el.images} />
                                                             </div>
                                                     </TableRowColumn>
-                                                    <TableRowColumn>{el.name}</TableRowColumn>
-                                                    <TableRowColumn>{el.price}$</TableRowColumn>
-                                                    <TableRowColumn>
-                                                        <Checkbox
-                                                        value={el}
-                                                        label=""
-                                                        onCheck={(event) => this.updateCheck(el,event)}
-                                                        />
+                                                        <TableRowColumn>{el.name}</TableRowColumn>
+                                                        <TableRowColumn>{el.price}$</TableRowColumn>
+                                                        <TableRowColumn>
+                                                        <RaisedButton onClick={(event) => this.updateCheck(el,event)} label="chose product" secondary={true} />
                                                     </TableRowColumn>
                                                 </TableRow>
                                             </TableBody>
@@ -196,10 +228,10 @@ class SetDiscountView extends Component {
                             </div>
                             <div className = "paginationBox">
                                 {pages&&pages.map((val,key)=>  
-                                    <button 
-                                    onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val}
+                                    <button
+                                    onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
                                     </button>)}
-                            </div>
+                        </div>
                             <div className="discountBtn_wrapp">
                                 <div className="createDiscount-btn">
                                     <RaisedButton onClick={this.handleSubmit} label="Create discount" secondary={true} />
@@ -210,8 +242,43 @@ class SetDiscountView extends Component {
                                         </div>
                                     </Link>
                             </div>
+                   </div>
+                   <div className='choosenProduct-table-wrapp' >
+                    <p> Choosen Product for discount</p>
+                    <div className='choosenProduct-table'> 
+                        <div className='choosenProduct'> 
+                        <Table >
+                            <TableHeader displaySelectAll={false}
+                                         adjustForCheckbox={false}>
+                                <TableRow>
+                                    <TableHeaderColumn>№</TableHeaderColumn>
+                                    <TableHeaderColumn>Product id</TableHeaderColumn>
+                                    <TableHeaderColumn>Discount</TableHeaderColumn>
+                                    <TableHeaderColumn>Delete</TableHeaderColumn>
+                                </TableRow>
+                            </TableHeader>
+                        </Table>
+                        {this.state.products.map((el,key) =>
+                        <Table key={key}>
+                        <TableBody  displayRowCheckbox={false}>
+                                <TableRow>
+                                    <TableRowColumn>{key+1}</TableRowColumn>
+                                    <TableRowColumn>{el.productId} </TableRowColumn>
+                                    <TableRowColumn>{el.discount}% </TableRowColumn>
+                                    <TableRowColumn>
+                                    <span onClick={(event) => this.deleteDiscount(el,event)} >
+                                    <i class="fas fa-trash deleteIcon"></i> 
+                                    </span>
+                                    </TableRowColumn>
+                                </TableRow>
+                            </TableBody>
+                            </Table>
+                            )}
+                        </div>
                     </div>
+                   </div> 
                 </div>
+               
             </div>
         )
     }

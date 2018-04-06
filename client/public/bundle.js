@@ -31684,7 +31684,7 @@
 	                name: _this.state.name,
 	                descr: _this.state.descr,
 	                price: _this.state.price,
-	                originalPrice: _this.state.originalPrice,
+	                originalPrice: _this.state.price,
 	                weight: _this.state.weight,
 	                active: _this.state.active,
 	                unavailable: _this.state.unavailable,
@@ -31695,8 +31695,6 @@
 	            };
 	            _this.props.postProduct(product);
 	        };
-
-	        _this.foo = function () {};
 
 	        _this.state = {
 	            open: false,
@@ -31781,19 +31779,6 @@
 	                            id: 'descr',
 	                            name: 'descr',
 	                            hintText: 'Description',
-	                            fullWidth: true,
-	                            onChange: this.handleChangeById
-	                        }),
-	                        _react2.default.createElement(
-	                            'p',
-	                            { className: 'titleName-props' },
-	                            'Original Price'
-	                        ),
-	                        _react2.default.createElement(_TextField2.default, {
-	                            className: 'createProd-input',
-	                            id: 'originalPrice',
-	                            name: 'price',
-	                            hintText: 'Price',
 	                            fullWidth: true,
 	                            onChange: this.handleChangeById
 	                        }),
@@ -48501,6 +48486,7 @@
 	        };
 
 	        _this.ipmortCSV = function (event) {
+
 	            event.preventDefault();
 	            _this.props.ipmortToCSV(_this.state.data);
 	            _this.setState({
@@ -48527,6 +48513,7 @@
 	        };
 
 	        _this.closedHandleBoxUpdatedCSV = function () {
+	            // console.log('closed')
 	            var closed = _this.state.classClosed;
 	            if (closed == 'open') {
 	                closed = 'closed';
@@ -48537,9 +48524,10 @@
 	                classClosed: closed,
 	                flag: false
 	            });
-	            _this.componentDidUpdate = function () {
-	                _this.props.loadDataProduct();
-	            };
+	            // this.componentWillMount = () => {
+	            //     this.props.loadDataProduct()
+	            // }
+	            //this.componentWillReceiveProps
 	        };
 
 	        _this.handleBoxUpdatedCSV = function () {
@@ -48581,7 +48569,7 @@
 	                    pages.push(i);
 	                }
 	            }
-	            /*--- ---*/
+	            /*--- ---*/console.log(this.props.allProduct);
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'Wrapper' },
@@ -48643,7 +48631,13 @@
 	                            _react2.default.createElement('i', { className: 'fas fa-plus-circle icon-setting' })
 	                        )
 	                    ),
-	                    _react2.default.createElement('input', { type: 'file', className: 'choiceFile', name: 'file', onChange: this.dataFile, accept: '*.csv' }),
+	                    _react2.default.createElement(
+	                        _RaisedButton2.default,
+	                        {
+	                            containerElement: 'label',
+	                            label: 'open file' },
+	                        _react2.default.createElement('input', { type: 'file', name: 'file', className: 'choiceFile', onChange: this.dataFile, accept: '*.csv' })
+	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'contentBtn setting', onClick: this.ipmortCSV },
@@ -48732,7 +48726,7 @@
 	                            'button',
 	                            {
 	                                onClick: _this2.handlePaginationList.bind(_this2), key: key, id: val },
-	                            val
+	                            val + 1
 	                        );
 	                    })
 	                )
@@ -48811,7 +48805,7 @@
 
 
 	// module
-	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n}\n.choiceFile {\n    width: 90px;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-radius: 10px;\n    border-color: #bfa6a6;\n    height: 120px;\n    background: #f5e2e2;\n    left: 450px;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n.closedBoxCSV:hover{\n    color: #0d93a5\n}", ""]);
+	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n}\n.choiceFile {\n    width: 1px;\n    visibility: hidden;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-radius: 10px;\n    border-color: #bfa6a6;\n    height: 120px;\n    background: #f5e2e2;\n    left: 450px;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n.closedBoxCSV:hover{\n    color: #0d93a5\n}", ""]);
 
 	// exports
 
@@ -61871,15 +61865,35 @@
 
 	        _this.updateCheck = function (el, event) {
 	            var resultArr = _this.state.products;
-	            if (event.target.checked) {
+	            var strongCompare = _this.state.flagPush;
+	            var compare = void 0;
+	            resultArr.forEach(function (prod) {
+
+	                if (el._id === prod.productId) {
+	                    compare = 'not';
+	                    strongCompare = false;
+	                    _this.setState({
+	                        flagPush: strongCompare
+	                    });
+	                } else if (el._id !== prod.productId) {
+	                    if (compare === 'not') {
+	                        strongCompare = false;
+	                    } else {
+	                        strongCompare = true;
+	                    }
+
+	                    _this.setState({
+	                        flagPush: strongCompare
+	                    });
+	                }
+	            });
+
+	            if (strongCompare) {
 	                resultArr.push({
 	                    productId: el._id,
 	                    discount: _this.state.discount
 	                });
-	            } else {
-	                resultArr.pop(el);
 	            }
-	            console.log(resultArr);
 	            _this.setState({
 	                products: resultArr
 	            });
@@ -61890,6 +61904,18 @@
 	                id: event.target.value
 	            });
 	            _this.props.handlePaginationLists(event.target.id, '');
+	        };
+
+	        _this.deleteDiscount = function (el, event) {
+	            var prod = _this.state.products;
+	            prod.forEach(function (element, key) {
+	                if (el.productId == element.productId) {
+	                    console.log(element.productId);
+	                    prod.splice(key, 1);
+	                }
+	            });
+	            //console.log(this.state.products)
+	            _this.componentWillMount();
 	        };
 
 	        _this.handleSubmit = function () {
@@ -61908,7 +61934,8 @@
 	            data: null,
 	            discount: '',
 	            products: [],
-	            flag: ''
+	            flag: '',
+	            flagPush: true
 	        };
 	        return _this;
 	    }
@@ -61917,6 +61944,8 @@
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
+
+	            console.log(this.state.products);
 
 	            /*--- Pages for pagination list ---*/
 	            var pages = [];
@@ -62093,13 +62122,9 @@
 	                                                _react2.default.createElement(
 	                                                    _Table.TableRowColumn,
 	                                                    null,
-	                                                    _react2.default.createElement(_Checkbox2.default, {
-	                                                        value: el,
-	                                                        label: '',
-	                                                        onCheck: function onCheck(event) {
+	                                                    _react2.default.createElement(_RaisedButton2.default, { onClick: function onClick(event) {
 	                                                            return _this2.updateCheck(el, event);
-	                                                        }
-	                                                    })
+	                                                        }, label: 'chose product', secondary: true })
 	                                                )
 	                                            )
 	                                        )
@@ -62115,7 +62140,7 @@
 	                                    'button',
 	                                    {
 	                                        onClick: _this2.handlePaginationList.bind(_this2), key: key, id: val },
-	                                    val
+	                                    val + 1
 	                                );
 	                            })
 	                        ),
@@ -62135,6 +62160,98 @@
 	                                    { className: '' },
 	                                    _react2.default.createElement(_RaisedButton2.default, { label: 'GO TO HOME PAGE', primary: true })
 	                                )
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'choosenProduct-table-wrapp' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            null,
+	                            ' Choosen Product for discount'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'choosenProduct-table' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'choosenProduct' },
+	                                _react2.default.createElement(
+	                                    _Table.Table,
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeader,
+	                                        { displaySelectAll: false,
+	                                            adjustForCheckbox: false },
+	                                        _react2.default.createElement(
+	                                            _Table.TableRow,
+	                                            null,
+	                                            _react2.default.createElement(
+	                                                _Table.TableHeaderColumn,
+	                                                null,
+	                                                '\u2116'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                _Table.TableHeaderColumn,
+	                                                null,
+	                                                'Product id'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                _Table.TableHeaderColumn,
+	                                                null,
+	                                                'Discount'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                _Table.TableHeaderColumn,
+	                                                null,
+	                                                'Delete'
+	                                            )
+	                                        )
+	                                    )
+	                                ),
+	                                this.state.products.map(function (el, key) {
+	                                    return _react2.default.createElement(
+	                                        _Table.Table,
+	                                        { key: key },
+	                                        _react2.default.createElement(
+	                                            _Table.TableBody,
+	                                            { displayRowCheckbox: false },
+	                                            _react2.default.createElement(
+	                                                _Table.TableRow,
+	                                                null,
+	                                                _react2.default.createElement(
+	                                                    _Table.TableRowColumn,
+	                                                    null,
+	                                                    key + 1
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    _Table.TableRowColumn,
+	                                                    null,
+	                                                    el.productId,
+	                                                    ' '
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    _Table.TableRowColumn,
+	                                                    null,
+	                                                    el.discount,
+	                                                    '% '
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    _Table.TableRowColumn,
+	                                                    null,
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        { onClick: function onClick(event) {
+	                                                                return _this2.deleteDiscount(el, event);
+	                                                            } },
+	                                                        _react2.default.createElement('i', { className: 'fas fa-trash deleteIcon' })
+	                                                    )
+	                                                )
+	                                            )
+	                                        )
+	                                    );
+	                                })
 	                            )
 	                        )
 	                    )
@@ -64911,7 +65028,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.inputContent{\n    width: 400px;\n    margin: 0 auto;\n}\n.titleName-discount{\n    text-align: center;\n}\n.CheckWrapper{\n    display: flex;\n}\n.TitleCheck{\n    width: 20%;\n}\n.checkboxDiscount{\n    width: 20%;\n}\n.createDiscount-btn{\n    display: flex;\n    justify-content: center;\n    margin: 30px;\n}\n.tableSale-content{\n    max-width: 900px;\n    overflow: auto;\n    margin: 0 auto;\n    padding-bottom: 10px;\n}\n.discount-icon{\n    margin-left: 5px;\n}\n.discountBtn_wrapp{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.searchDiscount-wrapper{\n    display: flex;\n    justify-content: center;\n}\n", ""]);
+	exports.push([module.id, "\n.inputContent{\n    width: 400px;\n    margin: 0 auto;\n}\n.titleName-discount{\n    text-align: center;\n}\n.CheckWrapper{\n    display: flex;\n}\n.TitleCheck{\n    width: 20%;\n}\n.checkboxDiscount{\n    width: 20%;\n}\n.createDiscount-btn{\n    display: flex;\n    justify-content: center;\n    margin: 30px;\n}\n.tableSale-content{\n    max-width: 900px;\n    overflow: auto;\n    margin: 0 auto;\n    padding-bottom: 10px;\n}\n.discount-icon{\n    margin-left: 5px;\n}\n.discountBtn_wrapp{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.searchDiscount-wrapper{\n    display: flex;\n    justify-content: center;\n}\n.choosenProduct {\n    width: 600px;\n}\n.choosenProduct-table{\n    display: flex;\n    justify-content: center;\n    margin: 20px 0 150px 0;\n}\n.choosenProduct-table-wrapp{\n    text-align: center;\n}", ""]);
 
 	// exports
 
@@ -65946,9 +66063,6 @@
 	    value: true
 	});
 	exports.default = productViewWithTable;
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 	function productViewWithTable() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	    var action = arguments[1];
@@ -65959,7 +66073,7 @@
 
 	            break;
 	        default:
-	            return [].concat(_toConsumableArray(state));
+	            return state;
 	    }
 	}
 

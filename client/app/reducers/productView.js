@@ -4,7 +4,7 @@ export default function productViewWithTable (state=[],action){
             return action.payload
             
         break
-            default: return [...state]
+            default: return state
     }
 
 }

@@ -8,7 +8,7 @@ router.post('/',(req,res) => {
 })
 
 router.get('/:id',(req,res,next)=>{
-    controllers.getAllProduct(req,res)   
+    controllers.getAllProduct (req,res)   
 })
 
 router.delete('/:id',(req,res)=>{
@@ -18,16 +18,7 @@ router.delete('/:id',(req,res)=>{
 
 router.put('/:id',(req,res)=>{
     const id = req.params.id
-    controllers.updateProduct(id,req,res,
-                              req.body.name,
-                              req.body.descr,
-                              req.body.price,
-                              req.body.weight,
-                              req.body.active,
-                              req.body.category,
-                              req.body.props,
-                              req.body.images
-    )
+    controllers.updateProduct(id,req,res)
 })
 
 module.exports = router

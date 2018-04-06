@@ -36,6 +36,7 @@ class CreatedProduct extends Component {
     }
     
     ipmortCSV = (event) => {
+        
         event.preventDefault()
         this.props.ipmortToCSV(this.state.data) 
         this.setState({
@@ -61,6 +62,7 @@ class CreatedProduct extends Component {
     }
   
     closedHandleBoxUpdatedCSV = () => {
+       // console.log('closed')
         let closed = this.state.classClosed
         if(closed == 'open'){
            closed = 'closed'
@@ -71,9 +73,10 @@ class CreatedProduct extends Component {
             classClosed: closed,
             flag       : false
         })
-        this.componentDidUpdate = () => {
-            this.props.loadDataProduct()
-        }
+        // this.componentWillMount = () => {
+        //     this.props.loadDataProduct()
+        // }
+        //this.componentWillReceiveProps
     }
     
     handleBoxUpdatedCSV = () => {
@@ -98,8 +101,9 @@ class CreatedProduct extends Component {
                   pages.push(i)
               }
         }
-        /*--- ---*/ 
+        /*--- ---*/ console.log(this.props.allProduct)
 		return (
+            
             <div className="Wrapper">
             {this.state.flag && this.props.importCSV && this.handleBoxUpdatedCSV()} 
                 <div className="goodsCatalog">
@@ -132,7 +136,11 @@ class CreatedProduct extends Component {
                         <i class="fas fa-plus-circle icon-setting"></i>
                     </div>
                 </Link>
-                    <input type="file" className="choiceFile" name="file" onChange={this.dataFile} accept="*.csv"/>
+                <RaisedButton
+                containerElement='label' 
+                label='open file'>
+                <input type="file"  name="file" className='choiceFile' onChange={this.dataFile} accept="*.csv"/>
+                </RaisedButton>
                     <div className="contentBtn setting" onClick={this.ipmortCSV} >import CSV
                         <i class="fas fa-download icon-setting"></i>
                     </div>
@@ -172,7 +180,7 @@ class CreatedProduct extends Component {
                 <div className = "paginationBox">
                     {pages&&pages.map((val,key)=>  
                         <button 
-                        onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val}
+                        onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
                         </button>)}
                 </div>
 			</div>

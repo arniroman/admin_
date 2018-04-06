@@ -15,29 +15,38 @@ module.exports = {
                   })  
     },
 
-    getAllProduct: (req,res) => {
+    getAllProduct: async (req,res) => {
         const perPage = 5
-        let productData = req.params.id.split(',')
-        let resultsPagination = productData[0]
+        const productData = req.params.id.split(',')
+        const resultsPagination = productData[0]
         const page = resultsPagination || 0
-
-        Product.find({ 
+        const skipFormula = perPage * page 
+        let criteria = []
+        
+        criteria.push({
             name: {
-                $regex: new RegExp(productData[1],"i")
-              }
-        })
-               .skip((perPage * page) - page)
+              $regex: new RegExp(productData[1], "i")
+            }
+          })
+    
+        criteria = criteria.length > 0 ? { $and: criteria } : {}
+        const currentAmount = await Product.find(criteria).count()
+        
+        if (currentAmount < skipFormula) {
+             skipFormula = 0; 
+          }
+
+        Product.find(criteria)
+               .skip(skipFormula)
                .limit(perPage)
                .exec((err,products) => {
-                    Product.count().exec((err,count) => {
-                      if(err) return next(err)
+                   if(err) return (err)
                       res.send({
                         product: products,
                         current: page,
-                        pages  : Math.ceil(count/perPage),
-                        count  : count
+                        pages  : Math.ceil(currentAmount/perPage),
                     })
-                })
+               
             })
     },
 
@@ -53,23 +62,16 @@ module.exports = {
                       })
     },
 
-    updateProduct: (productId,req,res,name,descr,price,weight,active,category,props,images) => {
-        Product.findByIdAndUpdate(productId,{name    :name,
-                                             descr   :descr,
-                                             price   :price,
-                                             weight  :weight,
-                                             active  :active,
-                                             category:category,
-                                             props   :props,
-                                             images  :images})
-
-                                             .then((doc) => {
-                                                    res.send(doc)
-                                                  })
-                                             .catch(err => {
-                                                res.status(400).send(err);
-                                                console.log("we got an error");
-                                              })
+    updateProduct: (productId,req,res) => {
+        console.log(req.body)
+        Product.findByIdAndUpdate(productId,req.body)
+               .then((doc) => {
+                res.send(doc)
+                })
+               .catch(err => {
+               res.status(400).send(err)
+               console.log("we got an error");
+              })
                                                 
     }
 

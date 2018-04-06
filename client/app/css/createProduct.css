@@ -112,7 +112,8 @@
     padding: 20px 0;
 }
 .choiceFile {
-    width: 90px;
+    width: 1px;
+    visibility: hidden;
 }
 .setDiscount-btn{
     margin-left: 10px;

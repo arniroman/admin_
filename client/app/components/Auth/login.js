@@ -80,7 +80,7 @@ import '../../css/auth.css'
 
 const mapStateToProps = (state)=>{
     return {
-        getToken : state.loginAdminToken,
+        getToken : state.loginAdminToken
     }
 }
 

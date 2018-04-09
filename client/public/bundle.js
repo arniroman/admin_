@@ -92,17 +92,21 @@
 
 	var _viewDiscounts2 = _interopRequireDefault(_viewDiscounts);
 
-	var _login = __webpack_require__(621);
+	var _createProps = __webpack_require__(621);
+
+	var _createProps2 = _interopRequireDefault(_createProps);
+
+	var _login = __webpack_require__(625);
 
 	var _login2 = _interopRequireDefault(_login);
 
-	var _store = __webpack_require__(625);
+	var _store = __webpack_require__(629);
 
 	var _store2 = _interopRequireDefault(_store);
 
 	var _reactRouterDom = __webpack_require__(367);
 
-	var _routePrivate = __webpack_require__(642);
+	var _routePrivate = __webpack_require__(646);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -126,7 +130,8 @@
 					_react2.default.createElement(_routePrivate.PrivateRoute, { exact: true, path: '/history', component: _shoppingHistory2.default }),
 					_react2.default.createElement(_routePrivate.PrivateRoute, { exact: true, path: '/viewCurrentHistory', component: _currentDataHistory2.default }),
 					_react2.default.createElement(_routePrivate.PrivateRoute, { exact: true, path: '/setDiscount', component: _SetDiscounyView2.default }),
-					_react2.default.createElement(_routePrivate.PrivateRoute, { path: '/viewDiscount', component: _viewDiscounts2.default })
+					_react2.default.createElement(_routePrivate.PrivateRoute, { path: '/viewDiscount', component: _viewDiscounts2.default }),
+					_react2.default.createElement(_routePrivate.PrivateRoute, { path: '/createProperties', component: _createProps2.default })
 				)
 			)
 		)
@@ -31849,9 +31854,10 @@
 	                        ),
 	                        _react2.default.createElement(_TextField2.default, {
 	                            className: 'createProd-input',
+	                            require: true,
 	                            id: 'category',
 	                            name: 'Category',
-	                            hintText: 'Full width',
+	                            hintText: 'Category',
 	                            fullWidth: true,
 	                            onChange: this.handleChangeById
 	                        }),
@@ -31863,7 +31869,7 @@
 	                        _react2.default.createElement(_TextField2.default, {
 	                            className: 'createProd-input',
 	                            name: 'Tags',
-	                            hintText: 'Full width',
+	                            hintText: 'Tags',
 	                            fullWidth: true,
 	                            onChange: this.handleChangeTags
 	                        }),
@@ -31890,6 +31896,15 @@
 	                                        'p',
 	                                        { className: 'properties-title' },
 	                                        'Properties'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'createProps-btn' },
+	                                    _react2.default.createElement(
+	                                        _reactRouterDom.Link,
+	                                        { to: '/createProperties' },
+	                                        _react2.default.createElement(_RaisedButton2.default, { label: 'Create new properties', primary: true })
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
@@ -31927,7 +31942,7 @@
 	                            className: 'createProd-input',
 	                            id: 'images',
 	                            name: 'Images',
-	                            hintText: 'Full width',
+	                            hintText: 'images',
 	                            fullWidth: true,
 	                            onChange: this.handleChangeById
 	                        }),
@@ -46164,7 +46179,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n.createProduct-wrap{\n    display: flex;\n     justify-content: center;\n     margin: 0 auto;\n     width: 400px;\n }\n .create {\n     margin-bottom: 20px;\n }\n .createProd-form{\n     width: 400px;\n     text-align: center;\n }\n .createProduct-btn{\n     margin-left: 20px;\n }\n .titleName-props {\n     font-size: 15px;\n }\n .toggle-status{\n     display: flex;\n     justify-content: center;\n }\n .create-btn{\n     margin: 12;\n }\n .properties-title{\n     font-size: 20px;\n     font-weight: bold;\n }\n .properties-box{\n     display: flex;\n }\n .productItem-box{\n     display: flex;\n     height: 400px;\n }\n .productList-box{\n     width: 100%;\n }\n .image-box{\n     height: 561;\n     width: 350;\n }\n .productImage-size{\n    width: 100%;\n }\n .listProducTitle-properties{\n     font-size: 19px;\n     margin: 0 0 10px 0;\n }\n .listProduct-title{\n     font-size: 17px;\n }\n .listProduct-properties{\n     font-size: 15px;\n     padding-left: 5px;\n}\n .productBox{\n     width: 100%;\n     margin-left: 30px;\n }\n .tecnicPops-box{\n     padding-top: 20px;\n }\n .GeneralProperties-title{\n     font-size: 19px;\n   margin: 0 0 10px 0;\n     \n }\n .PropertiesTitle-style{\n     background: #ffe5e5;\n }\n.propsWrap-create{\n    text-align: right;\n}\n.propsWrap-name{\n    padding-right: 10px;\n}", ""]);
+	exports.push([module.id, "\n\n.createProduct-wrap{\n    display: flex;\n     justify-content: center;\n     margin: 0 auto;\n     width: 400px;\n }\n .create {\n     margin-bottom: 20px;\n }\n .createProd-form{\n     width: 400px;\n     text-align: center;\n }\n .createProduct-btn{\n     margin-left: 20px;\n }\n .titleName-props {\n     font-size: 15px;\n }\n .toggle-status{\n     display: flex;\n     justify-content: center;\n }\n .create-btn{\n     margin: 12;\n }\n .properties-title{\n     font-size: 20px;\n     font-weight: bold;\n }\n .properties-box{\n     display: flex;\n }\n .productItem-box{\n     display: flex;\n     height: 400px;\n }\n .productList-box{\n     width: 100%;\n }\n .image-box{\n     height: 561;\n     width: 350;\n }\n .productImage-size{\n    width: 100%;\n }\n .listProducTitle-properties{\n     font-size: 19px;\n     margin: 0 0 10px 0;\n }\n .listProduct-title{\n     font-size: 17px;\n }\n .listProduct-properties{\n     font-size: 15px;\n     padding-left: 5px;\n}\n .productBox{\n     width: 100%;\n     margin-left: 30px;\n }\n .tecnicPops-box{\n     padding-top: 20px;\n }\n .GeneralProperties-title{\n     font-size: 19px;\n   margin: 0 0 10px 0;\n     \n }\n .PropertiesTitle-style{\n     background: #ffe5e5;\n }\n.propsWrap-create{\n    text-align: right;\n}\n.propsWrap-name{\n    padding-right: 10px;\n}\n.createProps-btn{\n    margin-bottom: 20px;\n}", ""]);
 
 	// exports
 
@@ -48488,7 +48503,6 @@
 	        };
 
 	        _this.ipmortCSV = function (event) {
-
 	            event.preventDefault();
 	            _this.props.ipmortToCSV(_this.state.data);
 	            _this.setState({
@@ -48515,7 +48529,7 @@
 	        };
 
 	        _this.closedHandleBoxUpdatedCSV = function () {
-	            // console.log('closed')
+
 	            var closed = _this.state.classClosed;
 	            if (closed == 'open') {
 	                closed = 'closed';
@@ -48526,10 +48540,6 @@
 	                classClosed: closed,
 	                flag: false
 	            });
-	            // this.componentWillMount = () => {
-	            //     this.props.loadDataProduct()
-	            // }
-	            //this.componentWillReceiveProps
 	        };
 
 	        _this.handleBoxUpdatedCSV = function () {
@@ -48604,7 +48614,7 @@
 	                                    _react2.default.createElement(
 	                                        'span',
 	                                        null,
-	                                        _react2.default.createElement(_FlatButton2.default, { label: 'View discount', primary: true })
+	                                        _react2.default.createElement(_FlatButton2.default, { label: 'Discount history', primary: true })
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
@@ -48674,59 +48684,63 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'productList-box' },
+	                    { className: 'createdTable-list' },
 	                    _react2.default.createElement(
-	                        _Table.Table,
-	                        null,
+	                        'div',
+	                        { className: 'productList-box' },
 	                        _react2.default.createElement(
-	                            _Table.TableHeader,
-	                            { displaySelectAll: false,
-	                                adjustForCheckbox: false },
+	                            _Table.Table,
+	                            null,
 	                            _react2.default.createElement(
-	                                _Table.TableRow,
-	                                null,
+	                                _Table.TableHeader,
+	                                { displaySelectAll: false,
+	                                    adjustForCheckbox: false },
 	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
+	                                    _Table.TableRow,
 	                                    null,
-	                                    '\u2116'
-	                                ),
-	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
-	                                    null,
-	                                    'Category'
-	                                ),
-	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
-	                                    null,
-	                                    'Image'
-	                                ),
-	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
-	                                    null,
-	                                    'Name'
-	                                ),
-	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
-	                                    null,
-	                                    'Price'
-	                                ),
-	                                _react2.default.createElement(
-	                                    _Table.TableHeaderColumn,
-	                                    null,
-	                                    'Actions'
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        '\u2116'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        'Category'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        'Image'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        'Name'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        'Price'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableHeaderColumn,
+	                                        null,
+	                                        'Actions'
+	                                    )
 	                                )
 	                            )
 	                        )
-	                    )
+	                    ),
+	                    _react2.default.createElement(_listProduct2.default, null)
 	                ),
-	                _react2.default.createElement(_listProduct2.default, null),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'paginationBox' },
 	                    pages && pages.map(function (val, key) {
 	                        return _react2.default.createElement(
-	                            'button',
-	                            {
+	                            'div',
+	                            { className: 'pagginationButton',
 	                                onClick: _this2.handlePaginationList.bind(_this2), key: key, id: val },
 	                            val + 1
 	                        );
@@ -48807,7 +48821,7 @@
 
 
 	// module
-	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n}\n.choiceFile {\n    width: 1px;\n    visibility: hidden;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-radius: 10px;\n    border-color: #bfa6a6;\n    height: 120px;\n    background: #f5e2e2;\n    left: 450px;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n.closedBoxCSV:hover{\n    color: #0d93a5\n}", ""]);
+	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n    margin: 10px 0 50px 0;\n}\n.choiceFile {\n    width: 1px;\n    visibility: hidden;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-radius: 10px;\n    border-color: #bfa6a6;\n    height: 120px;\n    background: #f5e2e2;\n    left: 450px;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n.closedBoxCSV:hover{\n    color: #0d93a5\n}\n.pagginationButton{\n    display: inline;\n    padding: 10px 13px;\n    border-radius: 50%;\n    font-size: 12px;\n    margin: 2;\n    cursor: pointer;\n    background: #d7d6d7;\n}\n.pagginationButton:hover{\n    background: #b1b0b1;\n}\n.createdTable-list {\n    margin: 0 auto;\n    width: 1200px;\n}", ""]);
 
 	// exports
 
@@ -60512,112 +60526,136 @@
 	                'div',
 	                null,
 	                _react2.default.createElement(
+	                    'header',
+	                    { className: 'headerCurrentHistory' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Current history'
+	                    ),
+	                    _react2.default.createElement('i', { className: 'fas fa-history history-icon' })
+	                ),
+	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'productWrap' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'imageBox' },
-	                        _react2.default.createElement('img', { className: 'imageItem', src: renderListProduct.images })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        null,
+	                        { className: 'productItems' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'productBox' },
+	                            { className: 'imageBox' },
+	                            _react2.default.createElement('img', { className: 'imageItem', src: renderListProduct.images })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'productBox-wrap' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Name: ',
-	                                    renderListProduct.name
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Description: ',
-	                                    renderListProduct.descr
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Price: ',
-	                                    renderListProduct.price,
-	                                    '$'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Weight:  ',
-	                                    renderListProduct.weight
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    'Categor: ',
-	                                    renderListProduct.category
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'propsTitle' },
-	                                'Properties'
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'propsWrap' },
+	                                { className: 'productBox-props' },
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    null,
-	                                    Object.keys(renderListProduct.props).map(function (val, key) {
-	                                        return _react2.default.createElement(
-	                                            'div',
-	                                            { key: key },
-	                                            val,
-	                                            ': '
-	                                        );
-	                                    })
+	                                    { className: 'propsBlock-item' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title' },
+	                                        'Name: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        renderListProduct.name
+	                                    )
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    null,
-	                                    Object.values(renderListProduct.props).map(function (val, key) {
-	                                        return _react2.default.createElement(
-	                                            'div',
-	                                            { key: key },
-	                                            val
-	                                        );
-	                                    })
+	                                    { className: 'propsBlock-item' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title' },
+	                                        'Description:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        renderListProduct.descr
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'propsBlock-item' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title' },
+	                                        'Price: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        renderListProduct.price,
+	                                        '$'
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'propsBlock-item' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title' },
+	                                        'Weight: ',
+	                                        _react2.default.createElement('span', null),
+	                                        ' ',
+	                                        renderListProduct.weight
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'propsBlock-item' },
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title' },
+	                                        'Categor: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        null,
+	                                        renderListProduct.category
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'propsTitle' },
+	                                    'Properties'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'propsWrap' },
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        null,
+	                                        Object.keys(renderListProduct.props).map(function (val, key) {
+	                                            return _react2.default.createElement(
+	                                                'div',
+	                                                { key: key },
+	                                                val,
+	                                                ': '
+	                                            );
+	                                        })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'div',
+	                                        null,
+	                                        Object.values(renderListProduct.props).map(function (val, key) {
+	                                            return _react2.default.createElement(
+	                                                'div',
+	                                                { key: key },
+	                                                val
+	                                            );
+	                                        })
+	                                    )
 	                                )
 	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        _reactRouterDom.Link,
-	                        { to: '/' },
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'btnBack' },
-	                            _react2.default.createElement('i', { className: 'fas fa-arrow-circle-left btnBack-icon' })
-	                        )
+	                        ),
+	                        _react2.default.createElement(_reactRouterDom.Link, { to: '/' })
 	                    )
 	                )
 	            );
@@ -60694,7 +60732,7 @@
 
 
 	// module
-	exports.push([module.id, ".viewConteiner{\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    background-color:rgba(255, 255, 255, 0.9);\n    z-index: 1000;\n    top:0;\n    transition: top 1s ease-out 0.5s;\n   \n}\n.clearContainer{\n    display: none;\n}\n.imageBox{\n    width: 350px;\n    height: 450px;\n     \n}\n.imageItem{\n    width: 100%;\n}\n.productWrap{\n    display: flex;\n    padding: 100px 0 0 300px; \n}\n.productBox{\n    padding: 60px 10px;\n}\n.propsWrap{\n    display: flex;\n}\n.propsTitle{\n    padding: 20px 0 10px 0;\n}\n.btnBack{\n    height: 30px;\n    border: none;\n    cursor: pointer;\n}\n.btnBack-icon{\n    font-size: 30px;\n}\n.btnBack-icon:hover{\n    color: #62cbdc;\n}", ""]);
+	exports.push([module.id, ".viewConteiner{\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    background-color:rgba(255, 255, 255, 0.9);\n    z-index: 1000;\n    top:0;\n    transition: top 1s ease-out 0.5s;\n   \n}\n.headerCurrentHistory{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    color: #98989a99;\n    font-size: 30px;\n    height: 100px;\n    background: #eaeeff;\n    padding: 5px;\n    margin-bottom: 50px;\n}\n.clearContainer{\n    display: none;\n}\n.productBox-wrap{\n    width: 250px;\n}\n.imageBox{\n    width: 250px;\n    height: 250px;\n     \n}\n.imageItem{\n    width: 100%;\n}\n.productWrap{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding-bottom: 50px;\n}\n.productBox-props{\n    padding-top: 20px;\n    font-size: 15px;\n}\n.productItems{\n    width: 500px;\n    display: flex;\n}\n.propsWrap{\n    display: flex;\n    \n}\n.propsTitle{\n    padding: 20px 0 10px 0;\n}\n.btnBack{\n    height: 30px;\n    border: none;\n    cursor: pointer;\n}\n.btnBack-icon{\n    font-size: 30px;\n}\n.btnBack-icon:hover{\n    color: #62cbdc;\n}", ""]);
 
 	// exports
 
@@ -61553,15 +61591,6 @@
 
 	        _this.listAllHistory = function () {
 	            var history = _this.props.historyUser;
-	            var totalPrice = history.totalPrice;
-	            var resArr = [];
-	            for (var key in history.products) {
-	                resArr.push(history.products[key]);
-	            }
-	            resArr.forEach(function (element) {
-	                console.log(element.item.name);
-	            });
-	            console.log(resArr);
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -61619,7 +61648,7 @@
 	                                )
 	                            )
 	                        ),
-	                        resArr.map(function (el, key) {
+	                        history.newFiltered.map(function (el, key) {
 	                            return _react2.default.createElement(
 	                                _Table.Table,
 	                                { key: key },
@@ -61924,6 +61953,7 @@
 	            var resultObj = {
 	                name: _this.state.name,
 	                data: _this.state.data,
+	                active: true,
 	                product: _this.state.products
 	            };
 	            _this.props.createDiscount(resultObj);
@@ -62063,6 +62093,11 @@
 	                                        _react2.default.createElement(
 	                                            _Table.TableHeaderColumn,
 	                                            null,
+	                                            'Id'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            _Table.TableHeaderColumn,
+	                                            null,
 	                                            'Image'
 	                                        ),
 	                                        _react2.default.createElement(
@@ -62104,6 +62139,11 @@
 	                                                _react2.default.createElement(
 	                                                    _Table.TableRowColumn,
 	                                                    null,
+	                                                    el._id
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    _Table.TableRowColumn,
+	                                                    null,
 	                                                    _react2.default.createElement(
 	                                                        'div',
 	                                                        { className: 'imageBox-table' },
@@ -62126,7 +62166,7 @@
 	                                                    null,
 	                                                    _react2.default.createElement(_RaisedButton2.default, { onClick: function onClick(event) {
 	                                                            return _this2.updateCheck(el, event);
-	                                                        }, label: 'chose product', secondary: true })
+	                                                        }, label: 'choose' })
 	                                                )
 	                                            )
 	                                        )
@@ -62139,8 +62179,8 @@
 	                            { className: 'paginationBox' },
 	                            pages && pages.map(function (val, key) {
 	                                return _react2.default.createElement(
-	                                    'button',
-	                                    {
+	                                    'div',
+	                                    { className: 'pagginationButton',
 	                                        onClick: _this2.handlePaginationList.bind(_this2), key: key, id: val },
 	                                    val + 1
 	                                );
@@ -65086,9 +65126,7 @@
 	        _this.listAllDiscount = function () {
 	            var discounts = _this.props.allDiscounts;
 	            discounts.forEach(function (el) {
-	                for (var key in el.products) {
-	                    console.log(el.products[key]);
-	                }
+	                console.log(new Date(el.data).toLocaleString('en-US', { timeZone: 'Europe/Helsinki' }));
 	            });
 
 	            return _react2.default.createElement(
@@ -65120,22 +65158,41 @@
 	                                    _react2.default.createElement(
 	                                        _Table.TableRowColumn,
 	                                        null,
-	                                        el.data
+	                                        new Date(el.data).toLocaleString('en-US', { timeZone: 'Europe/Helsinki' })
 	                                    ),
-	                                    el.product.map(function (el, key) {
-	                                        return _react2.default.createElement(
-	                                            _Table.TableRowColumn,
-	                                            { key: key },
-	                                            el.discount
-	                                        );
-	                                    }),
-	                                    el.product.map(function (el, key) {
-	                                        return _react2.default.createElement(
-	                                            _Table.TableRowColumn,
-	                                            { key: key },
-	                                            el.productId
-	                                        );
-	                                    })
+	                                    el.active == false && _react2.default.createElement(
+	                                        _Table.TableRowColumn,
+	                                        null,
+	                                        'unavailable'
+	                                    ),
+	                                    el.active == true && _react2.default.createElement(
+	                                        _Table.TableRowColumn,
+	                                        null,
+	                                        'available'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableRowColumn,
+	                                        null,
+	                                        el.product.map(function (el, key) {
+	                                            return _react2.default.createElement(
+	                                                'div',
+	                                                { key: key },
+	                                                el.discount,
+	                                                ' %'
+	                                            );
+	                                        })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        _Table.TableRowColumn,
+	                                        null,
+	                                        el.product.map(function (el, key) {
+	                                            return _react2.default.createElement(
+	                                                'div',
+	                                                { key: key },
+	                                                el.productId
+	                                            );
+	                                        })
+	                                    )
 	                                )
 	                            )
 	                        )
@@ -65155,7 +65212,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.props.allDiscounts);
+	            //console.log(this.props.allDiscounts)
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -65165,7 +65222,7 @@
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        'Discount'
+	                        'Discount history'
 	                    ),
 	                    _react2.default.createElement('i', { className: 'fas fa-gift discount-icon' })
 	                ),
@@ -65197,7 +65254,12 @@
 	                            _react2.default.createElement(
 	                                _Table.TableHeaderColumn,
 	                                null,
-	                                'Discount % '
+	                                'State'
+	                            ),
+	                            _react2.default.createElement(
+	                                _Table.TableHeaderColumn,
+	                                null,
+	                                'Discount'
 	                            ),
 	                            _react2.default.createElement(
 	                                _Table.TableHeaderColumn,
@@ -65328,7 +65390,7 @@
 
 
 	// module
-	exports.push([module.id, ".discountImage-wrapp{\n    width: 30px;\n    padding: 20px 0;\n    \n}\n.discountImages{\n    width: 100%;\n}\n.outputFor-elem{\n   padding: 30px 0;\n}\n.backHome-discount{\n    display: flex;\n    justify-content: center;\n    margin-top: 30px;\n}\n.foo{\n    margin-right: 20px;\n}", ""]);
+	exports.push([module.id, ".discountImage-wrapp{\n    width: 30px;\n    padding: 20px 0;\n    \n}\n.discountImages{\n    width: 100%;\n}\n.outputFor-elem{\n   padding: 30px 0;\n}\n.backHome-discount{\n    display: flex;\n    justify-content: center;\n    margin-top: 30px;\n}\n.foo{\n    margin-right: 20px;\n}\n.foos{\n    display: block;\n}", ""]);
 
 	// exports
 
@@ -65355,15 +65417,260 @@
 
 	var _reactRouterDom = __webpack_require__(367);
 
+	__webpack_require__(512);
+
+	var _RaisedButton = __webpack_require__(470);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _createProps = __webpack_require__(622);
+
+	var _reactRedux = __webpack_require__(57);
+
+	__webpack_require__(623);
+
+	__webpack_require__(592);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Properties = function (_Component) {
+	    _inherits(Properties, _Component);
+
+	    function Properties(props) {
+	        _classCallCheck(this, Properties);
+
+	        var _this = _possibleConstructorReturn(this, (Properties.__proto__ || Object.getPrototypeOf(Properties)).call(this, props));
+
+	        _this.handleSubmitProps = function () {
+	            console.log('hii');
+	            var obj = {
+	                name: _this.state.name,
+	                category: _this.state.category
+	            };
+	            _this.props.createProperties(obj);
+	        };
+
+	        _this.handleChangeById = function (event) {
+	            _this.setState(_defineProperty({}, event.currentTarget.id, event.target.value));
+	        };
+
+	        _this.state = {
+	            name: '',
+	            category: ''
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Properties, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'header',
+	                    { className: 'headerEdit create' },
+	                    _react2.default.createElement(
+	                        'p',
+	                        null,
+	                        'Create properties'
+	                    ),
+	                    _react2.default.createElement('i', { className: 'fas fa-wrench hederEdit-icon' })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'propsWrapper' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'propsContainer' },
+	                        _react2.default.createElement(
+	                            'p',
+	                            { className: 'titleName-props' },
+	                            'Name'
+	                        ),
+	                        _react2.default.createElement(_TextField2.default, {
+	                            className: 'createProd-input',
+	                            id: 'name',
+	                            name: 'descr',
+	                            hintText: 'name',
+	                            fullWidth: true,
+	                            onChange: this.handleChangeById
+	                        }),
+	                        _react2.default.createElement(
+	                            'p',
+	                            { className: 'titleName-props' },
+	                            'Category'
+	                        ),
+	                        _react2.default.createElement(_TextField2.default, {
+	                            className: 'createProd-input',
+	                            id: 'category',
+	                            name: 'descr',
+	                            hintText: 'category',
+	                            fullWidth: true,
+	                            onChange: this.handleChangeById
+	                        }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'propsBtn' },
+	                            _react2.default.createElement(_RaisedButton2.default, { onClick: this.handleSubmitProps, label: 'Create new properties', primary: true })
+	                        ),
+	                        _react2.default.createElement(
+	                            _reactRouterDom.Link,
+	                            { to: '/create' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'propsBtn' },
+	                                _react2.default.createElement(_RaisedButton2.default, { label: 'Back to create page', primary: false })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Properties;
+	}(_react.Component);
+
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        propsData: state.postDatas
+	    };
+	};
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { createProperties: _createProps.createProperties })(Properties);
+
+/***/ }),
+/* 622 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.createProperties = undefined;
+
+	var _axios = __webpack_require__(481);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var createProperties = exports.createProperties = function createProperties(data) {
+	    return function (dispatch) {
+	        _axios2.default.post('/properties', data).then(function (respons) {
+	            dispatch({
+	                type: 'POST_AUTH',
+	                payload: respons.data
+	            });
+	        });
+	    };
+	};
+
+/***/ }),
+/* 623 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	
+	var content = __webpack_require__(624);
+
+	if(typeof content === 'string') content = [[module.id, content, '']];
+
+	var transform;
+	var insertInto;
+
+
+
+	var options = {"hmr":true}
+
+	options.transform = transform
+	options.insertInto = undefined;
+
+	var update = __webpack_require__(478)(content, options);
+
+	if(content.locals) module.exports = content.locals;
+
+	if(false) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./createdProps.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./createdProps.css");
+
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+			var locals = (function(a, b) {
+				var key, idx = 0;
+
+				for(key in a) {
+					if(!b || a[key] !== b[key]) return false;
+					idx++;
+				}
+
+				for(key in b) idx--;
+
+				return idx === 0;
+			}(content.locals, newContent.locals));
+
+			if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+			update(newContent);
+		});
+
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ }),
+/* 624 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(477)(false);
+	// imports
+
+
+	// module
+	exports.push([module.id, ".propsWrapper {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n}\n.propsContainer {\n    width: 400px;\n    text-align: center\n}\n.propsBtn {\n    margin: 20px;\n}", ""]);
+
+	// exports
+
+
+/***/ }),
+/* 625 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _TextField = __webpack_require__(401);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _reactRouterDom = __webpack_require__(367);
+
 	var _RaisedButton = __webpack_require__(470);
 
 	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
 	var _reactRedux = __webpack_require__(57);
 
-	var _auth = __webpack_require__(622);
+	var _auth = __webpack_require__(626);
 
-	__webpack_require__(623);
+	__webpack_require__(627);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65480,7 +65787,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { loginAdmin: _auth.loginAdmin })(Login);
 
 /***/ }),
-/* 622 */
+/* 626 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65508,11 +65815,11 @@
 	};
 
 /***/ }),
-/* 623 */
+/* 627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	
-	var content = __webpack_require__(624);
+	var content = __webpack_require__(628);
 
 	if(typeof content === 'string') content = [[module.id, content, '']];
 
@@ -65558,7 +65865,7 @@
 	}
 
 /***/ }),
-/* 624 */
+/* 628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(477)(false);
@@ -65572,7 +65879,7 @@
 
 
 /***/ }),
-/* 625 */
+/* 629 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65583,17 +65890,17 @@
 
 	var _redux = __webpack_require__(37);
 
-	var _reduxThunk = __webpack_require__(626);
+	var _reduxThunk = __webpack_require__(630);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxPromiseMiddleware = __webpack_require__(627);
+	var _reduxPromiseMiddleware = __webpack_require__(631);
 
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 
-	var _reduxDevtoolsExtension = __webpack_require__(629);
+	var _reduxDevtoolsExtension = __webpack_require__(633);
 
-	var _reducers = __webpack_require__(630);
+	var _reducers = __webpack_require__(634);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -65602,7 +65909,7 @@
 	exports.default = (0, _redux.createStore)(_reducers2.default, (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
 
 /***/ }),
-/* 626 */
+/* 630 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -65630,7 +65937,7 @@
 	exports['default'] = thunk;
 
 /***/ }),
-/* 627 */
+/* 631 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65646,7 +65953,7 @@
 
 	exports.default = promiseMiddleware;
 
-	var _isPromise = __webpack_require__(628);
+	var _isPromise = __webpack_require__(632);
 
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 
@@ -65843,7 +66150,7 @@
 	}
 
 /***/ }),
-/* 628 */
+/* 632 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -65864,7 +66171,7 @@
 	}
 
 /***/ }),
-/* 629 */
+/* 633 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65890,7 +66197,7 @@
 
 
 /***/ }),
-/* 630 */
+/* 634 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65901,47 +66208,47 @@
 
 	var _redux = __webpack_require__(37);
 
-	var _PropsData = __webpack_require__(631);
+	var _PropsData = __webpack_require__(635);
 
 	var _PropsData2 = _interopRequireDefault(_PropsData);
 
-	var _createProduct = __webpack_require__(632);
+	var _createProduct = __webpack_require__(636);
 
 	var _createProduct2 = _interopRequireDefault(_createProduct);
 
-	var _getAllProduct = __webpack_require__(633);
+	var _getAllProduct = __webpack_require__(637);
 
 	var _getAllProduct2 = _interopRequireDefault(_getAllProduct);
 
-	var _productView = __webpack_require__(634);
+	var _productView = __webpack_require__(638);
 
 	var _productView2 = _interopRequireDefault(_productView);
 
-	var _productWichUpdate = __webpack_require__(635);
+	var _productWichUpdate = __webpack_require__(639);
 
 	var _productWichUpdate2 = _interopRequireDefault(_productWichUpdate);
 
-	var _importToCSV = __webpack_require__(636);
+	var _importToCSV = __webpack_require__(640);
 
 	var _importToCSV2 = _interopRequireDefault(_importToCSV);
 
-	var _getAllHistory = __webpack_require__(637);
+	var _getAllHistory = __webpack_require__(641);
 
 	var _getAllHistory2 = _interopRequireDefault(_getAllHistory);
 
-	var _getAllUsers = __webpack_require__(638);
+	var _getAllUsers = __webpack_require__(642);
 
 	var _getAllUsers2 = _interopRequireDefault(_getAllUsers);
 
-	var _getCurrentDataHistory = __webpack_require__(639);
+	var _getCurrentDataHistory = __webpack_require__(643);
 
 	var _getCurrentDataHistory2 = _interopRequireDefault(_getCurrentDataHistory);
 
-	var _loadAllDiscount = __webpack_require__(640);
+	var _loadAllDiscount = __webpack_require__(644);
 
 	var _loadAllDiscount2 = _interopRequireDefault(_loadAllDiscount);
 
-	var _auth = __webpack_require__(641);
+	var _auth = __webpack_require__(645);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -65964,7 +66271,7 @@
 	exports.default = redusers;
 
 /***/ }),
-/* 631 */
+/* 635 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -65987,7 +66294,7 @@
 	}
 
 /***/ }),
-/* 632 */
+/* 636 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66011,7 +66318,7 @@
 	}
 
 /***/ }),
-/* 633 */
+/* 637 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66056,7 +66363,7 @@
 	}
 
 /***/ }),
-/* 634 */
+/* 638 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66080,7 +66387,7 @@
 	}
 
 /***/ }),
-/* 635 */
+/* 639 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66106,7 +66413,7 @@
 	}
 
 /***/ }),
-/* 636 */
+/* 640 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66130,7 +66437,7 @@
 	}
 
 /***/ }),
-/* 637 */
+/* 641 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66158,7 +66465,7 @@
 	}
 
 /***/ }),
-/* 638 */
+/* 642 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66186,7 +66493,7 @@
 	}
 
 /***/ }),
-/* 639 */
+/* 643 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66213,7 +66520,7 @@
 	}
 
 /***/ }),
-/* 640 */
+/* 644 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66239,7 +66546,7 @@
 	}
 
 /***/ }),
-/* 641 */
+/* 645 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66247,17 +66554,20 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.default = post;
-	function post() {
+	exports.default = postAuth;
+	function postAuth() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	    var action = arguments[1];
 
-
-	    if (action.type === 'POST_AUTH') {
-	        return setTokenToLocalStorage(action.payload);
-	    } else {
-	        return state;
+	    switch (action.type) {
+	        case 'POST_AUTH':
+	            return setTokenToLocalStorage(action.payload);
+	            break;
+	        default:
+	            return state;
 	    }
+
+	    //  else return state   
 	}
 
 	/** logic for reducer **/
@@ -66269,7 +66579,7 @@
 	}
 
 /***/ }),
-/* 642 */
+/* 646 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';

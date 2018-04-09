@@ -27,10 +27,9 @@ class viewDiscount extends Component {
     listAllDiscount = () => {
     let discounts = this.props.allDiscounts
         discounts.forEach(el => {
-           for (let key in el.products){
-              console.log(el.products[key])
-           } 
+           console.log(new Date(el.data).toLocaleString('en-US', { timeZone: 'Europe/Helsinki' })) 
         })
+        
 
         return (
             <div>
@@ -41,13 +40,25 @@ class viewDiscount extends Component {
                             <TableRow>
                                 <TableRowColumn>{key+1}</TableRowColumn>
                                 <TableRowColumn>{el.name}</TableRowColumn>
-                                <TableRowColumn>{el.data}</TableRowColumn>
-                                {el.product.map((el,key) => 
-                                <TableRowColumn key={key}>{el.discount}</TableRowColumn>
+                                <TableRowColumn>
+                                    {new Date(el.data).toLocaleString('en-US', { timeZone: 'Europe/Helsinki' })}
+                                </TableRowColumn>
+                                {el.active == false && <TableRowColumn>unavailable</TableRowColumn>}
+                                {el.active == true  && <TableRowColumn>available</TableRowColumn>} 
+                                <TableRowColumn>
+                                    {el.product.map((el,key) => 
+                                    <div key={key}>
+                                        {el.discount} %
+                                    </div>
                                 )}
-                                 {el.product.map((el,key) => 
-                                <TableRowColumn key={key}>{el.productId}</TableRowColumn>
+                                </TableRowColumn>
+                                <TableRowColumn>
+                                    {el.product.map((el,key) => 
+                                    <div key={key}>
+                                        {el.productId}
+                                    </div>
                                 )}
+                                 </TableRowColumn>
                             </TableRow>
                          </TableBody>
                     </Table>
@@ -58,11 +69,11 @@ class viewDiscount extends Component {
     }    
 
     render() {
-       console.log(this.props.allDiscounts)
+       //console.log(this.props.allDiscounts)
         return(
             <div>
                 <header className="headerCurrentHistory">
-                    <p>Discount</p>
+                    <p>Discount history</p>
                     <i class="fas fa-gift discount-icon"></i>
                 </header>
                 <Table >
@@ -72,7 +83,8 @@ class viewDiscount extends Component {
                         <TableHeaderColumn>№</TableHeaderColumn>
                         <TableHeaderColumn>Discount name</TableHeaderColumn>
                         <TableHeaderColumn>Data</TableHeaderColumn>
-                        <TableHeaderColumn>Discount % </TableHeaderColumn>
+                        <TableHeaderColumn>State</TableHeaderColumn>
+                        <TableHeaderColumn>Discount</TableHeaderColumn>
                         <TableHeaderColumn>Produc id </TableHeaderColumn>
                     </TableRow>
                     </TableHeader>

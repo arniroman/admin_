@@ -3,8 +3,9 @@ const Properties = require('../models/properties')
 
 module.exports = {
    
-    newProperties: (properties,callback) => {
-        const propertiesDb = new Properties(properties)
+    newProperties: (req,res) => {
+        console.log(req.body)
+        const propertiesDb = new Properties(req.body)
               propertiesDb.save()
                           .then((doc) => {
                                  res.send(doc)

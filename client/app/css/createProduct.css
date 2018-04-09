@@ -110,6 +110,7 @@
 .paginationBox{
     text-align: center;
     padding: 20px 0;
+    margin: 10px 0 50px 0;
 }
 .choiceFile {
     width: 1px;
@@ -145,4 +146,20 @@
 }
 .closedBoxCSV:hover{
     color: #0d93a5
+}
+.pagginationButton{
+    display: inline;
+    padding: 10px 13px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin: 2;
+    cursor: pointer;
+    background: #d7d6d7;
+}
+.pagginationButton:hover{
+    background: #b1b0b1;
+}
+.createdTable-list {
+    margin: 0 auto;
+    width: 1200px;
 }

@@ -171,9 +171,10 @@ class Create extends Component {
                         <p className="titleName-props">Category</p>
                             <TextField
                                 className="createProd-input"
+                                require
                                 id="category"
                                 name="Category"
-                                hintText="Full width"
+                                hintText="Category"
                                 fullWidth={true}
                                 onChange = {this.handleChangeById}
                             />
@@ -181,7 +182,7 @@ class Create extends Component {
                             <TextField
                                 className="createProd-input"
                                 name="Tags"
-                                hintText="Full width"
+                                hintText="Tags"
                                 fullWidth={true}
                                 onChange={this.handleChangeTags}
                             />
@@ -196,6 +197,11 @@ class Create extends Component {
                                     <MenuItem >
                                         <p className="properties-title">Properties</p>
                                     </MenuItem>
+                                    <div className='createProps-btn' >
+                                        <Link to='/createProperties'>
+                                            <RaisedButton label="Create new properties" primary={true} /> 
+                                        </Link>
+                                    </div>
                                     <MenuItem>
                                     {renderProps.map((item,key)=>
                                         <div className="propsWrap-create" key={key}>
@@ -216,7 +222,7 @@ class Create extends Component {
                                     className="createProd-input"
                                     id="images"
                                     name="Images"
-                                    hintText="Full width"
+                                    hintText="images"
                                     fullWidth={true}
                                     onChange = {this.handleChangeById}
                                 />

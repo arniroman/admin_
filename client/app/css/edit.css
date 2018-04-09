@@ -8,12 +8,26 @@
     transition: top 1s ease-out 0.5s;
    
 }
+.headerCurrentHistory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #98989a99;
+    font-size: 30px;
+    height: 100px;
+    background: #eaeeff;
+    padding: 5px;
+    margin-bottom: 50px;
+}
 .clearContainer{
     display: none;
 }
+.productBox-wrap{
+    width: 250px;
+}
 .imageBox{
-    width: 350px;
-    height: 450px;
+    width: 250px;
+    height: 250px;
      
 }
 .imageItem{
@@ -21,13 +35,21 @@
 }
 .productWrap{
     display: flex;
-    padding: 100px 0 0 300px; 
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
 }
-.productBox{
-    padding: 60px 10px;
+.productBox-props{
+    padding-top: 20px;
+    font-size: 15px;
+}
+.productItems{
+    width: 500px;
+    display: flex;
 }
 .propsWrap{
     display: flex;
+    
 }
 .propsTitle{
     padding: 20px 0 10px 0;

@@ -3,6 +3,7 @@ const path = require("path")
 const bodyParser = require('body-parser')
 const config = require('./config')
 const mongoose = require('mongoose')
+const discount = require('./helpers/croneForDiscount')
 mongoose.Promise = require('bluebird')
 const fileUpload = require('express-fileupload')
 
@@ -37,7 +38,8 @@ const routes = require('./routs/api/routes')(app)
 
 app.get("*", (request, response) => {
 	response.sendFile(path.resolve(__dirname, "../client/", "index.html"))
-  });config.port 
+  })
+
 
 module.exports.start = () => app.listen(process.env.PORT || 8800, () => console.log('App listening on port '+ config.port))
 

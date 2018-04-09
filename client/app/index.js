@@ -11,6 +11,7 @@ import shoppingHistory from './components/History/shoppingHistory'
 import currentDataHistory from './components/History/currentDataHistory'
 import setDiscountView from './components/Discount/SetDiscounyView'
 import viewDiscount from './components/Discount/viewDiscounts'
+import Properties from './components/Create/createProps'
 import Login from './components/Auth/login'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -32,6 +33,7 @@ render(
 						<PrivateRoute exact path='/viewCurrentHistory' component={currentDataHistory}/>
 						<PrivateRoute exact path='/setDiscount' component={setDiscountView}/>
 						<PrivateRoute  path='/viewDiscount' component={viewDiscount}/>
+						<PrivateRoute  path='/createProperties' component={Properties}/>
 					</div>
 			</Router>
 		</MuiThemeProvider>

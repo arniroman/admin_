@@ -1,5 +1,6 @@
 import React,{ Component } from 'react'
 import '../../css/edit.css'
+
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -14,26 +15,36 @@ class ProductDescr extends Component {
        console.log(renderListProduct)
         return(
             <div>
+                <header className="headerCurrentHistory">
+                <p>Current history</p>
+                <i class="fas fa-history history-icon"></i>
+            </header>
                  <div className="productWrap">
+                 <div className="productItems" >
                     <div className="imageBox">
                         <img className="imageItem" src={renderListProduct.images} />
                     </div>
-                    <div>
-                        <div className="productBox">
-                            <div>
-                                <span>Name: {renderListProduct.name}</span>   
+                    <div className="productBox-wrap">
+                        <div className="productBox-props">
+                            <div className="propsBlock-item" >
+                                <span className="propsBlock-title" >Name: </span>
+                                <span>{renderListProduct.name}</span>   
                             </div>
-                            <div>
-                                <span>Description: {renderListProduct.descr}</span> 
+                            <div className="propsBlock-item">
+                                <span className="propsBlock-title">Description:</span> 
+                                <span>{renderListProduct.descr}</span> 
                             </div>
-                            <div>
-                                <span>Price: {renderListProduct.price}$</span> 
+                            <div className="propsBlock-item">
+                                <span className="propsBlock-title">Price: </span>
+                                <span>{renderListProduct.price}$</span> 
                             </div>
-                            <div>
-                                <span>Weight:  {renderListProduct.weight}</span> 
+                            <div className="propsBlock-item">
+                                <span className="propsBlock-title">Weight: <span>
+                                </span> {renderListProduct.weight}</span> 
                             </div>
-                            <div>
-                                <span>Categor: {renderListProduct.category}</span> 
+                            <div className="propsBlock-item">
+                                <span className="propsBlock-title">Categor: </span>
+                                <span>{renderListProduct.category}</span> 
                             </div>
                             <div className="propsTitle">Properties</div>
                             <div className="propsWrap">
@@ -52,10 +63,9 @@ class ProductDescr extends Component {
                         </div>
                     </div>
                     <Link to = "/">
-                    <span className="btnBack">
-                      <i class="fas fa-arrow-circle-left btnBack-icon"></i>
-                    </span>
-                    </Link>  
+                   
+                    </Link> 
+                    </div> 
                 </div>               
             </div>
         )

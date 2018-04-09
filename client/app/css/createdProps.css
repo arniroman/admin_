@@ -1,0 +1,13 @@
+.propsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.propsContainer {
+    width: 400px;
+    text-align: center
+}
+.propsBtn {
+    margin: 20px;
+}

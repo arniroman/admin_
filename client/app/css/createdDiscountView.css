@@ -17,3 +17,6 @@
 .foo{
     margin-right: 20px;
 }
+.foos{
+    display: block;
+}

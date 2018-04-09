@@ -29,15 +29,6 @@ class currentDataHistory extends Component {
     
     listAllHistory = () => {
         let history = this.props.historyUser
-        let totalPrice = history.totalPrice
-        let resArr = []
-        for(let key in history.products){
-            resArr.push(history.products[key])  
-        }
-        resArr.forEach(element => {
-            console.log(element.item.name)
-        });
-        console.log(resArr)
         return (
             <div>
             <header className="headerCurrentHistory">
@@ -58,7 +49,7 @@ class currentDataHistory extends Component {
                                 </TableRow>
                         </TableHeader>
                     </Table>  
-                        {resArr.map((el,key) =>
+                        {history.newFiltered.map((el,key) =>
                             <Table key={key}>
                             <TableBody displayRowCheckbox={false} >
                                 <TableRow>

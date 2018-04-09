@@ -2,8 +2,7 @@ const router = require('express').Router()
 const controllers = require('../../controllers/properties')
 
 router.post('/',(req,res) => {
-    const properties = req.body
-    controllers.newProperties(properties,req,res)
+    controllers.newProperties(req,res)
 })
 
 router.get('/',(req,res) => {

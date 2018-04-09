@@ -36,7 +36,6 @@ class CreatedProduct extends Component {
     }
     
     ipmortCSV = (event) => {
-        
         event.preventDefault()
         this.props.ipmortToCSV(this.state.data) 
         this.setState({
@@ -62,7 +61,7 @@ class CreatedProduct extends Component {
     }
   
     closedHandleBoxUpdatedCSV = () => {
-       // console.log('closed')
+       
         let closed = this.state.classClosed
         if(closed == 'open'){
            closed = 'closed'
@@ -73,10 +72,6 @@ class CreatedProduct extends Component {
             classClosed: closed,
             flag       : false
         })
-        // this.componentWillMount = () => {
-        //     this.props.loadDataProduct()
-        // }
-        //this.componentWillReceiveProps
     }
     
     handleBoxUpdatedCSV = () => {
@@ -118,7 +113,7 @@ class CreatedProduct extends Component {
                             <div className="countGoods">
                                 <Link to='/viewDiscount'>
                                     <span>
-                                        <FlatButton label="View discount" primary={true} />
+                                        <FlatButton label="Discount history" primary={true} />
                                     </span>
                                 </Link>
                                 <Link to='/setDiscount'>
@@ -161,27 +156,30 @@ class CreatedProduct extends Component {
                         </label>
                     </div>
                 </div>
-                 <div className="productList-box" >
-                     <Table >
-                        <TableHeader displaySelectAll={false}
-                                     adjustForCheckbox={false}>
-                            <TableRow>
-                                <TableHeaderColumn>№</TableHeaderColumn>
-                                <TableHeaderColumn>Category</TableHeaderColumn>
-                                <TableHeaderColumn>Image</TableHeaderColumn>
-                                <TableHeaderColumn>Name</TableHeaderColumn>
-                                <TableHeaderColumn>Price</TableHeaderColumn>
-                                <TableHeaderColumn>Actions</TableHeaderColumn>
-                            </TableRow>
-                        </TableHeader>
-                       </Table>  
-                 </div> 
+                <div className='createdTable-list' >
+                    <div className="productList-box" >
+                        <Table >
+                            <TableHeader displaySelectAll={false}
+                                         adjustForCheckbox={false}>
+                                <TableRow>
+                                    <TableHeaderColumn>№</TableHeaderColumn>
+                                    <TableHeaderColumn>Category</TableHeaderColumn>
+                                    <TableHeaderColumn>Image</TableHeaderColumn>
+                                    <TableHeaderColumn>Name</TableHeaderColumn>
+                                    <TableHeaderColumn>Price</TableHeaderColumn>
+                                    <TableHeaderColumn>Actions</TableHeaderColumn>
+                                </TableRow>
+                            </TableHeader>
+                        </Table>  
+                    </div>
+                  
                 <ListProduct />
+                </div> 
                 <div className = "paginationBox">
                     {pages&&pages.map((val,key)=>  
-                        <button 
-                        onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
-                        </button>)}
+                        <div className='pagginationButton' 
+                            onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
+                        </div>)}  
                 </div>
 			</div>
 		)

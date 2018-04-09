@@ -1,11 +1,14 @@
-export default function post (state=null, action) {
+export default function postAuth (state=null, action) {
+    switch (action.type){
+       case 'POST_AUTH':
+       return setTokenToLocalStorage(action.payload)
+       break
+       default:
+       return state
+    }
     
-    if (action.type === 'POST_AUTH'){ 
-        return setTokenToLocalStorage(action.payload)
-    }
-     else {
-        return state   
-    }
+    
+   //  else return state   
 }
 
 

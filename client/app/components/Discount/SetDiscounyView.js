@@ -124,6 +124,7 @@ class SetDiscountView extends Component {
             let resultObj = {
                 name    : this.state.name,
                 data    : this.state.data,
+                active  : true,
                 product : this.state.products
             }
               this.props.createDiscount(resultObj)
@@ -197,6 +198,7 @@ class SetDiscountView extends Component {
                                          adjustForCheckbox={false}>
                                 <TableRow>
                                     <TableHeaderColumn>№</TableHeaderColumn>
+                                    <TableHeaderColumn>Id</TableHeaderColumn>
                                     <TableHeaderColumn>Image</TableHeaderColumn>
                                     <TableHeaderColumn>Name</TableHeaderColumn>
                                     <TableHeaderColumn>Price</TableHeaderColumn>
@@ -210,6 +212,7 @@ class SetDiscountView extends Component {
                                             <TableBody  displayRowCheckbox={false}>
                                                 <TableRow>
                                                 <TableRowColumn>{key+1}</TableRowColumn>
+                                                <TableRowColumn>{el._id}</TableRowColumn>
                                                     <TableRowColumn>
                                                             <div className="imageBox-table">
                                                                 <img className="imageTable" src={el.images} />
@@ -218,7 +221,7 @@ class SetDiscountView extends Component {
                                                         <TableRowColumn>{el.name}</TableRowColumn>
                                                         <TableRowColumn>{el.price}$</TableRowColumn>
                                                         <TableRowColumn>
-                                                        <RaisedButton onClick={(event) => this.updateCheck(el,event)} label="chose product" secondary={true} />
+                                                        <RaisedButton onClick={(event) => this.updateCheck(el,event)} label="choose"/>
                                                     </TableRowColumn>
                                                 </TableRow>
                                             </TableBody>
@@ -228,9 +231,9 @@ class SetDiscountView extends Component {
                             </div>
                             <div className = "paginationBox">
                                 {pages&&pages.map((val,key)=>  
-                                    <button
-                                    onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
-                                    </button>)}
+                                    <div className='pagginationButton'
+                                        onClick={this.handlePaginationList.bind(this)} key={key} id={val}>{val+1}
+                                    </div>)}
                         </div>
                             <div className="discountBtn_wrapp">
                                 <div className="createDiscount-btn">

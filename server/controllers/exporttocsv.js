@@ -11,12 +11,12 @@ module.exports = {
         const filename  = "products.csv";
         Product.find({})
                .lean()
-               //.exec({})
                .then((products)=>{
                       res.setHeader('Content-Type', 'text/csv')
                       res.setHeader("Content-Disposition", 'attachment; filename='+filename)
                       const json2csvParser = new Json2csvParser();
                       const csv = json2csvParser.parse(products);
+                      console.log(csv)
                       res.send(csv)
                })
                .catch(err => {

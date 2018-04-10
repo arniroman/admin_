@@ -171,7 +171,6 @@ class Create extends Component {
                         <p className="titleName-props">Category</p>
                             <TextField
                                 className="createProd-input"
-                                require
                                 id="category"
                                 name="Category"
                                 hintText="Category"

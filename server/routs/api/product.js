@@ -3,8 +3,7 @@ const controllers = require('../../controllers/product')
 
 
 router.post('/',(req,res) => {
-    const result = req.body.product
-    controllers.newProduct(result,req,res)
+    controllers.newProduct(req,res)
 })
 
 router.get('/:id',(req,res,next)=>{
@@ -12,13 +11,11 @@ router.get('/:id',(req,res,next)=>{
 })
 
 router.delete('/:id',(req,res)=>{
-    const id = req.params.id
-    controllers.deleteProduct(id,req,res)
+    controllers.deleteProduct(req,res)
 })
 
 router.put('/:id',(req,res)=>{
-    const id = req.params.id
-    controllers.updateProduct(id,req,res)
+    controllers.updateProduct(req,res)
 })
 
 module.exports = router

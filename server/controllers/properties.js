@@ -8,10 +8,13 @@ module.exports = {
         const propertiesDb = new Properties(req.body)
               propertiesDb.save()
                           .then((doc) => {
-                                 res.send(doc)
+                                 res.send({
+                                    message:'properties successfully added!',
+                                    doc
+                                 })
                               })
                           .catch(err => {
-                            res.status(400).send(err);
+                            res.send(err);
                             console.log("we got an error");
                           })
     },

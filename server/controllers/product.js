@@ -3,11 +3,17 @@ const Product = require('../models/product')
 
 module.exports = {
 
-    newProduct: (product,req,res) => {
-        const productDb = new Product(product)
+    newProduct: (req,res) => {
+        console.log(req.body)
+        const productDb = new Product(req.body)
         productDb.save()
                  .then((doc) => {
-                        res.send(doc)
+                        res.send(
+                            {
+                                message:'product successfully added!',
+                                doc
+                            }
+                        )
                         })
                  .catch(err => {
                     res.status(400).send(err);
@@ -50,10 +56,9 @@ module.exports = {
             })
     },
 
-    deleteProduct: (productId,req,res) => {
-        Product.findByIdAndRemove(productId)
+    deleteProduct: (req,res) => {
+        Product.findByIdAndRemove(req.params.id)
                .then((doc) => { 
-                   console.log(doc,'dooc')
                       res.send(doc)
                     })
                .catch(err => {
@@ -62,11 +67,14 @@ module.exports = {
                       })
     },
 
-    updateProduct: (productId,req,res) => {
+    updateProduct: (req,res) => {
         console.log(req.body)
-        Product.findByIdAndUpdate(productId,req.body)
+        Product.findByIdAndUpdate(req.params.id,req.body)
                .then((doc) => {
-                res.send(doc)
+                res.send({
+                    message: 'product updated!',
+                    doc
+                })
                 })
                .catch(err => {
                res.status(400).send(err)

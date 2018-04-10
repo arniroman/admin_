@@ -31854,7 +31854,6 @@
 	                        ),
 	                        _react2.default.createElement(_TextField2.default, {
 	                            className: 'createProd-input',
-	                            require: true,
 	                            id: 'category',
 	                            name: 'Category',
 	                            hintText: 'Category',
@@ -48317,9 +48316,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var postProduct = exports.postProduct = function postProduct(product) {
+	var postProduct = exports.postProduct = function postProduct(data) {
 	    return function (dispatch) {
-	        _axios2.default.post('/product', { product: product }).then(function (respons) {
+	        _axios2.default.post('/product', data).then(function (respons) {
 	            dispatch({
 	                type: 'POST_DATA',
 	                payload: respons.data
@@ -60637,18 +60636,13 @@
 	                                                'div',
 	                                                { key: key },
 	                                                val,
-	                                                ': '
-	                                            );
-	                                        })
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        null,
-	                                        Object.values(renderListProduct.props).map(function (val, key) {
-	                                            return _react2.default.createElement(
-	                                                'div',
-	                                                { key: key },
-	                                                val
+	                                                ':',
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    null,
+	                                                    renderListProduct.props[val]
+	                                                ),
+	                                                ' '
 	                                            );
 	                                        })
 	                                    )
@@ -66357,6 +66351,7 @@
 	function deleteProduct(product, state) {
 	    var newState = _extends({}, state);
 	    newState.product = newState.product.filter(function (el, index) {
+	        console.log(el, 'lalal');
 	        return el._id !== product._id;
 	    });
 	    return newState;

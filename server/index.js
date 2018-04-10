@@ -40,6 +40,7 @@ app.get("*", (request, response) => {
 	response.sendFile(path.resolve(__dirname, "../client/", "index.html"))
   })
 
+  module.exports = app
 
 module.exports.start = () => app.listen(process.env.PORT || 8800, () => console.log('App listening on port '+ config.port))
 

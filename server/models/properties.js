@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const propertiesSchema = mongoose.Schema({
-    name      : String,
-    category  : String
+    name      : { type: String, required:true  },
+    category  : { type: String, required: true }
 })
 
 const Properties = mongoose.model('Properties',propertiesSchema)

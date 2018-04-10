@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const postProduct = product => dispatch => {
-       axios.post('/product',{product})
+export const postProduct = data => dispatch => {
+       axios.post('/product',data)
                     .then(respons=>{
                         dispatch({
                             type:'POST_DATA',

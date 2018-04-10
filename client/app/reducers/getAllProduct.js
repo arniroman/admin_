@@ -31,6 +31,7 @@ export default function assyncGetProduct(state=null, action) {
 function deleteProduct(product,state){
     let newState = {...state}
     newState.product = newState.product.filter((el,index) => {
+        console.log(el,'lalal')
         return el._id !== product._id;
     })
     return newState

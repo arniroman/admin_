@@ -16,9 +16,9 @@ class ProductDescr extends Component {
         return(
             <div>
                 <header className="headerCurrentHistory">
-                <p>Current history</p>
-                <i class="fas fa-history history-icon"></i>
-            </header>
+                    <p>Current history</p>
+                    <i class="fas fa-history history-icon"></i>
+                </header>
                  <div className="productWrap">
                  <div className="productItems" >
                     <div className="imageBox">
@@ -50,14 +50,14 @@ class ProductDescr extends Component {
                             <div className="propsWrap">
                                 <div>
                                     {Object.keys(renderListProduct.props).map((val,key)=>
-                                        <div key={key}>{val}: </div>
+                                        <div key={key}>{val}:<span>{renderListProduct.props[val]}</span> </div>
                                     )}
                                 </div>
-                                <div>
+                                {/* <div>
                                     {Object.values(renderListProduct.props).map((val,key)=>
                                         <div key={key}>{val}</div>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>

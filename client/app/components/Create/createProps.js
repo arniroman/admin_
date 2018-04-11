@@ -14,8 +14,9 @@ class Properties extends Component {
     constructor(props){
 		super(props)
 		this.state = {
-            name     : '',
-            category : ''
+            modalClass  :'closed',
+            name        : '',
+            category    : ''
         } 
     }
     handleSubmitProps = () => {
@@ -25,10 +26,34 @@ class Properties extends Component {
             category: this.state.category
         }
         this.props.createProperties(obj)
+
+        this.setState({
+            modalClass:'open'
+        })
     }
     handleChangeById = (event) => {
         this.setState({[event.currentTarget.id]: event.target.value})
      }
+
+    modalMessage = () => {
+        let classModal = this.state.modalClass
+        return(
+            <div className={classModal} >
+                <div>
+                    {this.props.createdProps&& <span>{this.props.createdProps.message}</span>}
+                    <div className = 'handelConfirm'>
+                        <span className='handelConfirm-btn' onClick={this.handelChangeClass}>ok</span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    handelChangeClass = () =>{
+        this.setState({
+            modalClass:'closed'
+        })
+    }
     
     render(){ 
         return( 
@@ -37,6 +62,7 @@ class Properties extends Component {
                     <p>Create properties</p>
                 <i class="fas fa-wrench hederEdit-icon"></i>
                 </header>
+                {this.modalMessage()}
                 <div className = 'propsWrapper' >
                     <div className='propsContainer' >
                         <p className="titleName-props">Name</p>
@@ -75,7 +101,7 @@ class Properties extends Component {
 
 const mapStateToProps = (state) => {
     return {
-       propsData:state.postDatas
+        createdProps : state.createdPropsData  
     }
 }
 

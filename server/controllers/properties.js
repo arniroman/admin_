@@ -6,15 +6,18 @@ module.exports = {
     newProperties: (req,res) => {
         console.log(req.body)
         const propertiesDb = new Properties(req.body)
-              propertiesDb.save()
-                          .then((doc) => {
-                                 res.send({
-                                    message:'properties successfully added!',
-                                    doc
-                                 })
-                              })
+            propertiesDb.save()
+                        .then((doc) => {
+                            res.send({
+                                message:'properties successfully added!',
+                                doc
+                                })
+                            })
                           .catch(err => {
-                            res.send(err);
+                            res.send({
+                                message:'uncorrect data!',
+                                err
+                            })
                             console.log("we got an error");
                           })
     },

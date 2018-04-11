@@ -31685,6 +31685,38 @@
 	            });
 	        };
 
+	        _this.handelChangeClass = function () {
+	            _this.setState({
+	                modalClass: 'closed'
+	            });
+	        };
+
+	        _this.modalMessage = function () {
+	            var classModal = _this.state.modalClass;
+	            return _react2.default.createElement(
+	                'div',
+	                { className: classModal },
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _this.props.postData && _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        _this.props.postData.message
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'handelConfirm' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'handelConfirm-btn', onClick: _this.handelChangeClass },
+	                            'ok'
+	                        )
+	                    )
+	                )
+	            );
+	        };
+
 	        _this.handleSubmit = function (event) {
 	            event.preventDefault();
 	            var product = {
@@ -31701,10 +31733,14 @@
 	                images: _this.state.images
 	            };
 	            _this.props.postProduct(product);
+	            _this.setState({
+	                modalClass: 'open'
+	            });
 	        };
 
 	        _this.state = {
 	            open: false,
+	            modalClass: "closed",
 	            name: "",
 	            descr: "",
 	            originalPrice: "",
@@ -31757,6 +31793,7 @@
 	                    ),
 	                    _react2.default.createElement('i', { className: 'fas fa-wrench hederEdit-icon' })
 	                ),
+	                this.modalMessage(),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'createProduct-wrap' },
@@ -48820,7 +48857,7 @@
 
 
 	// module
-	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n    margin: 10px 0 50px 0;\n}\n.choiceFile {\n    width: 1px;\n    visibility: hidden;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    position: fixed;\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-radius: 10px;\n    border-color: #bfa6a6;\n    height: 120px;\n    background: #f5e2e2;\n    left: 450px;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n.closedBoxCSV:hover{\n    color: #0d93a5\n}\n.pagginationButton{\n    display: inline;\n    padding: 10px 13px;\n    border-radius: 50%;\n    font-size: 12px;\n    margin: 2;\n    cursor: pointer;\n    background: #d7d6d7;\n}\n.pagginationButton:hover{\n    background: #b1b0b1;\n}\n.createdTable-list {\n    margin: 0 auto;\n    width: 1200px;\n}", ""]);
+	exports.push([module.id, ".storeCatalog{\n    display: flex;\n    align-items: center;\n    margin: 30px 0 70px 0;\n    padding: 10px;\n    background: #ffecec;\n}\n.countGoods-box{\n    display: flex;\n    width: 80%;\n    flex-direction: row-reverse;\n    align-items: center;\n}\n.storeCatalog-box{\n    display: flex;\n    \n    padding-left: 10px; \n    align-items: center;\n}\n.storeCatalog-title{\n    padding-right: 5px;\n}\n.countGoods-length{\n    color: #111;\n    padding-left: 5px;\n}\n.contentCreate{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    padding: 20px 0;\n    border: 1px solid #e7e4ea;\n    border-radius: 20px;\n}\n.contentBtn{\n    margin: 0 30px;\n}\n.setting{\n    padding: 3px 20px;\n    border: 1px solid #e7e4ea;\n    cursor: pointer;\n    border-radius: 10px;\n}\n.setting:hover{\n    background:#ffecec;\n}\n.icon-setting{\n    padding-left: 7px;\n}\n.imageBox-table{\n    width: 65px;\n    height: 65px;\n}\n.imageTable{\n    width: 100%;\n}\n.deleteIcon{\n    font-size: 20px;\n    cursor: pointer;\n    color: #fa8080;\n    padding:0 10px;\n}\n.deleteIcon:hover{\n    color: #ff3939\n}\n.deleteBtn{\n    border: none;\n    \n}\n.dawerList {\n    text-align: center;\n}\n.dawerList-prop {\n    background: #ffecec;\n    text-align: center;\n    padding: 20px 0;\n    margin: 20px 0;\n}\n.editButton {\n    cursor: pointer;\n}\n.editIcon{\n    font-size: 20px;\n    color: #62cbdc;\n    border: none;\n    padding:0 10px;\n}\n.editIcon:hover{\n    color : #0786fd;\n}\n.dawerList-edit{\n    padding: 20px 0;\n    text-align: center;\n}\n.confirmEdit{\n    width: 300px;\n    height: 40px;\n    font-size: 17px;\n}\n.viewBtn{\n    padding-right: 10px;\n    cursor: pointer;\n}\n.view-icon{\n    font-size: 20px;\n}\n.view-icon:hover{\n    color: #62cbdc;\n}\n.paginationBox{\n    text-align: center;\n    padding: 20px 0;\n    margin: 10px 0 50px 0;\n}\n.choiceFile {\n    width: 1px;\n    visibility: hidden;\n}\n.setDiscount-btn{\n    margin-left: 10px;\n}\n.open{\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    align-items: center;\n    width: 400px;\n    border: 1px solid;\n    color: #947b7b;\n    border-color: #c8b1b1;\n    height: 200px;\n    background: #fff5f5;\n    right: 530;\n    top: 0;\n    z-index: 10;\n}\n.closed{\n    display: none;\n}\n.closedBoxCSV {\n    position: absolute;\n    bottom: 10;\n    color: #0fc6e0;\n    font-size: 30px;\n    cursor: pointer;\n}\n\n.closedBoxCSV:hover{\n    color: #0d93a5\n}\n.pagginationButton{\n    display: inline;\n    padding: 10px 13px;\n    border-radius: 50%;\n    font-size: 12px;\n    margin: 2;\n    cursor: pointer;\n    background: #d7d6d7;\n}\n.pagginationButton:hover{\n    background: #b1b0b1;\n}\n.createdTable-list {\n    margin: 0 auto;\n    width: 1200px;\n    height: 384px;\n}\n.handelConfirm{\n    display: flex;\n    justify-content: center;\n}\n\n.handelConfirm-btn{\n    width: 50px;\n    display: flex;\n    justify-content: center;\n    border: 1px solid;\n    padding: 2 35px;\n    cursor: pointer;\n    margin-top: 20px;\n    border-color: #ccc9c9;\n}\n.handelConfirm-btn:hover{\n    background: #e0f2f5;\n}\n", ""]);
 
 	// exports
 
@@ -60489,6 +60526,10 @@
 
 	__webpack_require__(579);
 
+	var _RaisedButton = __webpack_require__(470);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
 	var _reactRouterDom = __webpack_require__(367);
 
 	var _reactRedux = __webpack_require__(57);
@@ -60530,7 +60571,7 @@
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        'Current history'
+	                        'Current product'
 	                    ),
 	                    _react2.default.createElement('i', { className: 'fas fa-history history-icon' })
 	                ),
@@ -60542,8 +60583,12 @@
 	                        { className: 'productItems' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'imageBox' },
-	                            _react2.default.createElement('img', { className: 'imageItem', src: renderListProduct.images })
+	                            { className: 'productImage-wrapp' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'imageBox' },
+	                                _react2.default.createElement('img', { className: 'imageItem', src: renderListProduct.images })
+	                            )
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
@@ -60551,6 +60596,11 @@
 	                            _react2.default.createElement(
 	                                'div',
 	                                { className: 'productBox-props' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'item-specifics' },
+	                                    'Item specifics'
+	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'propsBlock-item' },
@@ -60561,7 +60611,7 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'span',
-	                                        null,
+	                                        { className: 'propsBlock-title-value' },
 	                                        renderListProduct.name
 	                                    )
 	                                ),
@@ -60575,7 +60625,7 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'span',
-	                                        null,
+	                                        { className: 'propsBlock-title-value' },
 	                                        renderListProduct.descr
 	                                    )
 	                                ),
@@ -60589,7 +60639,7 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'span',
-	                                        null,
+	                                        { className: 'propsBlock-title-value' },
 	                                        renderListProduct.price,
 	                                        '$'
 	                                    )
@@ -60600,8 +60650,11 @@
 	                                    _react2.default.createElement(
 	                                        'span',
 	                                        { className: 'propsBlock-title' },
-	                                        'Weight: ',
-	                                        _react2.default.createElement('span', null),
+	                                        'Weight: '
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'span',
+	                                        { className: 'propsBlock-title-value' },
 	                                        ' ',
 	                                        renderListProduct.weight
 	                                    )
@@ -60616,13 +60669,13 @@
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        'span',
-	                                        null,
+	                                        { className: 'propsBlock-title-value' },
 	                                        renderListProduct.category
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'propsTitle' },
+	                                    { className: 'item-specifics' },
 	                                    'Properties'
 	                                ),
 	                                _react2.default.createElement(
@@ -60635,11 +60688,15 @@
 	                                            return _react2.default.createElement(
 	                                                'div',
 	                                                { key: key },
-	                                                val,
-	                                                ':',
 	                                                _react2.default.createElement(
 	                                                    'span',
-	                                                    null,
+	                                                    { className: 'propsBlock-title' },
+	                                                    val,
+	                                                    ':'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'propsBlock-title-value' },
 	                                                    renderListProduct.props[val]
 	                                                ),
 	                                                ' '
@@ -60649,7 +60706,15 @@
 	                                )
 	                            )
 	                        ),
-	                        _react2.default.createElement(_reactRouterDom.Link, { to: '/' })
+	                        _react2.default.createElement(
+	                            _reactRouterDom.Link,
+	                            { to: '/' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'historyBtn' },
+	                                _react2.default.createElement(_RaisedButton2.default, { label: 'GO TO HOME PAGE', primary: true })
+	                            )
+	                        )
 	                    )
 	                )
 	            );
@@ -60726,7 +60791,7 @@
 
 
 	// module
-	exports.push([module.id, ".viewConteiner{\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    background-color:rgba(255, 255, 255, 0.9);\n    z-index: 1000;\n    top:0;\n    transition: top 1s ease-out 0.5s;\n   \n}\n.headerCurrentHistory{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    color: #98989a99;\n    font-size: 30px;\n    height: 100px;\n    background: #eaeeff;\n    padding: 5px;\n    margin-bottom: 50px;\n}\n.clearContainer{\n    display: none;\n}\n.productBox-wrap{\n    width: 250px;\n}\n.imageBox{\n    width: 250px;\n    height: 250px;\n     \n}\n.imageItem{\n    width: 100%;\n}\n.productWrap{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding-bottom: 50px;\n}\n.productBox-props{\n    padding-top: 20px;\n    font-size: 15px;\n}\n.productItems{\n    width: 500px;\n    display: flex;\n}\n.propsWrap{\n    display: flex;\n    \n}\n.propsTitle{\n    padding: 20px 0 10px 0;\n}\n.btnBack{\n    height: 30px;\n    border: none;\n    cursor: pointer;\n}\n.btnBack-icon{\n    font-size: 30px;\n}\n.btnBack-icon:hover{\n    color: #62cbdc;\n}", ""]);
+	exports.push([module.id, ".viewConteiner{\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    background-color:rgba(255, 255, 255, 0.9);\n    z-index: 1000;\n    top:0;\n    transition: top 1s ease-out 0.5s;\n   \n}\n.headerCurrentHistory{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    color: #98989a99;\n    font-size: 30px;\n    height: 100px;\n    background: #eaeeff;\n    padding: 5px;\n    margin-bottom: 50px;\n}\n.clearContainer{\n    display: none;\n}\n.productImage-wrapp{\n    display: flex;\n    justify-content: center;\n}\n.productBox-wrap{\n    margin: 50px 0;\n}\n.imageBox{\n    width: 300px;\n    height: 300px; \n}\n.imageItem{\n    width: 100%;\n}\n.productWrap{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding-bottom: 50px;\n}\n.productBox-props{\n    padding-top: 20px;\n    font-size: 15px;\n}\n.productItems{\n    width: 500px;\n    \n}\n.propsWrap{\n    display: flex;\n    \n}\n.propsTitle{\n    padding: 20px 0 10px 0;\n}\n.btnBack{\n    height: 30px;\n    border: none;\n    cursor: pointer;\n}\n.btnBack-icon{\n    font-size: 30px;\n}\n.btnBack-icon:hover{\n    color: #62cbdc;\n}\n.item-specifics{\n    font-size: 25px;\n    font-weight: bold;\n    text-align: center;\n    padding-bottom: 20px;\n}\n.propsBlock-title{\n    font-size: 17px;\n    padding-right: 5px;\n}\n.propsBlock-title-value{\n    font-style: italic;\n}\n.propsBlock-item{\n    margin: 2px 0;\n}", ""]);
 
 	// exports
 
@@ -61839,6 +61904,8 @@
 
 	var _TimePicker2 = _interopRequireDefault(_TimePicker);
 
+	__webpack_require__(510);
+
 	__webpack_require__(512);
 
 	__webpack_require__(615);
@@ -61931,6 +61998,43 @@
 	            _this.props.handlePaginationLists(event.target.id, '');
 	        };
 
+	        _this.modalMessage = function () {
+	            var classModal = _this.state.modalClass;
+	            return _react2.default.createElement(
+	                'div',
+	                { className: classModal },
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _this.props.createdDiscount && _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        ' ',
+	                        _this.props.createdDiscount.message
+	                    ) || _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        'Discount created'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'handelConfirm' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'handelConfirm-btn', onClick: _this.handelChangeClass },
+	                            'ok'
+	                        )
+	                    )
+	                )
+	            );
+	        };
+
+	        _this.handelChangeClass = function () {
+	            _this.setState({
+	                modalClass: 'closed'
+	            });
+	        };
+
 	        _this.deleteDiscount = function (el, event) {
 	            var prod = _this.state.products;
 	            prod.forEach(function (element, key) {
@@ -61939,7 +62043,7 @@
 	                    prod.splice(key, 1);
 	                }
 	            });
-	            //console.log(this.state.products)
+
 	            _this.componentWillMount();
 	        };
 
@@ -61950,8 +62054,13 @@
 	                active: true,
 	                product: _this.state.products
 	            };
+
 	            _this.props.createDiscount(resultObj);
 	            console.log(resultObj);
+
+	            _this.setState({
+	                modalClass: 'open'
+	            });
 	        };
 
 	        _this.state = {
@@ -61961,7 +62070,8 @@
 	            discount: '',
 	            products: [],
 	            flag: '',
-	            flagPush: true
+	            flagPush: true,
+	            modalClass: 'closed'
 	        };
 	        return _this;
 	    }
@@ -61995,6 +62105,7 @@
 	                    ),
 	                    _react2.default.createElement('i', { className: 'fas fa-gift discount-icon' })
 	                ),
+	                this.modalMessage(),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'discountWrapper' },
@@ -62301,7 +62412,8 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	    return {
-	        allProduct: state.getAllProducts
+	        allProduct: state.getAllProducts,
+	        createdDiscount: state.createDiscount
 	    };
 	};
 
@@ -65064,7 +65176,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.inputContent{\n    width: 400px;\n    margin: 0 auto;\n}\n.titleName-discount{\n    text-align: center;\n}\n.CheckWrapper{\n    display: flex;\n}\n.TitleCheck{\n    width: 20%;\n}\n.checkboxDiscount{\n    width: 20%;\n}\n.createDiscount-btn{\n    display: flex;\n    justify-content: center;\n    margin: 30px;\n}\n.tableSale-content{\n    max-width: 900px;\n    overflow: auto;\n    margin: 0 auto;\n    padding-bottom: 10px;\n}\n.discount-icon{\n    margin-left: 5px;\n}\n.discountBtn_wrapp{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.searchDiscount-wrapper{\n    display: flex;\n    justify-content: center;\n}\n.choosenProduct {\n    width: 600px;\n}\n.choosenProduct-table{\n    display: flex;\n    justify-content: center;\n    margin: 20px 0 150px 0;\n}\n.choosenProduct-table-wrapp{\n    text-align: center;\n}", ""]);
+	exports.push([module.id, "\n.inputContent{\n    width: 400px;\n    margin: 0 auto;\n}\n.titleName-discount{\n    text-align: center;\n}\n.CheckWrapper{\n    display: flex;\n}\n.TitleCheck{\n    width: 20%;\n}\n.checkboxDiscount{\n    width: 20%;\n}\n.createDiscount-btn{\n    display: flex;\n    justify-content: center;\n    margin: 30px;\n}\n.tableSale-content{\n    max-width: 900px;\n    height: 442px;\n    overflow: auto;\n    margin: 0 auto;\n    padding-bottom: 10px;\n}\n.discount-icon{\n    margin-left: 5px;\n}\n.discountBtn_wrapp{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.searchDiscount-wrapper{\n    display: flex;\n    justify-content: center;\n}\n.choosenProduct {\n    width: 600px;\n}\n.choosenProduct-table{\n    display: flex;\n    justify-content: center;\n    margin: 20px 0 150px 0;\n}\n.choosenProduct-table-wrapp{\n    text-align: center;\n}", ""]);
 
 	// exports
 
@@ -65450,13 +65562,50 @@
 	                category: _this.state.category
 	            };
 	            _this.props.createProperties(obj);
+
+	            _this.setState({
+	                modalClass: 'open'
+	            });
 	        };
 
 	        _this.handleChangeById = function (event) {
 	            _this.setState(_defineProperty({}, event.currentTarget.id, event.target.value));
 	        };
 
+	        _this.modalMessage = function () {
+	            var classModal = _this.state.modalClass;
+	            return _react2.default.createElement(
+	                'div',
+	                { className: classModal },
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _this.props.createdProps && _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        _this.props.createdProps.message
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'handelConfirm' },
+	                        _react2.default.createElement(
+	                            'span',
+	                            { className: 'handelConfirm-btn', onClick: _this.handelChangeClass },
+	                            'ok'
+	                        )
+	                    )
+	                )
+	            );
+	        };
+
+	        _this.handelChangeClass = function () {
+	            _this.setState({
+	                modalClass: 'closed'
+	            });
+	        };
+
 	        _this.state = {
+	            modalClass: 'closed',
 	            name: '',
 	            category: ''
 	        };
@@ -65479,6 +65628,7 @@
 	                    ),
 	                    _react2.default.createElement('i', { className: 'fas fa-wrench hederEdit-icon' })
 	                ),
+	                this.modalMessage(),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'propsWrapper' },
@@ -65536,7 +65686,7 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	    return {
-	        propsData: state.postDatas
+	        createdProps: state.createdPropsData
 	    };
 	};
 
@@ -65563,7 +65713,7 @@
 	    return function (dispatch) {
 	        _axios2.default.post('/properties', data).then(function (respons) {
 	            dispatch({
-	                type: 'POST_AUTH',
+	                type: 'POST_PROPERTIES',
 	                payload: respons.data
 	            });
 	        });
@@ -66226,6 +66376,10 @@
 
 	var _importToCSV2 = _interopRequireDefault(_importToCSV);
 
+	var _createProps = __webpack_require__(648);
+
+	var _createProps2 = _interopRequireDefault(_createProps);
+
 	var _getAllHistory = __webpack_require__(641);
 
 	var _getAllHistory2 = _interopRequireDefault(_getAllHistory);
@@ -66241,6 +66395,10 @@
 	var _loadAllDiscount = __webpack_require__(644);
 
 	var _loadAllDiscount2 = _interopRequireDefault(_loadAllDiscount);
+
+	var _createDiscount = __webpack_require__(647);
+
+	var _createDiscount2 = _interopRequireDefault(_createDiscount);
 
 	var _auth = __webpack_require__(645);
 
@@ -66259,7 +66417,9 @@
 	    getAllUsers: _getAllUsers2.default,
 	    getCurrentHistory: _getCurrentDataHistory2.default,
 	    allDiscount: _loadAllDiscount2.default,
-	    loginAdminToken: _auth2.default
+	    createDiscount: _createDiscount2.default,
+	    loginAdminToken: _auth2.default,
+	    createdPropsData: _createProps2.default
 	});
 
 	exports.default = redusers;
@@ -66296,18 +66456,18 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = post;
-	function post() {
+	exports.default = createProduct;
+	function createProduct() {
 	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	    var action = arguments[1];
 
-	    if (action.type === 'POST_DATA') {
-	        return _extends({}, action.payload);
-	    } else {
-	        return _extends({}, state);
+	    switch (action.type) {
+	        case 'POST_DATA':
+	            console.log(action.payload, 'create');
+	            return action.payload;
+	            break;
+	        default:
+	            return state;
 	    }
 	}
 
@@ -66561,8 +66721,6 @@
 	        default:
 	            return state;
 	    }
-
-	    //  else return state   
 	}
 
 	/** logic for reducer **/
@@ -66605,6 +66763,55 @@
 	                } }));
 	};
 	exports.PrivateRoute = PrivateRoute;
+
+/***/ }),
+/* 647 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = postDiscount;
+	function postDiscount() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'POST_DISCOUNT':
+	            console.log(action.payload, 'lalal');
+	            return action.payload;
+	            break;
+	        default:
+	            return state;
+	    }
+	}
+
+/***/ }),
+/* 648 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = createProps;
+	function createProps() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case 'POST_PROPERTIES':
+	            console.log(action.payload, 'create');
+	            return action.payload;
+	            break;
+	        default:
+	            return state;
+	    }
+	}
 
 /***/ })
 /******/ ]);

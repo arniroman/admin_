@@ -5,10 +5,12 @@ import getAllProduct from './getAllProduct'
 import separatedProduct from './productView'
 import productWichUpdate from './productWichUpdate'
 import importToCSV from './importToCSV'
+import createProps from './createProps'
 import assyncGetHistory from './getAllHistory'
 import getAllUsers from './getAllUsers'
 import getCurrentDataHistory from './getCurrentDataHistory'
 import loadAllDiscount from './loadAllDiscount'
+import postDiscount from './createDiscount'
 import loginAdmin from  './auth'
 
 const redusers = combineReducers ({
@@ -22,7 +24,9 @@ const redusers = combineReducers ({
     getAllUsers       : getAllUsers,
     getCurrentHistory : getCurrentDataHistory,
     allDiscount       : loadAllDiscount,
-    loginAdminToken   : loginAdmin
+    createDiscount    : postDiscount,
+    loginAdminToken   : loginAdmin,
+    createdPropsData  : createProps
 })
 
 export default redusers

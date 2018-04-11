@@ -8,15 +8,16 @@ module.exports = {
         const productDb = new Product(req.body)
         productDb.save()
                  .then((doc) => {
-                        res.send(
-                            {
-                                message:'product successfully added!',
-                                doc
-                            }
-                        )
+                    res.send({
+                        message:'product successfully added!',
+                        doc
                         })
+                    })
                  .catch(err => {
-                    res.status(400).send(err);
+                    res.send({
+                        message:'incorrect data entered',
+                        err
+                    });
                     console.log("we got an error");
                   })  
     },

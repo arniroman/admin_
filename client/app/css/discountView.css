@@ -22,6 +22,7 @@
 }
 .tableSale-content{
     max-width: 900px;
+    height: 442px;
     overflow: auto;
     margin: 0 auto;
     padding-bottom: 10px;

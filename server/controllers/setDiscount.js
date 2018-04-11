@@ -7,36 +7,30 @@ module.exports = {
    
     setDiscount: async (req,res) => {
     const result = req.body.product
-    console.log(result.product[0])
     const  checkingTheUniqueness = await Discount.find(
-          { product: {$elemMatch: {productId: result.product[0].productId}}}
+          {active:true, product: {$elemMatch: {productId: result.product[0].productId}}}
     )
-    
+    console.log(checkingTheUniqueness,'test')
     if( checkingTheUniqueness.length >= 1) {
         console.log('exists')
-        return res.status(409).json({
-                message: 'discount exists!'
-        })
-        
+        res.send({
+            message: 'discount exists!'
+        })  
     } else {
+    let productList = await Product.find({})
+    
     const discountDb = new Discount(result)
           discountDb.save()
-                    .then( (docDiscount) => {
+                    .then(docDiscount => {
                     docDiscount.product.forEach(el => {
-                    Product.find({})
-                           .then(product => {
-                            product.forEach(prod => {
-                            let discount = prod.originalPrice / 100 * el.discount,
-                                discountPrice = prod.originalPrice - discount 
-                             if(prod._id == el.productId){
-                             Product.findByIdAndUpdate(prod._id, {price: discountPrice})
-                                    .then(doc => console.log(doc,'updated'))
-                             }})
-                            })
-                        })
+                       applyDiscount(el,productList)
                     })
-                }
-                },
+                    res.send({
+                        message:'discount created'
+                })
+            })
+        }
+    },
 
     getDiscount: (req,res) => {
         Discount.find({})
@@ -46,6 +40,22 @@ module.exports = {
                 .catch(err => {
                     res.status(400).send(err)
                     console.log('we got an error')
-                }) 
+            }) 
         }
+    }
+    
+/** function for set discount **/
+    function applyDiscount(el, list){
+        list.forEach(prod => {
+          if(prod._id == el.productId){           
+          Product.findByIdAndUpdate(prod._id, {price: setDiscountPrice(prod,el)})
+                 .then(doc => console.log(doc,'updated'))
+            }
+        })
+    }
+
+    function setDiscountPrice(prod,el){
+        let discount = prod.originalPrice / 100 * el.discount,
+             discountPrice = prod.originalPrice - discount
+             return discountPrice
     }

@@ -15,6 +15,7 @@ class Create extends Component {
         super(props)
         this.state = {
             open          : false,
+            modalClass    : "closed",
             name          : "",
             descr         : "",
             originalPrice : "",
@@ -75,8 +76,28 @@ class Create extends Component {
             })
     }
 
+    handelChangeClass = () =>{
+        this.setState({
+            modalClass:'closed'
+        })
+    }
+
+    modalMessage = () => {
+        let classModal = this.state.modalClass
+        return(
+            <div className={classModal} >
+                <div>
+                    {this.props.postData&& <span>{this.props.postData.message}</span>}
+                    <div className = 'handelConfirm'>
+                        <span className='handelConfirm-btn' onClick={this.handelChangeClass}>ok</span>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 	handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
 		const product = {
             name          : this.state.name,
             descr         : this.state.descr,
@@ -91,6 +112,9 @@ class Create extends Component {
             images        : this.state.images
 		}
         this.props.postProduct(product)
+        this.setState({
+            modalClass:'open'
+        })
     }
     
     render(){
@@ -114,6 +138,7 @@ class Create extends Component {
                 <p>Create product</p>
                 <i class="fas fa-wrench hederEdit-icon"></i>
             </header>
+            {this.modalMessage()}
            <div className='createProduct-wrap'>
                <form  className='createProd-form' onSubmit={this.handleSubmit}>
                    <p className="titleName-props">Name product</p>

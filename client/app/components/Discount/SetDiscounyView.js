@@ -8,6 +8,7 @@ import { handlePaginationLists } from '../../actions/paginationList'
 import Checkbox from 'material-ui/Checkbox'
 import RaisedButton from 'material-ui/RaisedButton'
 import TimePicker from 'material-ui/TimePicker'
+import '../../css/createProduct.css'
 import  '../../css/style.css'
 import '../../css/discountView.css'
 import {
@@ -32,6 +33,7 @@ class SetDiscountView extends Component {
             products  : [],
             flag      : '',
             flagPush  : true,
+            modalClass: 'closed',
             }
         }
 
@@ -101,12 +103,33 @@ class SetDiscountView extends Component {
                 })    
             }
 
-          handlePaginationList = (event) => {   
+        handlePaginationList = (event) => {   
             this.setState({
                 id:event.target.value
             })   
           this.props.handlePaginationLists(event.target.id,'')
         }
+
+        modalMessage = () =>{
+            let classModal = this.state.modalClass
+            return(
+                <div className={classModal} >
+                <div>
+                   {this.props.createdDiscount&&<span> {this.props.createdDiscount.message}</span> || <span>Discount created</span> } 
+                    <div className = 'handelConfirm'>
+                        <span className='handelConfirm-btn' onClick={this.handelChangeClass}>ok</span>
+                    </div>
+                </div>
+                </div>
+            )
+        }
+
+        handelChangeClass = () =>{
+            this.setState({
+                modalClass:'closed'
+            })
+        }
+
         deleteDiscount = (el,event) => {
             let prod = this.state.products
             prod.forEach((element,key)=>{
@@ -116,7 +139,7 @@ class SetDiscountView extends Component {
                 }
               
             })
-            //console.log(this.state.products)
+           
             this.componentWillMount()
         }
 
@@ -127,8 +150,14 @@ class SetDiscountView extends Component {
                 active  : true,
                 product : this.state.products
             }
-              this.props.createDiscount(resultObj)
-              console.log(resultObj)
+            
+
+            this.props.createDiscount(resultObj)
+            console.log(resultObj)
+            
+            this.setState({
+                modalClass:'open'
+            })
           }
 
     render(){
@@ -149,6 +178,7 @@ class SetDiscountView extends Component {
                 <p>Discount</p>
                 <i class="fas fa-gift discount-icon"></i>
             </header>
+            {this.modalMessage()}
                 <div className="discountWrapper">
                     <div className="inputContent" >
                         <p className="titleName-discount">Name discount</p>
@@ -289,7 +319,8 @@ class SetDiscountView extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        allProduct : state.getAllProducts
+        allProduct      : state.getAllProducts,
+        createdDiscount : state.createDiscount
     }
 }
 

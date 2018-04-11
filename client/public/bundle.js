@@ -106,7 +106,7 @@
 
 	var _reactRouterDom = __webpack_require__(367);
 
-	var _routePrivate = __webpack_require__(646);
+	var _routePrivate = __webpack_require__(648);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -66376,31 +66376,31 @@
 
 	var _importToCSV2 = _interopRequireDefault(_importToCSV);
 
-	var _createProps = __webpack_require__(648);
+	var _createProps = __webpack_require__(641);
 
 	var _createProps2 = _interopRequireDefault(_createProps);
 
-	var _getAllHistory = __webpack_require__(641);
+	var _getAllHistory = __webpack_require__(642);
 
 	var _getAllHistory2 = _interopRequireDefault(_getAllHistory);
 
-	var _getAllUsers = __webpack_require__(642);
+	var _getAllUsers = __webpack_require__(643);
 
 	var _getAllUsers2 = _interopRequireDefault(_getAllUsers);
 
-	var _getCurrentDataHistory = __webpack_require__(643);
+	var _getCurrentDataHistory = __webpack_require__(644);
 
 	var _getCurrentDataHistory2 = _interopRequireDefault(_getCurrentDataHistory);
 
-	var _loadAllDiscount = __webpack_require__(644);
+	var _loadAllDiscount = __webpack_require__(645);
 
 	var _loadAllDiscount2 = _interopRequireDefault(_loadAllDiscount);
 
-	var _createDiscount = __webpack_require__(647);
+	var _createDiscount = __webpack_require__(646);
 
 	var _createDiscount2 = _interopRequireDefault(_createDiscount);
 
-	var _auth = __webpack_require__(645);
+	var _auth = __webpack_require__(647);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
@@ -66600,6 +66600,30 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.default = createProps;
+	function createProps() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var action = arguments[1];
+
+	    switch (action.type) {
+	        case 'POST_PROPERTIES':
+	            console.log(action.payload, 'create');
+	            return action.payload;
+	            break;
+	        default:
+	            return state;
+	    }
+	}
+
+/***/ }),
+/* 642 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.default = assyncGetHistory;
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -66620,7 +66644,7 @@
 	}
 
 /***/ }),
-/* 642 */
+/* 643 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66648,7 +66672,7 @@
 	}
 
 /***/ }),
-/* 643 */
+/* 644 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66675,7 +66699,7 @@
 	}
 
 /***/ }),
-/* 644 */
+/* 645 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66701,7 +66725,32 @@
 	}
 
 /***/ }),
-/* 645 */
+/* 646 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = postDiscount;
+	function postDiscount() {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	    var action = arguments[1];
+
+
+	    switch (action.type) {
+	        case 'POST_DISCOUNT':
+	            console.log(action.payload, 'lalal');
+	            return action.payload;
+	            break;
+	        default:
+	            return state;
+	    }
+	}
+
+/***/ }),
+/* 647 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -66732,7 +66781,7 @@
 	}
 
 /***/ }),
-/* 646 */
+/* 648 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -66763,55 +66812,6 @@
 	                } }));
 	};
 	exports.PrivateRoute = PrivateRoute;
-
-/***/ }),
-/* 647 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = postDiscount;
-	function postDiscount() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-	    var action = arguments[1];
-
-
-	    switch (action.type) {
-	        case 'POST_DISCOUNT':
-	            console.log(action.payload, 'lalal');
-	            return action.payload;
-	            break;
-	        default:
-	            return state;
-	    }
-	}
-
-/***/ }),
-/* 648 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = createProps;
-	function createProps() {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-	    var action = arguments[1];
-
-	    switch (action.type) {
-	        case 'POST_PROPERTIES':
-	            console.log(action.payload, 'create');
-	            return action.payload;
-	            break;
-	        default:
-	            return state;
-	    }
-	}
 
 /***/ })
 /******/ ]);

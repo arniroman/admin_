@@ -18,6 +18,7 @@ module.exports = {
                         message:'incorrect data entered',
                         err
                     });
+                    res.status(409)
                     console.log("we got an error");
                   })  
     },

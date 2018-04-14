@@ -6,15 +6,15 @@ router.post('/',(req,res) => {
     controllers.newProduct(req,res)
 })
 
-router.get('/:id',(req,res,next)=>{
+router.get('/:id',(req,res) => {
     controllers.getAllProduct (req,res)   
 })
 
-router.delete('/:id',(req,res)=>{
+router.delete('/:id',(req,res) => {
     controllers.deleteProduct(req,res)
 })
 
-router.put('/:id',(req,res)=>{
+router.put('/:id',(req,res) => {
     controllers.updateProduct(req,res)
 })
 

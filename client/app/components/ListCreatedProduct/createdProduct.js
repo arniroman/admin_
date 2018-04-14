@@ -105,7 +105,7 @@ class CreatedProduct extends Component {
                     <div className="storeCatalog">
                         <Link  to="/history">
                             <div className="storeCatalog-box">
-                            <FlatButton label="Shopping history" primary={true} />
+                            <FlatButton label="Purchase history" primary={true} />
                                 <i class="fas fa-cart-arrow-down"></i>
                             </div>
                         </Link>

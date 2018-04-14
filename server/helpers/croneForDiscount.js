@@ -5,9 +5,16 @@ const cron = require('node-cron')
 
 
 findDiscount = async () => {
+    let products,
+        discounts
+    try{
+      products  = await Product.find({})
+      discounts = await Discount.find({})  
+    } catch(e) {
+        res.status(400).send(err)
+        console.log('we got an error')
+    } 
     
-   let products  = await Product.find({})
-   let discounts = await Discount.find({})
 
        discounts.filter(it => it.active === true && it.data < new Date())
                 .forEach(disc => {

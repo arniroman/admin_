@@ -7,6 +7,7 @@ module.exports = {
    
     setDiscount: async (req,res) => {
     const result = req.body.product
+    let productList
     const  checkingTheUniqueness = await Discount.find(
           {active:true, product: {$elemMatch: {productId: result.product[0].productId}}}
     )
@@ -17,7 +18,13 @@ module.exports = {
             message: 'discount exists!'
         })  
     } else {
-    let productList = await Product.find({})
+        try{
+          productList = await Product.find({})   
+        } catch(e){
+            res.status(400).send(err)
+            console.log('we got an error')
+        }
+    
     
     const discountDb = new Discount(result)
           discountDb.save()
